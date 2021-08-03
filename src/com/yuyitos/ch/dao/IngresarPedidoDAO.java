@@ -10,6 +10,9 @@ import com.yuyitos.ch.entity.Detalle;
 import com.yuyitos.ch.entity.Discrepancias;
 import com.yuyitos.ch.entity.Factura;
 import com.yuyitos.ch.entity.Repartidor;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -24,6 +27,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
@@ -321,6 +329,38 @@ public class IngresarPedidoDAO {
                 
         }
     
+    public boolean ListarIdEmpresa(JComboBox cb,JTextField txt){
+        try {
+                String sql="select idempresa from empresa where nombre=?";
+
+                con=cn.getConnection();
+                PreparedStatement pst;
+                 pst = con.prepareStatement(sql);  
+                ResultSet rs;
+                
+                pst.setString(1, (String)cb.getSelectedItem());
+                rs = pst.executeQuery();
+
+               
+                if(rs.next()){
+                txt.setText(rs.getString(1));//aqui se agregará todos los productos asociados según la empresa que elegiste en el combobox
+
+                }
+               
+                   
+                
+                
+                
+                return true;
+                
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(null, ex.toString());
+                    return false;
+                }
+                
+        }
+    
+    
         public String NombreEmpresaImprimir(JComboBox cb){
        
         try {
@@ -403,6 +443,45 @@ public class IngresarPedidoDAO {
         }
       
     }
+    
+    
+    public boolean CompararProductoDetalleFactura(JComboBox cb, JTextField txt){
+        
+        String sql = "select prod.descripcion from producto as prod\n" +
+                        "inner join detallefactura as det\n" +
+                        "on det.producto=prod.codProducto\n" +
+                        "where det.numfactura=? and prod.descripcion=?";
+        try {
+            con=cn.getConnection();
+            pst= con.prepareStatement(sql);
+            
+            
+            
+            pst.setString(1, txt.getText());
+            pst.setString(2,(String)cb.getSelectedItem());
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+                return false;//Aqui false porque queremos verificar que un producto no exista dentro de detalle para evitar clonación de producto en un mismo detalle :)(podria ser true pero en el if del boton identificamos el false)
+            }else{
+                return true;
+            }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+            System.out.println("Error metodo comparaproductodetalleboleta");
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+      
+    }
+    
+    
+    
     public int NumFacturaImprimir(){
        
         try {
@@ -523,6 +602,115 @@ public class IngresarPedidoDAO {
                 System.out.println(e.toString());
             }
         }
-      
     }
+        public void PDFFactura(JTextField txt, JComboBox cb){
+                try {
+            String sql ="select fact.numfactura, fact.fecha, fact.total,emp.nombre, rep.rut, rep.nombre from factura as fact inner join detallefactura as det on det.numfactura=fact.numFactura\n" +
+                            "inner join producto as prod on prod.codproducto=det.producto inner join empresa as emp on prod.idempresa=emp.idempresa\n" +
+                            "inner join pedido as ped on ped.numfactura=fact.numfactura inner join repartidor as rep on rep.idRepartidor=ped.idRepartidor\n" +
+                            "where fact.numfactura=? and rep.nombre=?";
+            String sql2="select prod.descripcion, det.cantidad from detallefactura as det \n" +
+                            "inner join producto as prod on prod.codproducto=det.producto\n" +
+                            "where det.numfactura=?";
+            con=cn.getConnection();
+            
+                String numboleta = "";
+                String fecha = "";  
+                String total = "";
+                String nombre= "";
+                String rut = "";
+                String nombreEmp="";
+                
+                PreparedStatement pst;
+                pst = con.prepareStatement(sql);
+                pst.setInt(1,  Integer.parseInt((String)cb.getSelectedItem()));
+                pst.setString(2, txt.getText());
+            ResultSet rs1 = pst.executeQuery();
+           
+            if (rs1.next()){
+                    numboleta=(rs1.getString(1));
+                    fecha=(rs1.getString(2));
+                    total=(rs1.getString(3));
+                    nombreEmp=(rs1.getString(4));
+                    rut=(rs1.getString(5));
+                    nombre=(rs1.getString(6));
+            }
+            
+            PDDocument documento = new PDDocument ();
+            PDPage pagina = new PDPage(PDRectangle.A6);//nueva pagina a6 igual tipo de pagina
+            
+            documento.addPage(pagina);
+            PDPageContentStream contenido=new PDPageContentStream(documento,pagina);
+            
+            contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD, 12);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52);
+           
+                contenido.showText("Los Yuyitos ");
+                contenido.endText();
+                
+                contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD, 12);
+            
+            contenido.newLineAtOffset(200, pagina.getMediaBox().getHeight()-52);
+           
+                contenido.showText("Boleta n°"+numboleta);
+                contenido.endText();
+                
+                
+                
+                
+            contenido.beginText();        
+            contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52*2);
+
+                contenido.showText("| Numero de factura: "+numboleta+" | Fecha de pedido: "+fecha+" | total: "+total+" |");
+                contenido.endText();
+                 contenido.beginText();        
+            contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-114);
+
+                contenido.showText( "Nombre Empresa: "+nombreEmp+" |"+"  Nombre repartidor: "+nombre+" |"+"  Rut repartidor: "+rut+" |");
+                contenido.endText();
+                PreparedStatement pst2;
+                pst2 = con.prepareStatement(sql2);
+                pst2.setInt(1, Integer.parseInt((String)cb.getSelectedItem()));
+            ResultSet rs2 = pst2.executeQuery();
+                int i=10;//10 serian para el salto de linea, el cual seria un salto de linea ideal para que este abajo de numboleta 
+                while(rs2.next()){
+                    
+                    contenido.beginText();        
+                    contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+                    contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-(114+i));
+                    i=i+10;//para que por cada producto comprado exista un pequeño salto de linea idoneo
+                    String producto;
+                    String cantidad;
+                    producto=(rs2.getString(1));
+                    cantidad=(rs2.getString(2));
+                    contenido.showText("| Producto: "+producto+" | cantidad: "+cantidad);
+                    contenido.endText();
+                }
+//                
+//                contenido.beginText();    
+//                contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+//                contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-54*3);
+//                contenido.showText("-----------------------------------------------------------------------");
+//                contenido.endText();
+            contenido.close();
+            documento.save("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
+            
+            JOptionPane.showMessageDialog(null, "pdf creado");
+            try {
+                    File path = new File ("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
+                    Desktop.getDesktop().open(path);
+               }catch (IOException ex) {
+                    ex.printStackTrace();
+               }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error pdf"+e);
+        }
+     }
+        
+        
 }
+

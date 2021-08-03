@@ -5,6 +5,12 @@
  */
 package com.yuyitos.ch.view;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
 import com.yuyitos.ch.bo.IngresarFichaClienteBO;
 import com.yuyitos.ch.bo.IngresarFichaProveedorBO;
 import com.yuyitos.ch.bo.TablaEmpleado;
@@ -24,6 +30,9 @@ import com.yuyitos.ch.entity.Empleado;
 import com.yuyitos.ch.entity.Empresa;
 import com.yuyitos.ch.entity.Factura;
 import com.yuyitos.ch.entity.Repartidor;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -110,13 +119,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
        txtStockVenta.setEditable(false);
        txtTotalVenta.setEditable(false);
        txtIDetalleVenta.setEditable(false);
+       txtIdEmpresaRevisar.setEditable(false);
+       txtID.setEditable(false);
+       txtIdEmpleado.setEditable(false);
+       txtIdEmpresa.setEditable(false);
        
-        txtNumFactura.setText((ipdao.NumFacturaImprimir()+1)+"");
-        txtNumeroBoleta.setText(ivdao.NumBoletaImprimir()+1+"");
+        //txtNumFactura.setText((ipdao.NumFacturaImprimir()+1)+""); YA NO PORQUE BOTON GENERAR BOLETA HACE ESTOOOOOOOOOOOOOOOOO
+        //.setText(ivdao.NumBoletaImprimir()+1+""); YA NO PORQUE BOTON GENERAR BOLETA HACE ESTOOOOOOOOOOOOOOOOO
         
-        listarProductoPedido();
+        
         //listarProductoPedido2(); Solo se listará cuando le den a un btn
-        txtTotalPedido.setText(SumaTotalPedido()+"");
+        
         txtTotalVenta.setText(SumaTotalBoleta()+"");
      
     }
@@ -165,6 +178,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         btnAceptarFiadoCliente = new javax.swing.JButton();
+        txtDeuda = new javax.swing.JTextField();
+        jLabel75 = new javax.swing.JLabel();
+        jLabel76 = new javax.swing.JLabel();
+        btnCalcularDeuda = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txtTelefonoEmpleado = new javax.swing.JTextField();
         txtDVRutEmpleado = new javax.swing.JTextField();
@@ -206,7 +223,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         jComboBox4 = new javax.swing.JComboBox<>();
-        jButton2 = new javax.swing.JButton();
+        btnGenerarPDF = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         txtRubroProveedor = new javax.swing.JTextField();
@@ -254,6 +271,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel43 = new javax.swing.JLabel();
         btnAceptarPedido = new javax.swing.JButton();
         jLabel35 = new javax.swing.JLabel();
+        btnGenerarNFactura = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         btnAceptarOrden = new javax.swing.JButton();
         btnDiscrepancias = new javax.swing.JButton();
@@ -321,6 +339,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel60 = new javax.swing.JLabel();
         txtPassVenta = new javax.swing.JTextField();
         jLabel73 = new javax.swing.JLabel();
+        btnGenerarBoleta = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         lblImagen = new javax.swing.JLabel();
 
@@ -556,15 +575,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel7.setText("Rut: 20444555");
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
 
-        jLabel17.setText("Abonar fiado");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
+        jLabel17.setText("- - - - - - - - - - - - - - -");
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 150, -1, -1));
 
         txtAbonarFiado.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtAbonarFiadoKeyTyped(evt);
             }
         });
-        jPanel2.add(txtAbonarFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 60, -1));
+        jPanel2.add(txtAbonarFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 60, -1));
 
         jLabel8.setText("DV Rut");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
@@ -596,7 +615,29 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnAceptarFiadoClienteActionPerformed(evt);
             }
         });
-        jPanel2.add(btnAceptarFiadoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 30));
+        jPanel2.add(btnAceptarFiadoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, 30));
+
+        txtDeuda.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDeudaKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtDeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 60, -1));
+
+        jLabel75.setText("Abonar fiado");
+        jPanel2.add(jLabel75, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
+
+        jLabel76.setText("Deuda");
+        jPanel2.add(jLabel76, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
+
+        btnCalcularDeuda.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCalcularDeuda.setText("Calcular deuda");
+        btnCalcularDeuda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCalcularDeudaActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnCalcularDeuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 30));
 
         jTabbedPane1.addTab("Ficha Cliente", jPanel2);
 
@@ -793,10 +834,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel6.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 48, -1, -1));
 
         checkbox1.setLabel("checkbox1");
-        jPanel6.add(checkbox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 127, -1, -1));
+        jPanel6.add(checkbox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
 
         checkbox2.setLabel("checkbox2");
-        jPanel6.add(checkbox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(581, 127, -1, -1));
+        jPanel6.add(checkbox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, -1));
 
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel6.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(693, 48, -1, -1));
@@ -805,18 +846,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jTextArea1.setRows(5);
         jScrollPane7.setViewportView(jTextArea1);
 
-        jPanel6.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 157, 581, 228));
+        jPanel6.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 581, 228));
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel6.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 400, -1, -1));
 
-        jButton2.setText("Imprimir");
-        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, -1, -1));
+        btnGenerarPDF.setText("Generar pdf");
+        btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarPDFActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, -1, -1));
 
         jButton1.setText("Cancelar");
-        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
+        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, -1, -1));
 
-        jTabbedPane1.addTab("tab5", jPanel6);
+        jTabbedPane1.addTab("Estadistica", jPanel6);
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -999,7 +1045,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel5.add(txtPrecioPedido, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, 100, -1));
 
         jLabel36.setText("Buscar por nombre Empresa");
-        jPanel5.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 50, -1, -1));
+        jPanel5.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, -1, -1));
 
         jLabel38.setText("Precio");
         jPanel5.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 50, -1, -1));
@@ -1086,6 +1132,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel35.setText("Ingresar Pedido de compra");
         jPanel5.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
+
+        btnGenerarNFactura.setText("Generar numero factura");
+        btnGenerarNFactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarNFacturaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(btnGenerarNFactura, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, -1, -1));
 
         jTabbedPane1.addTab("Pedido Compra", jPanel5);
 
@@ -1327,7 +1381,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel8.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 6, -1, -1));
 
         jLabel66.setText("Contraseña para poder fiar");
-        jPanel8.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 90, -1, -1));
+        jPanel8.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, -1, -1));
 
         cboProductoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1393,12 +1447,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel8.add(cboRutVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 137, -1));
 
-        jLabel60.setText("Buscar por rut Usuario");
+        jLabel60.setText("Buscar por rut Cliente");
         jPanel8.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
-        jPanel8.add(txtPassVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 77, -1));
+        jPanel8.add(txtPassVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, 77, -1));
 
         jLabel73.setText("Fiar");
         jPanel8.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 140, -1, -1));
+
+        btnGenerarBoleta.setText("Generar Boleta");
+        btnGenerarBoleta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarBoletaActionPerformed(evt);
+            }
+        });
+        jPanel8.add(btnGenerarBoleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 60, -1, -1));
 
         jTabbedPane1.addTab("Venta", jPanel8);
 
@@ -1410,7 +1472,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 10, 155, -1));
 
         lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/yuyitos/ch/imagenes/grisclaro.jpg"))); // NOI18N
-        getContentPane().add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 0, 1010, 550));
+        getContentPane().add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 0, 1020, 550));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -1454,8 +1516,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         int count= tbVentaBoleta.getModel().getRowCount();
         System.out.println(count+"");
         if(txtIDetalleVenta.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Debe seleccionar algún producto.");
-        }if(count==0){
+            JOptionPane.showMessageDialog(null,"Debe seleccionar algún producto."
+                    + " en caso de que ya seleccionará algun producto entonces vuelva a dar click hasta que se llene el cuadro id producto.");
+        }else if(count==0){
             JOptionPane.showMessageDialog(null, "Para Eliminar un producto Debe existir un producto en la tabla..");//de esta forma no se borrará algún
             //producto por haber seleccionado el producto luego aceptado el pedido y luego eliminado el el producto (Tambien sirve vaciando el txt al aceptar el pedido)
         }else{
@@ -1463,6 +1526,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             ivdao.EliminarDetalleBoleta(txtIDetalleVenta);
             listarProductoBoleta();
             txtTotalVenta.setText(SumaTotalBoleta()+"");
+            txtIDetalleVenta.setText("");
         }
     }//GEN-LAST:event_btnQuitarCompraVentaActionPerformed
 
@@ -1481,8 +1545,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             JOptionPane.showMessageDialog(null, "Debe llenar algun campo de empresa.");
 
+        }else if(Integer.parseInt(txtCantidadVenta.getText())>Integer.parseInt(txtStockVenta.getText())){
+            JOptionPane.showMessageDialog(null, "la cantidad a vender no debe superar el stock de producto.");
+        }else if(txtNumeroBoleta.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null, "Debe generar una boleta para agregar un detalle");
+        }else if((ivdao.CompararProductoDetalleBolleta(cboProductoVenta, txtNumeroBoleta))==false){
+            JOptionPane.showMessageDialog(null, "No debe existir algún producto repetido");
         }else{
-            ivdao.agregarBoleta();
+           
+            
             //                String producto=cboProducto.getSelectedItem().toString();
 
             try {
@@ -1516,17 +1587,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 
         if ("0".equals(txtTotalVenta.getText())||cboRutVenta.getSelectedItem()==""||cboProductoVenta.getSelectedItem()==""){
-            JOptionPane.showMessageDialog(null, ": Para aceptar pedido boleta debe agregar algpun producto mas el rut usuario.");
+            JOptionPane.showMessageDialog(null, ": Para aceptar pedido boleta debe agregar algún producto mas el rut usuario.");
         }else{
             
             ivdao.agregarventa(txtNumeroBoleta);
-            
+            ivdao.ModificaBoleta(txtTotalVenta,txtNumeroBoleta);
+            ivdao.ActualizarStockVenta(txtNumeroBoleta);
             if("pass".equals(txtPassVenta.getText()) || !txtMontoAFiarVenta.getText().isEmpty()){
 
                 ivdao.agregarFiado(txtMontoAFiarVenta, cboRutVenta);
                 ivdao.ModificarFiadoCliente(cboRutVenta);
             }
-            txtNumeroBoleta.setText((ivdao.NumBoletaImprimir()+1)+"");
+            ivdao.PDFBoleta(txtNumeroBoleta);
             limpiar();
         }
     }//GEN-LAST:event_btnAceptarVentaActionPerformed
@@ -1552,6 +1624,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void cboNombreEmpresaRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNombreEmpresaRevisarActionPerformed
         // TODO add your handling code here:
         bcbDAO.ListarNFacturaNCBO(cboNombreEmpresaRevisar, cboNumFacturaRevisar);
+        ipdao.ListarIdEmpresa(cboNombreEmpresaRevisar,txtIdEmpresaRevisar);
     }//GEN-LAST:event_cboNombreEmpresaRevisarActionPerformed
 
     private void btnDiscrepanciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiscrepanciasActionPerformed
@@ -1592,6 +1665,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
             ipdao.agregarRepartidor(rep);
             ipdao.agregarpedido(cboNumFacturaRevisar);
             ipdao.ActualizarStock(cboNumFacturaRevisar);//ESTO DESPUES DE AGREGAR PEDIDO YA QUE REQUIERE QUE ESTE CREADO PEDIDO
+            ipdao.PDFFactura(txtNombreRepartidorRevisar, cboNumFacturaRevisar);
+            
             limpiar();
         }
     }//GEN-LAST:event_btnAceptarOrdenActionPerformed
@@ -1605,9 +1680,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }else{
 
            
-            txtNumFactura.setText(ipdao.NumFacturaImprimir()+"");
+             fact.setNumFactura(Integer.parseInt(txtNumFactura.getText()));
             fact.setTotal(Integer.parseInt(txtTotalPedido.getText()));
-            fact.setNumFactura(Integer.parseInt(txtNumFactura.getText()));
+            
             ipdao.ModificarFactura(fact );//ejecutar primero el modificar debido a que el metodo agregar factura crea una nueva factura
             //para que al aceptar la factura se cree otra factura
 
@@ -1615,7 +1690,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JTable table;
             DefaultTableModel model = (DefaultTableModel) tbProductosPedido.getModel();
             model.setRowCount(0);
-            txtNumFactura.setText(ipdao.NumFacturaImprimir()+1+"");
+
             limpiar();
         }
     }//GEN-LAST:event_btnAceptarPedidoActionPerformed
@@ -1667,6 +1742,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             ipdao.EliminarDetallePedido(det);
             listarProductoPedido();
             txtTotalPedido.setText(SumaTotalPedido()+"");
+            txtIdProductoPedido.setText("");
         }
         
     }//GEN-LAST:event_btnQuitarCompraActionPerformed
@@ -1686,22 +1762,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void cboNombreEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNombreEmpresaActionPerformed
         // TODO add your handling code here:
         ipdao.ListarProductosEmpresaPedidoCBO(cboProducto,cboNombreEmpresa);
+        
     }//GEN-LAST:event_cboNombreEmpresaActionPerformed
 
+    
+    
     private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
         // TODO add your handling code here:
         if (cboNombreEmpresa.getSelectedItem()==""  ){
             JOptionPane.showMessageDialog(null, "Debe llenar algun campo de empresa.");
         }else if(txtPrecioPedido.getText().isEmpty() || txtCantidad.getText().isEmpty() ){
             JOptionPane.showMessageDialog(null, "Escriba una cantidad de productos y/o Precio Total+");
+        }else if(txtNumFactura.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe haber elegido generado una factura");
+        }else if((ipdao.CompararProductoDetalleFactura(cboProducto, txtNumFactura))==false){
+            JOptionPane.showMessageDialog(null, "No debe existir algún producto repetido");
         }else{
-            int i = 0;
-            i=i+1;
-            if (i==1){
-                ipdao.agregarfactura();
-            }
+
             
-            //                String producto=cboProducto.getSelectedItem().toString();
 
             try {
                 String sql="select codproducto from producto where descripcion=?";
@@ -1717,15 +1795,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 det.setPrecio(Integer.parseInt(txtPrecioPedido.getText()));
 
                 ipdao.agregardetallefactura(det);
+                listarProductoPedido();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.toString());
                 System.out.println(e.toString());
             }
-
-            fact.setTotal(Integer.parseInt(txtPrecioPedido.getText()));
-
-            listarProductoPedido();
-            txtTotalPedido.setText(SumaTotalPedido()+"");
+            
+           txtTotalPedido.setText(SumaTotalPedido()+"");
+            
         }
     }//GEN-LAST:event_btnAgregarProductosActionPerformed
 
@@ -2480,8 +2557,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void btnAceptarFiadoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarFiadoClienteActionPerformed
         // TODO add your handling code here:
-        if(txtAbonarFiado.getText().isEmpty()||txtID.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "Debe llenar Id o monto de fiado.");
+        if(txtAbonarFiado.getText().isEmpty()||txtID.getText().isEmpty()||txtDeuda.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe llenar Id, monto de fiado o tener el monto de deuda visible.");
+        }else if(Integer.parseInt(txtDeuda.getText())<Integer.parseInt(txtAbonarFiado.getText())){
+            JOptionPane.showMessageDialog(null, "El monto a abonar no puede ser superior a la deuda");
+        }else if(txtDeuda.getText()=="-1"){
+            JOptionPane.showMessageDialog(null, "No se puede abonar un fiado con monto -1 (por defecto es -1)");
+        }else if(Integer.parseInt(txtDeuda.getText())==Integer.parseInt(txtAbonarFiado.getText())){
+
+            ingresarcliente.ModificarFiadoCliente(txtAbonarFiado,txtID);//AQUI SIRVE PARA VERIFICAR SI SE PAGARÁ TOTALMENTE LA DEUDA, ENTONCES HACER EL CAMBIO EN EL CHAR DEUDA DE TABLA CLIENTE
+            ingresarcliente.ModificarCHARFiado(txtID);
         }else{
             ingresarcliente.ModificarFiadoCliente(txtAbonarFiado,txtID);
         }
@@ -2496,6 +2581,126 @@ public class MenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(6);
     }//GEN-LAST:event_btnVerVentaActionPerformed
+
+    private void btnGenerarNFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarNFacturaActionPerformed
+        // TODO add your handling code here:
+         ipdao.agregarfactura();       
+        txtNumFactura.setText(ipdao.NumFacturaImprimir()+"");
+    }//GEN-LAST:event_btnGenerarNFacturaActionPerformed
+
+    private void btnGenerarBoletaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarBoletaActionPerformed
+
+         ivdao.agregarBoleta();
+        txtNumeroBoleta.setText((ivdao.NumBoletaImprimir())+"");
+    }//GEN-LAST:event_btnGenerarBoletaActionPerformed
+
+    private void btnGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPDFActionPerformed
+        // TODO add your handling code here:
+        try {
+            String sql ="select numboleta, fecha, total from boleta where numBoleta=56;";
+            String sql2="select prod.descripcion, det.cantidad from detalleboleta as det \n" +
+                            "inner join producto as prod on prod.codproducto=det.producto\n" +
+                            "where det.numboleta=49";
+            con=cn.getConnection();
+            
+            PDDocument documento = new PDDocument ();
+            PDPage pagina = new PDPage(PDRectangle.A6);//nueva pagina a6 igual tipo de pagina
+            
+            documento.addPage(pagina);
+            PDPageContentStream contenido=new PDPageContentStream(documento,pagina);
+            
+            contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD, 12);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52);
+           
+                contenido.showText("Los Yuyitos ");
+                contenido.endText();
+                
+                contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD, 12);
+            
+            contenido.newLineAtOffset(200, pagina.getMediaBox().getHeight()-52);
+           
+                contenido.showText("Boleta n°5 ");
+                contenido.endText();
+                
+                
+                
+                
+            contenido.beginText();        
+            contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52*2);
+                String numboleta = "";
+                String fecha = "";
+                String total = "";
+                
+                PreparedStatement pst;
+                pst = con.prepareStatement(sql);
+            
+            ResultSet rs1 = pst.executeQuery();
+           
+            if (rs1.next()){
+                    numboleta=(rs1.getString(1));
+                    fecha=(rs1.getString(2));
+                    total=(rs1.getString(3));
+            }
+                contenido.showText("| Numero de boleta: "+numboleta+" | Fecha de compra: "+fecha+" | total: "+total+" |");
+                contenido.endText();
+                
+                PreparedStatement pst2;
+                pst2 = con.prepareStatement(sql2);
+            
+            ResultSet rs2 = pst2.executeQuery();
+                int i=10;//10 serian para el salto de linea, el cual seria un salto de linea ideal para que este abajo de numboleta 
+                while(rs2.next()){
+                    
+                    contenido.beginText();        
+                    contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+                    contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-(104+i));
+                    i=i+10;//para que por cada producto comprado exista un pequeño salto de linea idoneo
+                    String producto;
+                    String cantidad;
+                    producto=(rs2.getString(1));
+                    cantidad=(rs2.getString(2));
+                    contenido.showText("| Producto: "+producto+" | cantidad: "+cantidad);
+                    contenido.endText();
+                }
+//                
+//                contenido.beginText();    
+//                contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+//                contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-54*3);
+//                contenido.showText("-----------------------------------------------------------------------");
+//                contenido.endText();
+            contenido.close();
+            
+            
+            
+            documento.save("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
+            
+            JOptionPane.showMessageDialog(null, "pdf creado");
+            try {
+                    File path = new File ("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
+                    Desktop.getDesktop().open(path);
+               }catch (IOException ex) {
+                    ex.printStackTrace();
+               }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error pdf"+e);
+        }
+    }//GEN-LAST:event_btnGenerarPDFActionPerformed
+
+    private void txtDeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDeudaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDeudaKeyTyped
+
+    private void btnCalcularDeudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCalcularDeudaActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Debe existir un id en el cuadro id");
+        }else{
+        ingresarcliente.CalcularDeuda(txtID,txtDeuda);
+        }
+    }//GEN-LAST:event_btnCalcularDeudaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2586,6 +2791,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         tbProductosPedido.setModel(new DefaultTableModel());
         cboProducto.setSelectedItem(0);
         cboNombreEmpresa.setSelectedItem(0);
+        txtNumFactura.setText("");
         
         cboNombreEmpresaRevisar.setSelectedItem(0);
         cboNumFacturaRevisar.setSelectedItem(0);
@@ -2612,6 +2818,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtMontoAFiarVenta.setText("");
         txtPassVenta.setText("");
         tbVentaBoleta.setModel(new DefaultTableModel());
+        txtNumeroBoleta.setText("");
     }
     
     public void listarCliente(){
@@ -2652,10 +2859,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAceptarVenta;
     private javax.swing.JButton btnAgregarCompra;
     private javax.swing.JButton btnAgregarProductos;
+    private javax.swing.JButton btnCalcularDeuda;
     private javax.swing.JButton btnDiscrepancias;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEliminarEmpleado;
     private javax.swing.JButton btnEliminarProveedor;
+    private javax.swing.JButton btnGenerarBoleta;
+    private javax.swing.JButton btnGenerarNFactura;
+    private javax.swing.JButton btnGenerarPDF;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLimpiarEmpleado;
     private javax.swing.JButton btnLimpiarProveedor;
@@ -2683,7 +2894,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private java.awt.Checkbox checkbox2;
     private com.toedter.calendar.JDateChooser datecFechaTermino;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
@@ -2760,6 +2970,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
     private javax.swing.JLabel jLabel74;
+    private javax.swing.JLabel jLabel75;
+    private javax.swing.JLabel jLabel76;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -2802,6 +3014,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtDVRutEmpleado;
     private javax.swing.JTextField txtDVRutProveedor;
     private javax.swing.JTextField txtDVRutRepartidorRevisar;
+    private javax.swing.JTextField txtDeuda;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtDireccionEmpleado;
     private javax.swing.JTextField txtDireccionProveedor;

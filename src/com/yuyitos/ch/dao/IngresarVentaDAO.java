@@ -7,6 +7,9 @@ package com.yuyitos.ch.dao;
 
 import com.yuyitos.ch.db.Conexion;
 import com.yuyitos.ch.entity.DetalleBoleta;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +21,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
 
 /**
  *
@@ -292,6 +300,68 @@ public class IngresarVentaDAO {
         }
     }
     
+    public boolean CompararProductoDetalleBolleta(JComboBox cb, JTextField txt){
+        
+        String sql = "select prod.descripcion from producto as prod\n" +
+                "inner join detalleboleta as det\n" +
+                     "on det.producto=prod.codProducto\n" +
+                "where det.numboleta=? and prod.descripcion=?";
+        try {
+            con=cn.getConnection();
+            pst= con.prepareStatement(sql);
+            
+            
+            
+            pst.setString(1, txt.getText());
+            pst.setString(2,(String)cb.getSelectedItem());
+            rs = pst.executeQuery();
+            
+            if(rs.next()){
+                return false;//Aqui false porque queremos verificar que un producto no exista dentro de detalle para evitar clonación de producto en un mismo detalle :)
+            }else{
+                return true;
+            }
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+            System.out.println("Error metodo comparaproductodetalleboleta");
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+      
+    }
+    
+    public boolean ModificaBoleta(JTextField txt,JTextField txt2 ){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String sql = "update boleta set fecha=?,total=? "
+                + "where numboleta=?";
+        try {
+            con=cn.getConnection();
+            pst= con.prepareStatement(sql);
+            
+            
+            
+            pst.setString(1, dtf.format(LocalDateTime.now()));
+            pst.setInt(2, Integer.parseInt(txt.getText()));
+            pst.setInt(3, Integer.parseInt(txt2.getText()));
+            pst.execute();
+            return true;
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+      
+    }
     public boolean EliminarDetalleBoleta(JTextField txt){
         String sql = "Delete from detalleboleta where iddetalle = ?";
         try {
@@ -324,7 +394,7 @@ public class IngresarVentaDAO {
     
     public boolean ModificarFiadoCliente(JComboBox cb){
         String sql = "update cliente as cli inner join fiado as fi on fi.idfiado=cli.fiado_idfiado\n" +
-                            "set cli.fiado_idfiado=(select max(idfiado) from fiado) where cli.rut=?";
+                            "set cli.fiado_idfiado=(select max(idfiado) from fiado), deuda='s' where cli.rut=?";
         try {
             con=cn.getConnection();
             
@@ -352,4 +422,125 @@ public class IngresarVentaDAO {
             }
         }
     }
+    
+     public boolean ActualizarStockVenta(JTextField txt ){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String sql = "update boleta as bol\n" +
+                        "inner join detalleboleta as det on det.numboleta=bol.numBoleta inner join producto as prod on prod.codProducto=det.producto\n" +
+                         "inner join inventario as inv on inv.producto_codproducto=prod.codProducto \n" +
+                        " set inv.stock=inv.stock-det.cantidad where bol.numBoleta=? ";
+        try {
+            con=cn.getConnection();
+            pst= con.prepareStatement(sql);
+            
+            pst.setInt(1,  Integer.parseInt(txt.getText()));
+            
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Stock modificado con exito");
+            return true;
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+            System.out.println("Error al actualizar STOCK BOLETA");
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+    }
+     
+     public void PDFBoleta(JTextField txt){
+                try {
+            String sql ="select numboleta, fecha, total from boleta where numBoleta=?";
+            String sql2="select prod.descripcion, det.cantidad from detalleboleta as det \n" +
+                            "inner join producto as prod on prod.codproducto=det.producto\n" +
+                            "where det.numboleta=?";
+            con=cn.getConnection();
+            
+                String numboleta = "";
+                String fecha = "";  
+                String total = "";
+                
+                PreparedStatement pst;
+                pst = con.prepareStatement(sql);
+                pst.setInt(1, Integer.parseInt(txt.getText()));
+            ResultSet rs1 = pst.executeQuery();
+           
+            if (rs1.next()){
+                    numboleta=(rs1.getString(1));
+                    fecha=(rs1.getString(2));
+                    total=(rs1.getString(3));
+            }
+            
+            PDDocument documento = new PDDocument ();
+            PDPage pagina = new PDPage(PDRectangle.A6);//nueva pagina a6 igual tipo de pagina
+            
+            documento.addPage(pagina);
+            PDPageContentStream contenido=new PDPageContentStream(documento,pagina);
+            
+            contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD, 12);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52);
+           
+                contenido.showText("Los Yuyitos ");
+                contenido.endText();
+                
+                contenido.beginText();
+            contenido.setFont(PDType1Font.TIMES_BOLD, 12);
+            
+            contenido.newLineAtOffset(200, pagina.getMediaBox().getHeight()-52);
+           
+                contenido.showText("Boleta n°"+numboleta);
+                contenido.endText();
+                
+                
+                
+                
+            contenido.beginText();        
+            contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52*2);
+
+                contenido.showText("| Numero de boleta: "+numboleta+" | Fecha de compra: "+fecha+" | total: "+total+" |");
+                contenido.endText();
+                
+                PreparedStatement pst2;
+                pst2 = con.prepareStatement(sql2);
+                pst2.setInt(1, Integer.parseInt(txt.getText()));
+            ResultSet rs2 = pst2.executeQuery();
+                int i=10;//10 serian para el salto de linea, el cual seria un salto de linea ideal para que este abajo de numboleta 
+                while(rs2.next()){
+                    
+                    contenido.beginText();        
+                    contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+                    contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-(104+i));
+                    i=i+10;//para que por cada producto comprado exista un pequeño salto de linea idoneo
+                    String producto;
+                    String cantidad;
+                    producto=(rs2.getString(1));
+                    cantidad=(rs2.getString(2));
+                    contenido.showText("| Producto: "+producto+" | cantidad: "+cantidad);
+                    contenido.endText();
+                }
+//                
+//                contenido.beginText();    
+//                contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
+//                contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-54*3);
+//                contenido.showText("-----------------------------------------------------------------------");
+//                contenido.endText();
+            contenido.close();
+            documento.save("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
+            
+            JOptionPane.showMessageDialog(null, "pdf creado");
+            try {
+                    File path = new File ("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
+                    Desktop.getDesktop().open(path);
+               }catch (IOException ex) {
+                    ex.printStackTrace();
+               }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "error pdf"+e);
+        }
+     }
 }
