@@ -4,15 +4,12 @@
  * and open the template in the editor.
  */
 package com.yuyitos.ch.db;
-import com.mysql.cj.MysqlConnection;
-import com.sun.istack.internal.logging.Logger;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
+
 import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import javax.swing.JOptionPane;/**
+/**
  *
  * @author tavo-
  */

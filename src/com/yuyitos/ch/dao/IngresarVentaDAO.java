@@ -92,7 +92,7 @@ public class IngresarVentaDAO {
             
             
            
-            JOptionPane.showMessageDialog(null,"boleta realizado con exito");
+           
             return true;
         }catch(Exception e){
             
@@ -312,6 +312,37 @@ public class IngresarVentaDAO {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
             System.out.println("error eliminar detalleboleta"+e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.toString() );
+            }
+        }
+    }
+    
+    public boolean ModificarFiadoCliente(JComboBox cb){
+        String sql = "update cliente as cli inner join fiado as fi on fi.idfiado=cli.fiado_idfiado\n" +
+                            "set cli.fiado_idfiado=(select max(idfiado) from fiado) where cli.rut=?";
+        try {
+            con=cn.getConnection();
+            
+            
+                 pst= con.prepareStatement(sql);
+               
+              
+              
+                    pst.setInt(1,Integer.parseInt((String) cb.getSelectedItem()));
+              
+           
+            
+            pst.execute();
+            pst.close();
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+            System.out.println("error modificar fiado cliente"+e.toString());
             return false;
         }finally{
             try {

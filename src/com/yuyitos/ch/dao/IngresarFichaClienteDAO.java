@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -174,4 +175,36 @@ public class IngresarFichaClienteDAO {
         }
     }
     
+    public boolean ModificarFiadoCliente(JTextField txt,JTextField txt2){
+        String sql = "update cliente as cli inner join fiado as fi on fi.idfiado=cli.fiado_idfiado\n" +
+                        "set fi.monto=fi.monto-? where cli.idcliente=?";
+        try {
+            con=cn.getConnection();
+            
+            
+                 pst= con.prepareStatement(sql);
+               
+              
+              
+                    pst.setInt(1,Integer.parseInt(txt.getText()));
+                    pst.setInt(2,Integer.parseInt(txt2.getText()));
+              
+           
+            
+            pst.execute();
+            pst.close();
+            JOptionPane.showMessageDialog(null, "Fiado Ingresado con exito.");
+            return true;
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.toString());
+            System.out.println("error modificar fiado cliente"+e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.toString() );
+            }
+        }
+    }
 }

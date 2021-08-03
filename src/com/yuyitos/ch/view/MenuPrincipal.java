@@ -91,8 +91,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
         bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresaRevisar);
         bcbDAO.BuscarProductoVenta(cboProductoVenta);
         bcbDAO.BuscarRutCliente(cboRutVenta);
-        ipdao.agregarfactura();//se crea primero por que se necesita el numero de factura para hacer detallefactura 
-        ivdao.agregarBoleta();
+        
+        //se crea primero por que se necesita el numero de factura para hacer detallefactura 
+        //ivdao.agregarBoleta();SE ELIMINO AGREGARBOLETA Y AGREGARFACTURA AL PRINCIPIO DEBIDO A QUE CREABA MUCHOS DATOS EN 0 
+        //POR LO QUE ESTOS SE CREAN AL Agregar producto en factura y agregar producto en boleta Y LOS TXT TXT QUE INDICABANSE RELLENAN CON EL MAX+1
         
        txtTotalPedido.setEditable(false);
        txtNumFactura.setEditable(false);
@@ -101,14 +103,22 @@ public class MenuPrincipal extends javax.swing.JFrame {
        txtStockVenta.setEditable(false);
        txtNumeroBoleta.setEditable(false);
        txtTotalVenta.setEditable(false);
-        txtNumFactura.setText(ipdao.NumFacturaImprimir()+"");
-        txtNumeroBoleta.setText(ivdao.NumBoletaImprimir()+"");
+       txtCantidadProductoRevisar.setEditable(false);
+       txtTotalProductosRevisar.setEditable(false);
+       txtEmpresaVenta.setEditable(false);
+       txtPrecioUnitarioVenta.setEditable(false);
+       txtStockVenta.setEditable(false);
+       txtTotalVenta.setEditable(false);
+       txtIDetalleVenta.setEditable(false);
+       
+        txtNumFactura.setText((ipdao.NumFacturaImprimir()+1)+"");
+        txtNumeroBoleta.setText(ivdao.NumBoletaImprimir()+1+"");
         
         listarProductoPedido();
         //listarProductoPedido2(); Solo se listará cuando le den a un btn
         txtTotalPedido.setText(SumaTotalPedido()+"");
         txtTotalVenta.setText(SumaTotalBoleta()+"");
-        
+     
     }
 
     /**
@@ -121,19 +131,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnMostrarTab4 = new javax.swing.JButton();
-        btnMostrarTab2 = new javax.swing.JButton();
-        btnMostrarTab1 = new javax.swing.JButton();
-        btnMostrarTab3 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        btnMostrarTab5 = new javax.swing.JButton();
-        btnMostrarTab6 = new javax.swing.JToggleButton();
+        btnVerOrdenPedido = new javax.swing.JButton();
+        btnVerCliente = new javax.swing.JButton();
+        btnVerProveedor = new javax.swing.JButton();
+        btnVerInformes = new javax.swing.JButton();
+        btnVerEmpleado = new javax.swing.JButton();
+        btnRevisarPedido = new javax.swing.JToggleButton();
+        btnVerVenta = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        btnCancelar = new javax.swing.JButton();
         btnModificar = new javax.swing.JButton();
         txtDVRut = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
@@ -150,12 +159,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         txtAbonarFiado = new javax.swing.JTextField();
-        chkAbono = new javax.swing.JCheckBox();
         jLabel8 = new javax.swing.JLabel();
         txtApellidoPaterno = new javax.swing.JTextField();
         txtApellidoMaterno = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
+        btnAceptarFiadoCliente = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         txtTelefonoEmpleado = new javax.swing.JTextField();
         txtDVRutEmpleado = new javax.swing.JTextField();
@@ -164,7 +173,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtNombreEmpleado = new javax.swing.JTextField();
         txtIdEmpleado = new javax.swing.JTextField();
         txtDireccionEmpleado = new javax.swing.JTextField();
-        btnCancelarEmpleado = new javax.swing.JButton();
         btnLimpiarEmpleado = new javax.swing.JButton();
         btnEliminarEmpleado = new javax.swing.JButton();
         btnModificarEmpleado = new javax.swing.JButton();
@@ -189,6 +197,17 @@ public class MenuPrincipal extends javax.swing.JFrame {
         datecFechaTermino = new com.toedter.calendar.JDateChooser();
         cboCargoEmpleado = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel61 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
+        checkbox1 = new java.awt.Checkbox();
+        checkbox2 = new java.awt.Checkbox();
+        jComboBox3 = new javax.swing.JComboBox<>();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jComboBox4 = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         txtRubroProveedor = new javax.swing.JTextField();
         txtDireccionProveedor = new javax.swing.JTextField();
@@ -208,7 +227,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtCorreoProveedor = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbIngresarProveedor = new javax.swing.JTable();
-        btnCancelarProveedor = new javax.swing.JButton();
         btnLimpiarProveedor = new javax.swing.JButton();
         btnEliminarProveedor = new javax.swing.JButton();
         btnModificarProveedor = new javax.swing.JButton();
@@ -239,7 +257,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel7 = new javax.swing.JPanel();
         btnAceptarOrden = new javax.swing.JButton();
         btnDiscrepancias = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         cboNumFacturaRevisar = new javax.swing.JComboBox<>();
         cboNombreEmpresaRevisar = new javax.swing.JComboBox<>();
         jLabel37 = new javax.swing.JLabel();
@@ -272,13 +289,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel58 = new javax.swing.JLabel();
         txtRutRepartidorRevisar = new javax.swing.JTextField();
         jLabel59 = new javax.swing.JLabel();
+        jLabel74 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         txtMontoAFiarVenta = new javax.swing.JTextField();
-        checkbox1 = new java.awt.Checkbox();
         jLabel62 = new javax.swing.JLabel();
         btnAceptarVenta = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
         btnAgregarCompra = new javax.swing.JButton();
         txtTotalVenta = new javax.swing.JTextField();
         jLabel63 = new javax.swing.JLabel();
@@ -313,47 +329,52 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(102, 102, 102));
 
-        btnMostrarTab4.setText("Orden de pedido");
-        btnMostrarTab4.addActionListener(new java.awt.event.ActionListener() {
+        btnVerOrdenPedido.setText("Orden de pedido");
+        btnVerOrdenPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTab4ActionPerformed(evt);
+                btnVerOrdenPedidoActionPerformed(evt);
             }
         });
 
-        btnMostrarTab2.setText("Nueva Venta");
-        btnMostrarTab2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnMostrarTab2MouseClicked(evt);
+        btnVerCliente.setText("Crear Cliente");
+        btnVerCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerClienteActionPerformed(evt);
             }
         });
 
-        btnMostrarTab1.setText("Nuevo Cliente");
-        btnMostrarTab1.addActionListener(new java.awt.event.ActionListener() {
+        btnVerProveedor.setText("Crear proveedor");
+        btnVerProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTab1ActionPerformed(evt);
+                btnVerProveedorActionPerformed(evt);
             }
         });
 
-        btnMostrarTab3.setText("Nuevo Proveedor");
-        btnMostrarTab3.addActionListener(new java.awt.event.ActionListener() {
+        btnVerInformes.setText("Ver informes");
+        btnVerInformes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTab3ActionPerformed(evt);
+                btnVerInformesActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Informe");
-
-        btnMostrarTab5.setText("Crear usuario");
-        btnMostrarTab5.addActionListener(new java.awt.event.ActionListener() {
+        btnVerEmpleado.setText("Crear Empleado");
+        btnVerEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTab5ActionPerformed(evt);
+                btnVerEmpleadoActionPerformed(evt);
             }
         });
 
-        btnMostrarTab6.setText("jToggleButton1");
-        btnMostrarTab6.addActionListener(new java.awt.event.ActionListener() {
+        btnRevisarPedido.setText("Revisar Orden pedido");
+        btnRevisarPedido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMostrarTab6ActionPerformed(evt);
+                btnRevisarPedidoActionPerformed(evt);
+            }
+        });
+
+        btnVerVenta.setText("Nueva venta");
+        btnVerVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerVentaActionPerformed(evt);
             }
         });
 
@@ -363,36 +384,38 @@ public class MenuPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnVerInformes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnRevisarPedido))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnMostrarTab4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMostrarTab3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(btnMostrarTab1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnMostrarTab2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(btnMostrarTab6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnMostrarTab5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(btnVerProveedor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(btnVerOrdenPedido, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVerEmpleado, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVerCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnVerVenta, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(148, Short.MAX_VALUE)
-                .addComponent(btnMostrarTab1)
+                .addComponent(btnVerCliente)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnVerVenta)
                 .addGap(18, 18, 18)
-                .addComponent(btnMostrarTab2)
-                .addGap(30, 30, 30)
-                .addComponent(btnMostrarTab3)
+                .addComponent(btnVerProveedor)
                 .addGap(18, 18, 18)
-                .addComponent(btnMostrarTab4)
+                .addComponent(btnVerOrdenPedido)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRevisarPedido)
+                .addGap(12, 12, 12)
+                .addComponent(btnVerEmpleado)
                 .addGap(18, 18, 18)
-                .addComponent(btnMostrarTab5)
-                .addGap(18, 18, 18)
-                .addComponent(btnMostrarTab6)
-                .addGap(30, 30, 30)
-                .addComponent(jButton5)
-                .addGap(36, 36, 36))
+                .addComponent(btnVerInformes)
+                .addGap(84, 84, 84))
         );
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 140, 540));
@@ -408,15 +431,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel2.setText("Dirección");
         jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
-
-        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCancelar.setText("Cancelar");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, -1, -1));
 
         btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnModificar.setText("Modificar");
@@ -491,7 +505,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnLimpiarActionPerformed(evt);
             }
         });
-        jPanel2.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
+        jPanel2.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 400, -1, -1));
 
         jLabel4.setText("ID (eliminar/modificar)");
         jPanel2.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, -1, -1));
@@ -543,15 +557,30 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
 
         jLabel17.setText("Abonar fiado");
-        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, -1, -1));
-        jPanel2.add(txtAbonarFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 60, -1));
+        jPanel2.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
-        chkAbono.setText("activar fiados");
-        jPanel2.add(chkAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
+        txtAbonarFiado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtAbonarFiadoKeyTyped(evt);
+            }
+        });
+        jPanel2.add(txtAbonarFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 60, -1));
 
         jLabel8.setText("DV Rut");
         jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 50, -1, -1));
+
+        txtApellidoPaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoPaternoKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtApellidoPaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 80, 80, -1));
+
+        txtApellidoMaterno.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoMaternoKeyTyped(evt);
+            }
+        });
         jPanel2.add(txtApellidoMaterno, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 80, 90, -1));
 
         jLabel9.setText("Nombre");
@@ -560,7 +589,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel12.setText("1° Apellido");
         jPanel2.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 50, -1, -1));
 
-        jTabbedPane1.addTab("tab1", jPanel2);
+        btnAceptarFiadoCliente.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAceptarFiadoCliente.setText("Aceptar fiado");
+        btnAceptarFiadoCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarFiadoClienteActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnAceptarFiadoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, 30));
+
+        jTabbedPane1.addTab("Ficha Cliente", jPanel2);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -614,15 +652,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel3.add(txtDireccionEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 270, 90, -1));
-
-        btnCancelarEmpleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCancelarEmpleado.setText("Cancelar");
-        btnCancelarEmpleado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarEmpleadoActionPerformed(evt);
-            }
-        });
-        jPanel3.add(btnCancelarEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, -1, -1));
 
         btnLimpiarEmpleado.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLimpiarEmpleado.setText("Limpiar");
@@ -749,18 +778,43 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel3.add(cboCargoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 180, 110, -1));
 
-        jTabbedPane1.addTab("tab2", jPanel3);
+        jTabbedPane1.addTab("Información Empleado", jPanel3);
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1008, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 445, Short.MAX_VALUE)
-        );
+        jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 48, -1, -1));
+
+        jLabel61.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel61.setText("Estadistica");
+        jPanel6.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, -1));
+
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 48, -1, -1));
+
+        checkbox1.setLabel("checkbox1");
+        jPanel6.add(checkbox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 127, -1, -1));
+
+        checkbox2.setLabel("checkbox2");
+        jPanel6.add(checkbox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(581, 127, -1, -1));
+
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(693, 48, -1, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane7.setViewportView(jTextArea1);
+
+        jPanel6.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 157, 581, 228));
+
+        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jPanel6.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 400, -1, -1));
+
+        jButton2.setText("Imprimir");
+        jPanel6.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, -1, -1));
+
+        jButton1.setText("Cancelar");
+        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 400, -1, -1));
 
         jTabbedPane1.addTab("tab5", jPanel6);
 
@@ -868,15 +922,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel4.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 830, 230));
 
-        btnCancelarProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnCancelarProveedor.setText("Cancelar");
-        btnCancelarProveedor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarProveedorActionPerformed(evt);
-            }
-        });
-        jPanel4.add(btnCancelarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 380, -1, -1));
-
         btnLimpiarProveedor.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btnLimpiarProveedor.setText("Limpiar");
         btnLimpiarProveedor.addActionListener(new java.awt.event.ActionListener() {
@@ -923,7 +968,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel4.add(txtIdEmpresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 70, -1));
 
-        jTabbedPane1.addTab("tab3", jPanel4);
+        jTabbedPane1.addTab("Ficha Proveedor", jPanel4);
 
         jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1042,7 +1087,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel35.setText("Ingresar Pedido de compra");
         jPanel5.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, -1, -1));
 
-        jTabbedPane1.addTab("tab4", jPanel5);
+        jTabbedPane1.addTab("Pedido Compra", jPanel5);
 
         jPanel7.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1062,23 +1107,20 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel7.add(btnDiscrepancias, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 390, -1, -1));
 
-        jButton1.setText("Cancelar");
-        jPanel7.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, -1, -1));
-
-        jPanel7.add(cboNumFacturaRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 80, 140, -1));
+        jPanel7.add(cboNumFacturaRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 80, 140, -1));
 
         cboNombreEmpresaRevisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboNombreEmpresaRevisarActionPerformed(evt);
             }
         });
-        jPanel7.add(cboNombreEmpresaRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 200, -1));
+        jPanel7.add(cboNombreEmpresaRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 200, -1));
 
         jLabel37.setText("Estado Productos");
         jPanel7.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 350, 110, -1));
 
         jLabel44.setText("Apellido paterno");
-        jPanel7.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 50, -1, -1));
+        jPanel7.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 60, -1, -1));
 
         tbRevisarPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1099,17 +1141,35 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jScrollPane4.setViewportView(tbRevisarPedido);
 
         jPanel7.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 700, 210));
+
+        txtEstadoProducto.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtEstadoProductoKeyTyped(evt);
+            }
+        });
         jPanel7.add(txtEstadoProducto, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 350, 110, -1));
+
+        txtCantidadProductosDiscrepancia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadProductosDiscrepanciaKeyTyped(evt);
+            }
+        });
         jPanel7.add(txtCantidadProductosDiscrepancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 210, 110, -1));
 
         jLabel45.setText("paso 1: Buscar por proveedor");
-        jPanel7.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, -1, -1));
+        jPanel7.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         jLabel46.setText("Cantidad Productos");
         jPanel7.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 180, -1, -1));
 
         jLabel47.setText("Total Productos");
         jPanel7.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 250, -1, -1));
+
+        txtTotalProductosDiscrepancia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTotalProductosDiscrepanciaKeyTyped(evt);
+            }
+        });
         jPanel7.add(txtTotalProductosDiscrepancia, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 280, 110, -1));
         jPanel7.add(txtTotalProductosRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 280, 110, -1));
         jPanel7.add(txtCantidadProductoRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, 110, -1));
@@ -1126,84 +1186,109 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnListarTablaRevisarActionPerformed(evt);
             }
         });
-        jPanel7.add(btnListarTablaRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
+        jPanel7.add(btnListarTablaRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
 
         jLabel50.setText("Cantidad Productos");
         jPanel7.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 180, -1, -1));
 
         jLabel51.setText("Ingrese la información para cada tipo de");
-        jPanel7.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 120, -1, -1));
+        jPanel7.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 130, -1, -1));
 
         txtApellidoPaternoRevisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtApellidoPaternoRevisarActionPerformed(evt);
             }
         });
-        jPanel7.add(txtApellidoPaternoRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 80, 110, -1));
-        jPanel7.add(txtIdEmpresaRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, 70, -1));
-        jPanel7.add(txtDVRutRepartidorRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 50, -1));
+        txtApellidoPaternoRevisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtApellidoPaternoRevisarKeyTyped(evt);
+            }
+        });
+        jPanel7.add(txtApellidoPaternoRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 90, 110, -1));
+
+        txtIdEmpresaRevisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdEmpresaRevisarKeyTyped(evt);
+            }
+        });
+        jPanel7.add(txtIdEmpresaRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 70, -1));
+
+        txtDVRutRepartidorRevisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDVRutRepartidorRevisarKeyTyped(evt);
+            }
+        });
+        jPanel7.add(txtDVRutRepartidorRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 90, 50, -1));
 
         jLabel52.setText("paso 2: Buscar por N° factura");
-        jPanel7.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
+        jPanel7.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 60, -1, -1));
 
-        jLabel53.setText("Datos Repartidor");
-        jPanel7.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 20, -1, -1));
+        jLabel53.setText("Datos Repartidor (obligatorio)");
+        jPanel7.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 30, -1, -1));
 
         jLabel54.setText("DV");
-        jPanel7.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 50, -1, -1));
+        jPanel7.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 60, -1, -1));
 
         jLabel55.setText("Id Empresa");
-        jPanel7.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
-        jPanel7.add(txtNombreRepartidorRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 80, 90, -1));
+        jPanel7.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 60, -1, -1));
+
+        txtNombreRepartidorRevisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreRepartidorRevisarKeyTyped(evt);
+            }
+        });
+        jPanel7.add(txtNombreRepartidorRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 90, 90, -1));
 
         jLabel56.setText("-");
-        jPanel7.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 80, 20, 20));
+        jPanel7.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 90, 20, 20));
 
         jLabel57.setText("Nombre");
-        jPanel7.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, -1, -1));
+        jPanel7.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 60, -1, -1));
 
         jLabel58.setText("Rut");
-        jPanel7.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 50, -1, -1));
-        jPanel7.add(txtRutRepartidorRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 80, 70, -1));
+        jPanel7.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 60, -1, -1));
+
+        txtRutRepartidorRevisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRutRepartidorRevisarKeyTyped(evt);
+            }
+        });
+        jPanel7.add(txtRutRepartidorRevisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 90, 70, -1));
 
         jLabel59.setText("producto que posea discrepancias.");
-        jPanel7.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 140, -1, -1));
+        jPanel7.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 150, -1, -1));
 
-        jTabbedPane1.addTab("tab6", jPanel7);
+        jLabel74.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel74.setText("Revisar Pedido");
+        jPanel7.add(jLabel74, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 10, -1, -1));
+
+        jTabbedPane1.addTab("Revisar Pedido", jPanel7);
 
         jPanel8.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 255));
 
-        checkbox1.setLabel("checkbox1");
-
-        jLabel62.setText("Ingresar mono a fiar");
+        jLabel62.setText("Ingresar monto a fiar");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(58, Short.MAX_VALUE)
-                .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(128, 128, 128))
             .addGroup(jPanel9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel62)
-                    .addComponent(txtMontoAFiarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtMontoAFiarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel62))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel9Layout.createSequentialGroup()
-                .addGap(43, 43, 43)
+                .addGap(42, 42, 42)
                 .addComponent(jLabel62)
-                .addGap(27, 27, 27)
+                .addGap(28, 28, 28)
                 .addComponent(txtMontoAFiarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(checkbox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(87, 87, 87))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 165, 270, 200));
@@ -1216,16 +1301,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         });
         jPanel8.add(btnAceptarVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 400, -1, -1));
 
-        jButton8.setText("Cancelar");
-        jPanel8.add(jButton8, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, -1, -1));
-
         btnAgregarCompra.setText("Agregar a la compra");
         btnAgregarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarCompraActionPerformed(evt);
             }
         });
-        jPanel8.add(btnAgregarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, -1));
+        jPanel8.add(btnAgregarCompra, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, -1, -1));
 
         txtTotalVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1278,6 +1360,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jScrollPane6.setViewportView(tbVentaBoleta);
 
         jPanel8.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, 530, 200));
+
+        txtCantidadVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtCantidadVentaKeyTyped(evt);
+            }
+        });
         jPanel8.add(txtCantidadVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 80, 77, -1));
         jPanel8.add(txtEmpresaVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 77, -1));
         jPanel8.add(txtStockVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 50, -1));
@@ -1300,7 +1388,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel71.setText("Total boleta:");
         jPanel8.add(jLabel71, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 370, -1, -1));
 
-        jLabel72.setText("ID producto");
+        jLabel72.setText("ID producto ");
         jPanel8.add(jLabel72, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, -1, -1));
 
         jPanel8.add(cboRutVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 80, 137, -1));
@@ -1310,11 +1398,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel8.add(txtPassVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 110, 77, -1));
 
         jLabel73.setText("Fiar");
-        jPanel8.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(839, 128, -1, -1));
+        jPanel8.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 140, -1, -1));
 
-        jTabbedPane1.addTab("tab7", jPanel8);
+        jTabbedPane1.addTab("Venta", jPanel8);
 
-        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 1010, 460));
+        getContentPane().add(jTabbedPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, 1010, 460));
 
         jLabel10.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(102, 51, 255));
@@ -1327,92 +1415,825 @@ public class MenuPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnMostrarTab3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTab3ActionPerformed
+    private void btnVerProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProveedorActionPerformed
         // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(2);
-    }//GEN-LAST:event_btnMostrarTab3ActionPerformed
+        jTabbedPane1.setSelectedIndex(3);
+    }//GEN-LAST:event_btnVerProveedorActionPerformed
 
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+  
+    
+    private void btnVerClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerClienteActionPerformed
         // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(0);
+    }//GEN-LAST:event_btnVerClienteActionPerformed
 
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
-    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+    private void btnVerOrdenPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerOrdenPedidoActionPerformed
         // TODO add your handling code here:
-        if(txtDireccion.getText().isEmpty() || txtDVRut.getText().isEmpty() || txtApellidoMaterno.getText().isEmpty() || txtNombre.getText().isEmpty() || txtRut.getText().isEmpty()|| txtApellidoPaterno.getText().isEmpty()||txtID.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "LLene todos los campos.");
+        jTabbedPane1.setSelectedIndex(4);
+    }//GEN-LAST:event_btnVerOrdenPedidoActionPerformed
+
+    private void btnVerEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEmpleadoActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(1);
+    }//GEN-LAST:event_btnVerEmpleadoActionPerformed
+
+    private void btnRevisarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevisarPedidoActionPerformed
+        // TODO add your handling code here:
+        jTabbedPane1.setSelectedIndex(5);
+    }//GEN-LAST:event_btnRevisarPedidoActionPerformed
+
+    private void tbVentaBoletaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbVentaBoletaMouseClicked
+        // TODO add your handling code here:
+        int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
+
+        txtIDetalleVenta.setText(tbVentaBoleta.getValueAt(seleccion, 0)+"");
+    }//GEN-LAST:event_tbVentaBoletaMouseClicked
+
+    private void btnQuitarCompraVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarCompraVentaActionPerformed
+        // TODO add your handling code here:
+        int count= tbVentaBoleta.getModel().getRowCount();
+        System.out.println(count+"");
+        if(txtIDetalleVenta.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Debe seleccionar algún producto.");
+        }if(count==0){
+            JOptionPane.showMessageDialog(null, "Para Eliminar un producto Debe existir un producto en la tabla..");//de esta forma no se borrará algún
+            //producto por haber seleccionado el producto luego aceptado el pedido y luego eliminado el el producto (Tambien sirve vaciando el txt al aceptar el pedido)
         }else{
-            if(txtRut.getText().length()!=8 ){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
+
+            ivdao.EliminarDetalleBoleta(txtIDetalleVenta);
+            listarProductoBoleta();
+            txtTotalVenta.setText(SumaTotalBoleta()+"");
+        }
+    }//GEN-LAST:event_btnQuitarCompraVentaActionPerformed
+
+    private void cboProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoVentaActionPerformed
+        // TODO add your handling code here:
+        ivdao.ListarProductosEmpresaPedidoCBO(cboProductoVenta, txtEmpresaVenta,txtStockVenta,txtPrecioUnitarioVenta);
+    }//GEN-LAST:event_cboProductoVentaActionPerformed
+
+    private void txtTotalVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVentaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalVentaActionPerformed
+
+    private void btnAgregarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCompraActionPerformed
+        // TODO add your handling code here:
+        if(cboProductoVenta.getSelectedItem()=="" || txtCantidadVenta.getText().isEmpty()||txtPrecioUnitarioVenta.getText().isEmpty()){
+
+            JOptionPane.showMessageDialog(null, "Debe llenar algun campo de empresa.");
+
+        }else{
+            ivdao.agregarBoleta();
+            //                String producto=cboProducto.getSelectedItem().toString();
+
+            try {
+                String sql="select codproducto from producto where descripcion=?";
+                con=cn.getConnection();
+                PreparedStatement pst = con.prepareStatement(sql);
+                pst.setString(1, (String)cboProductoVenta.getSelectedItem());
+
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()){
+                    detb.setProducto(Integer.parseInt(rs.getString(1)));
+                }
+                detb.setCantidad(Integer.parseInt(txtCantidadVenta.getText()));
+                int resultado=Integer.parseInt(txtCantidadVenta.getText())*Integer.parseInt(txtPrecioUnitarioVenta.getText());
+                detb.setPrecio(resultado);
+
+                ivdao.agregardetalleboleta(detb);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.toString());
+                System.out.println(e.toString());
+            }
+            
+            listarProductoBoleta();
+            txtTotalVenta.setText(SumaTotalBoleta()+"");
+
+        }
+
+    }//GEN-LAST:event_btnAgregarCompraActionPerformed
+
+    private void btnAceptarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarVentaActionPerformed
+        // TODO add your handling code here:
+
+        if ("0".equals(txtTotalVenta.getText())||cboRutVenta.getSelectedItem()==""||cboProductoVenta.getSelectedItem()==""){
+            JOptionPane.showMessageDialog(null, ": Para aceptar pedido boleta debe agregar algpun producto mas el rut usuario.");
+        }else{
+            
+            ivdao.agregarventa(txtNumeroBoleta);
+            
+            if("pass".equals(txtPassVenta.getText()) || !txtMontoAFiarVenta.getText().isEmpty()){
+
+                ivdao.agregarFiado(txtMontoAFiarVenta, cboRutVenta);
+                ivdao.ModificarFiadoCliente(cboRutVenta);
+            }
+            txtNumeroBoleta.setText((ivdao.NumBoletaImprimir()+1)+"");
+            limpiar();
+        }
+    }//GEN-LAST:event_btnAceptarVentaActionPerformed
+
+    private void txtApellidoPaternoRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPaternoRevisarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoPaternoRevisarActionPerformed
+
+    private void btnListarTablaRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTablaRevisarActionPerformed
+        // TODO add your handling code here:
+        listarProductoPedido2();
+
+    }//GEN-LAST:event_btnListarTablaRevisarActionPerformed
+
+    private void tbRevisarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRevisarPedidoMouseClicked
+        // TODO add your handling code here:
+        int seleccion = tbRevisarPedido.rowAtPoint(evt.getPoint());
+
+        txtCantidadProductoRevisar.setText(tbRevisarPedido.getValueAt(seleccion, 5)+"");
+        txtTotalProductosRevisar.setText(tbRevisarPedido.getValueAt(seleccion, 6)+"");
+    }//GEN-LAST:event_tbRevisarPedidoMouseClicked
+
+    private void cboNombreEmpresaRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNombreEmpresaRevisarActionPerformed
+        // TODO add your handling code here:
+        bcbDAO.ListarNFacturaNCBO(cboNombreEmpresaRevisar, cboNumFacturaRevisar);
+    }//GEN-LAST:event_cboNombreEmpresaRevisarActionPerformed
+
+    private void btnDiscrepanciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiscrepanciasActionPerformed
+        // TODO add your handling code here
+        if(txtCantidadProductoRevisar.getText().isEmpty()||txtCantidadProductosDiscrepancia.getText().isEmpty()||txtTotalProductosRevisar.getText().isEmpty()
+            ||txtTotalProductosDiscrepancia.getText().isEmpty()||cboNumFacturaRevisar.getSelectedItem()=="")
+        {
+            JOptionPane.showMessageDialog(null, "error, rellene los campos correspondientes para realizar la discrepancia");
+        }else{
+
+            disc.setCantidad(Integer.parseInt(txtCantidadProductosDiscrepancia.getText()));
+            disc.setInformacionAdicional(txtEstadoProducto.getText());
+            disc.setPrecio(Integer.parseInt(txtTotalProductosDiscrepancia.getText()));
+            disc.setNumfactura(Integer.parseInt((String)cboNumFacturaRevisar.getSelectedItem()));
+            ipdao.agregarDiscrepancia(disc);
+        }
+    }//GEN-LAST:event_btnDiscrepanciasActionPerformed
+
+    private void btnAceptarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarOrdenActionPerformed
+        // TODO add your handling code here:
+        //         int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
+        //
+        //        txtIdProductoPedido.setText(tbProductosPedido.getValueAt(seleccion, 2)+"");
+        if(txtRutRepartidorRevisar.getText().isEmpty()||txtApellidoPaternoRevisar.getText().isEmpty()||txtNombreRepartidorRevisar.getText().isEmpty()
+            ||txtIdEmpresaRevisar.getText().isEmpty()||txtDVRutRepartidorRevisar.getText().isEmpty()||cboNumFacturaRevisar.getSelectedItem()==""||
+            cboNombreEmpresaRevisar.getSelectedItem()==""){
+            JOptionPane.showMessageDialog(null, "Error, rellene todos los campos correspondientes");
+        }else{
+
+            char dvchar=txtDVRutRepartidorRevisar.getText().charAt(0);
+            txtIdEmpresaRevisar.setText(ipdao.NombreEmpresaImprimir(cboNombreEmpresaRevisar));
+            rep.setApellidoPaterno(txtApellidoPaternoRevisar.getText());
+            rep.setNombre(txtNombreRepartidorRevisar.getText());
+            rep.setRut(Integer.parseInt(txtRutRepartidorRevisar.getText()));
+            rep.setDv(dvchar);
+            rep.setIdEmpresa(Integer.parseInt(txtIdEmpresaRevisar.getText()));
+
+            ipdao.agregarRepartidor(rep);
+            ipdao.agregarpedido(cboNumFacturaRevisar);
+            ipdao.ActualizarStock(cboNumFacturaRevisar);//ESTO DESPUES DE AGREGAR PEDIDO YA QUE REQUIERE QUE ESTE CREADO PEDIDO
+            limpiar();
+        }
+    }//GEN-LAST:event_btnAceptarOrdenActionPerformed
+
+    private void btnAceptarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarPedidoActionPerformed
+        // TODO add your handling code here:
+        int count= tbProductosPedido.getModel().getRowCount();
+        System.out.println(count+"");
+        if(count==0){
+            JOptionPane.showMessageDialog(null, count+": Para aceptar pedido debe elegir algún producto.");
+        }else{
+
+           
+            txtNumFactura.setText(ipdao.NumFacturaImprimir()+"");
+            fact.setTotal(Integer.parseInt(txtTotalPedido.getText()));
+            fact.setNumFactura(Integer.parseInt(txtNumFactura.getText()));
+            ipdao.ModificarFactura(fact );//ejecutar primero el modificar debido a que el metodo agregar factura crea una nueva factura
+            //para que al aceptar la factura se cree otra factura
+
+            JOptionPane.showMessageDialog(null, count+": Pedido aceptado con exito.");
+            JTable table;
+            DefaultTableModel model = (DefaultTableModel) tbProductosPedido.getModel();
+            model.setRowCount(0);
+            txtNumFactura.setText(ipdao.NumFacturaImprimir()+1+"");
+            limpiar();
+        }
+    }//GEN-LAST:event_btnAceptarPedidoActionPerformed
+
+    private void txtNumFacturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumFacturaKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumFacturaKeyTyped
+
+    private void txtIdProductoPedidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdProductoPedidoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdProductoPedidoKeyTyped
+
+    private void txtTotalPedidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalPedidoKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalPedidoKeyTyped
+
+    private void tbProductosPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosPedidoMouseClicked
+        // TODO add your handling code here:
+        int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
+
+        txtIdProductoPedido.setText(tbProductosPedido.getValueAt(seleccion, 2)+"");
+
+    }//GEN-LAST:event_tbProductosPedidoMouseClicked
+
+    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtCantidad.getText().length() >=4)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadKeyTyped
+
+    private void btnQuitarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarCompraActionPerformed
+        // TODO add your handling code here:
+        int count= tbProductosPedido.getModel().getRowCount();
+        System.out.println(count+"");
+        if(txtIdProductoPedido.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null,"Debe seleccionar algún producto.");
+        }if(count==0){
+            JOptionPane.showMessageDialog(null, "Para Eliminar un producto Debe existir un producto en la tabla..");//de esta forma no se borrará algún
+            //producto por haber seleccionado el producto luego aceptado el pedido y luego eliminado el el producto (Tambien sirve vaciando el txt al aceptar el pedido)
+        }else{
+
+            det.setIdDetalle(Integer.parseInt(txtIdProductoPedido.getText()));
+            ipdao.EliminarDetallePedido(det);
+            listarProductoPedido();
+            txtTotalPedido.setText(SumaTotalPedido()+"");
+        }
+        
+    }//GEN-LAST:event_btnQuitarCompraActionPerformed
+
+    private void txtPrecioPedidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioPedidoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtPrecioPedido.getText().length() >=7)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtPrecioPedidoKeyTyped
+
+    private void cboNombreEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNombreEmpresaActionPerformed
+        // TODO add your handling code here:
+        ipdao.ListarProductosEmpresaPedidoCBO(cboProducto,cboNombreEmpresa);
+    }//GEN-LAST:event_cboNombreEmpresaActionPerformed
+
+    private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
+        // TODO add your handling code here:
+        if (cboNombreEmpresa.getSelectedItem()==""  ){
+            JOptionPane.showMessageDialog(null, "Debe llenar algun campo de empresa.");
+        }else if(txtPrecioPedido.getText().isEmpty() || txtCantidad.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(null, "Escriba una cantidad de productos y/o Precio Total+");
+        }else{
+            int i = 0;
+            i=i+1;
+            if (i==1){
+                ipdao.agregarfactura();
+            }
+            
+            //                String producto=cboProducto.getSelectedItem().toString();
+
+            try {
+                String sql="select codproducto from producto where descripcion=?";
+                con=cn.getConnection();
+                PreparedStatement pst = con.prepareStatement(sql);
+                pst.setString(1, (String)cboProducto.getSelectedItem());
+
+                ResultSet rs = pst.executeQuery();
+                if (rs.next()){
+                    det.setProducto(Integer.parseInt(rs.getString(1)));
+                }
+                det.setCantidad(Integer.parseInt(txtCantidad.getText()));
+                det.setPrecio(Integer.parseInt(txtPrecioPedido.getText()));
+
+                ipdao.agregardetallefactura(det);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.toString());
+                System.out.println(e.toString());
+            }
+
+            fact.setTotal(Integer.parseInt(txtPrecioPedido.getText()));
+
+            listarProductoPedido();
+            txtTotalPedido.setText(SumaTotalPedido()+"");
+        }
+    }//GEN-LAST:event_btnAgregarProductosActionPerformed
+
+    private void txtIdEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEmpresaKeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+
+        if(c<'0'|| c>'9'){//limitar a numeros 0-9 y letra k
+            evt.consume();
+        }
+        if(txtIdEmpresa.getText().length() >=8)//limita la cantidad de caracteres en el cuadro a 1
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdEmpresaKeyTyped
+
+    private void btnAceptarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarProveedorActionPerformed
+        // TODO add your handling code here:
+        if(txtRubroProveedor.getText().isEmpty() || txtNombreProveedor.getText().isEmpty() || txtDireccionProveedor.getText().isEmpty() || txtNombreProveedor.getText().isEmpty()
+            || txtDVRutProveedor.getText().isEmpty()|| txtCorreoProveedor.getText().isEmpty()|| txtRutProveedor.getText().isEmpty()|| txtTelefonoProveedor.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "LLene todos los campos Correspondientes.");
+        }else{
+            if(txtRutProveedor.getText().length()!=8 || txtTelefonoProveedor.getText().length()!=9){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
+                JOptionPane.showMessageDialog(null, "LLene correctamente el rut o telefono");
+            }else{
+                char dvchar=txtDVRutProveedor.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
+                emp.setNombre(txtNombreProveedor.getText());
+                emp.setRut(Integer.parseInt(txtRutProveedor.getText()));
+                emp.setDV(dvchar);
+                emp.setRubro(txtRubroProveedor.getText());
+                emp.setDireccion(txtDireccionProveedor.getText());
+                emp.setTelefono(Integer.parseInt(txtTelefonoProveedor.getText()));
+                emp.setEmail(txtCorreoProveedor.getText());
+
+                ingresarempresa.agregarFichaEmpresa(emp);
+
+                //String mensaje = ifcbo.agregarFichaCliente(cli);
+                JOptionPane.showMessageDialog(null, "cliente registrado");
+                limpiar();
+                listarEmpresa();
+
+            }
+        }
+    }//GEN-LAST:event_btnAceptarProveedorActionPerformed
+
+    private void btnModificarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProveedorActionPerformed
+        // TODO add your handling code here:
+        if(txtRubroProveedor.getText().isEmpty() || txtNombreProveedor.getText().isEmpty() || txtDireccionProveedor.getText().isEmpty()|| txtDVRutProveedor.getText().isEmpty()
+            || txtCorreoProveedor.getText().isEmpty()|| txtRutProveedor.getText().isEmpty()|| txtTelefonoProveedor.getText().isEmpty()||txtIdEmpresa.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "LLene todos los campos Correspondientes.");
+        }else{
+            if(txtRutProveedor.getText().length()!=8 || txtTelefonoProveedor.getText().length()!=9){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
                 JOptionPane.showMessageDialog(null, "LLene correctamente el rut o telefono");
             }else{
 
-                char dvchar=txtDVRut.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
-                
+                char dvchar=txtDVRutProveedor.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
+                emp.setNombre(txtNombreProveedor.getText());
+                emp.setRut(Integer.parseInt(txtRutProveedor.getText()));
+                emp.setDV(dvchar);
+                emp.setRubro(txtRubroProveedor.getText());
+                emp.setDireccion(txtDireccionProveedor.getText());
+                emp.setTelefono(Integer.parseInt(txtTelefonoProveedor.getText()));
+                emp.setEmail(txtCorreoProveedor.getText());
 
-        
-     
-                
-                cli.setApellidoMaterno(txtApellidoMaterno.getText());//me salio un error ora-12899 value too large, esto pasó porque el metodo ingresar ficha cliente estaba en int
-                cli.setApellidoPaterno(txtApellidoPaterno.getText());
-                cli.setDVRut(dvchar);
-                cli.setDeuda('n');
-                cli.setDireccion(txtDireccion.getText());
-                cli.setNombre(txtNombre.getText());
-                cli.setRut(Integer.parseInt(txtRut.getText()));//AQUI DABÁ ERROR PORQUE INT NO ACEPTA NUMEROS DE 11 DE LARGo
-                cli.setIdCliente(Integer.parseInt(txtID.getText()));
-                ingresarcliente.ModificarFichaCliente(cli);
+                emp.setIdEmpresa(Integer.parseInt(txtIdEmpresa.getText()));//id para el where
+
+                ingresarempresa.ModificarFichaEmpresa(emp);
+                JOptionPane.showMessageDialog(null, "cliente modificado");
                 limpiar();
-                listarCliente();
+                listarEmpresa();
+
             }
         }
-    }//GEN-LAST:event_btnModificarActionPerformed
+    }//GEN-LAST:event_btnModificarProveedorActionPerformed
 
-    private void txtDVRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDVRutKeyTyped
+    private void btnEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedorActionPerformed
+        // TODO add your handling code here:
+        if(txtIdEmpresa.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(null, "LLene el campo ID para eliminar.");
+        }else{
+            int pregunta = JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar?");
+            if (pregunta == 0){
+                //(String mensaje = ifcbo.EliminarFichaCliente(Integer.parseInt(txtID.getText()));
+                    //JOptionPane.showMessageDialog(null, mensaje);
+                    ingresarempresa.EliminarEmpresa(Integer.parseInt(txtIdEmpresa.getText()));
+                    JOptionPane.showMessageDialog(null, "Eliminado con exito");
+                    limpiar();
+                    listarEmpresa();
+                }
+            }
+
+    }//GEN-LAST:event_btnEliminarProveedorActionPerformed
+
+    private void btnLimpiarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarProveedorActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarProveedorActionPerformed
+
+    private void tbIngresarProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngresarProveedorMouseClicked
+        // TODO add your handling code here:
+        int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
+
+        txtCorreoProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 7)+"");
+        txtDVRutProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 3)+"");
+        txtDireccionProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 5)+"");
+        txtIdEmpresa.setText(tbIngresarProveedor.getValueAt(seleccion, 0)+"");
+        txtNombreProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 1)+"");
+        txtRubroProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 4)+"");
+        txtRutProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 2)+"");
+        txtTelefonoProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 6)+"");
+
+    }//GEN-LAST:event_tbIngresarProveedorMouseClicked
+
+    private void txtCorreoProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoProveedorKeyTyped
+        // TODO add your handling code here:
+        
+        if(txtCorreoProveedor.getText().length() >=50)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCorreoProveedorKeyTyped
+
+    private void txtTelefonoProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProveedorKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtTelefonoProveedor.getText().length() >=9)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoProveedorKeyTyped
+
+    private void txtDVRutProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDVRutProveedorKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
 
         if(c<'1'|| c>'9' && c!='k'){//limitar a numeros 0-9 y letra k
             evt.consume();
         }
-        if(txtDVRut.getText().length() >=1)//limita la cantidad de caracteres en el cuadro a 1
+        if(txtDVRutProveedor.getText().length() >=1)//limita la cantidad de caracteres en el cuadro a 1
         {
             evt.consume();
         }
-    }//GEN-LAST:event_txtDVRutKeyTyped
+    }//GEN-LAST:event_txtDVRutProveedorKeyTyped
 
-    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+    private void txtRutProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutProveedorKeyTyped
         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtRutProveedor.getText().length() >=8)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRutProveedorKeyTyped
+
+    private void txtNombreProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
+        }
+        if(txtNombreProveedor.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreProveedorKeyTyped
+
+    private void txtDireccionProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionProveedorKeyTyped
+
+        if(txtDireccionProveedor.getText().length() >=30)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDireccionProveedorKeyTyped
+
+    private void txtRubroProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRubroProveedorKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
+        }
+        if(txtRubroProveedor.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRubroProveedorKeyTyped
+
+    private void txtRubroProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRubroProveedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRubroProveedorActionPerformed
+
+    private void cboCargoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCargoEmpleadoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_cboCargoEmpleadoActionPerformed
+
+    private void txtApellidoMaternoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoMaternoEmpleadoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
+        }
+        if(txtApellidoMaternoEmpleado.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidoMaternoEmpleadoKeyTyped
+
+    private void txtApellidoPaternoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoPaternoEmpleadoKeyTyped
+
+        char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
+        }
+        if(txtApellidoPaternoEmpleado.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidoPaternoEmpleadoKeyTyped
+
+    private void txtSueldoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSueldoEmpleadoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtSueldoEmpleado.getText().length() >=7)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtSueldoEmpleadoKeyTyped
+
+    private void tbIngresarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngresarEmpleadoMouseClicked
+        // TODO add your handling code here:
+
+        try {//Poner
+            int seleccion2 = tbIngresarEmpleado.getSelectedRow();
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)tbIngresarEmpleado.getValueAt(seleccion2, 9));
+            datecFechaTermino.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        int seleccion = tbIngresarEmpleado.rowAtPoint(evt.getPoint());
+
+        txtApellidoMaternoEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 3)+"");
+        txtApellidoPaternoEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion,2)+"");
+        txtNombreEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 1)+"");
+
+        cboCargoEmpleado.setSelectedItem(tbIngresarEmpleado.getValueAt(seleccion,10));
+        txtDireccionEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 6)+"");
+        txtDVRutEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 5)+"");
+        txtIdEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 0)+"");
+        txtRutEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 4)+"");
+        txtSueldoEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 11)+"");
+        txtTelefonoEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 7)+"");
+        //"idempleado","nombre","apaterno","amaterno","rut","dv","direccion","telefono","fechacontrato","fechatermino","cargo","sueldo"
+
+    }//GEN-LAST:event_tbIngresarEmpleadoMouseClicked
+
+    private void btnAceptarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarEmpleadoActionPerformed
+        // TODO add your handling code here:
+        if(txtApellidoMaternoEmpleado.getText().isEmpty() || txtApellidoPaternoEmpleado.getText().isEmpty() || cboCargoEmpleado.getSelectedItem()=="" || txtDVRutEmpleado.getText().isEmpty()
+            || txtDireccionEmpleado.getText().isEmpty() || datecFechaTermino.getDate()==null ||  txtNombreEmpleado.getText().isEmpty()
+            || txtRutEmpleado.getText().isEmpty() || txtSueldoEmpleado.getText().isEmpty() || txtTelefonoEmpleado.getText().isEmpty()){
+
+            JOptionPane.showMessageDialog(null, "LLene todos los campos Correspondientes. ");
+        }else{
+            if(txtRutEmpleado.getText().length()!=8 || txtTelefonoEmpleado.getText().length()!=9 || txtSueldoEmpleado.getText().length()<6){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
+                JOptionPane.showMessageDialog(null, "LLene correctamente el rut, telefono o Sueldo");
+            }else{
+                char dvchar=txtDVRutEmpleado.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
+                String fecha=sdf.format(datecFechaTermino.getDate());
+                String cargo=cboCargoEmpleado.getSelectedItem().toString();
+
+                empl.setNombre(txtNombreEmpleado.getText());
+                empl.setApellidoMaterno(txtApellidoMaternoEmpleado.getText());
+                empl.setApellidoPaterno(txtApellidoPaternoEmpleado.getText());
+                empl.setCargo(cargo);
+                empl.setDireccion(txtDireccionEmpleado.getText());
+                empl.setDvRut(dvchar);
+                empl.setFechaTerminoContrato(fecha);
+                empl.setRut(Integer.parseInt(txtRutEmpleado.getText()));
+                empl.setSueldo(Integer.parseInt(txtSueldoEmpleado.getText()));
+                empl.setTelefono(Integer.parseInt(txtTelefonoEmpleado.getText()));
+
+                iemp.agregarEmpleado(empl);
+
+                //String mensaje = ifcbo.agregarFichaCliente(cli);
+
+                limpiar();
+                listarEmpleado();
+
+            }
+        }
+    }//GEN-LAST:event_btnAceptarEmpleadoActionPerformed
+
+    private void btnModificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleadoActionPerformed
+        // TODO add your handling code here:
+        if(txtApellidoMaternoEmpleado.getText().isEmpty() || txtApellidoPaternoEmpleado.getText().isEmpty() || cboCargoEmpleado.getSelectedItem()=="" || txtDVRutEmpleado.getText().isEmpty()
+            || txtDireccionEmpleado.getText().isEmpty() || datecFechaTermino.getDate()==null || txtNombreEmpleado.getText().isEmpty()
+            || txtRutEmpleado.getText().isEmpty() || txtSueldoEmpleado.getText().isEmpty() || txtTelefonoEmpleado.getText().isEmpty()|| txtIdEmpleado.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "LLene todos los campos Correspondientes.");
+        }else{
+
+            if(txtRutEmpleado.getText().length()!=8 || txtTelefonoEmpleado.getText().length()!=9 || txtSueldoEmpleado.getText().length()<6){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
+                JOptionPane.showMessageDialog(null, "LLene correctamente el rut, telefono o Sueldo");
+            }else{
+
+                char dvchar=txtDVRutEmpleado.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
+                String fecha=sdf.format(datecFechaTermino.getDate());
+                String cargo=cboCargoEmpleado.getSelectedItem().toString();
+
+                empl.setNombre(txtNombreEmpleado.getText());
+                empl.setApellidoMaterno(txtApellidoMaternoEmpleado.getText());
+                empl.setApellidoPaterno(txtApellidoPaternoEmpleado.getText());
+                empl.setCargo(cargo);
+                empl.setDireccion(txtDireccionEmpleado.getText());
+                empl.setDvRut(dvchar);
+                empl.setFechaTerminoContrato(fecha);
+                empl.setRut(Integer.parseInt(txtRutEmpleado.getText()));
+                empl.setSueldo(Integer.parseInt(txtSueldoEmpleado.getText()));
+                empl.setTelefono(Integer.parseInt(txtTelefonoEmpleado.getText()));
+
+                empl.setIdEmpleado(Integer.parseInt(txtIdEmpleado.getText()));
+                iemp.ModificarEmpleado(empl);
+
+                ingresarempresa.ModificarFichaEmpresa(emp);
+
+                limpiar();
+                listarEmpleado();
+
+            }
+        }
+    }//GEN-LAST:event_btnModificarEmpleadoActionPerformed
+
+    private void btnEliminarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEmpleadoActionPerformed
+        // TODO add your handling code here:
+        if(txtIdEmpleado.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(null, "LLene el campo ID para eliminar.");
+        }else{
+            int pregunta = JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar?");
+            if (pregunta == 0){
+                //(String mensaje = ifcbo.EliminarFichaCliente(Integer.parseInt(txtID.getText()));
+                    //JOptionPane.showMessageDialog(null, mensaje);
+                    iemp.EliminarEmpleado(Integer.parseInt(txtIdEmpleado.getText()));
+
+                    limpiar();
+                    listarEmpleado();
+                }
+            }
+    }//GEN-LAST:event_btnEliminarEmpleadoActionPerformed
+
+    private void btnLimpiarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarEmpleadoActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        limpiar();
+
+    }//GEN-LAST:event_btnLimpiarEmpleadoActionPerformed
+
+    private void txtDireccionEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionEmpleadoKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if((c<'a'|| c>'z') && (c<'A')|c>'Z' && (c<'0'|| c>'9') && c!='#' && c!=' '){
             evt.consume();
         }
-        if(txtDireccion.getText().length() >=50)//limita la cantidad de caracteres en el cuadro
+        if(txtDireccionEmpleado.getText().length() >=30)//limita la cantidad de caracteres en el cuadro
         {
             evt.consume();
         }
-    }//GEN-LAST:event_txtDireccionKeyTyped
+    }//GEN-LAST:event_txtDireccionEmpleadoKeyTyped
 
-  
-    
-    private void tbIngresarFichaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngresarFichaClienteMouseClicked
+    private void txtIdEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEmpleadoKeyTyped
         // TODO add your handling code here:
-        
-        //asi no se podrá modificar el contenido del jtextfield idfiado (se podia borrar haciendo click r apretar una tecla rapidamente)
-        int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
-        
-        txtDireccion.setText(tbIngresarFichaCliente.getValueAt(seleccion, 7)+"");
-        txtDVRut.setText(tbIngresarFichaCliente.getValueAt(seleccion, 6)+"");
-        txtRut.setText(tbIngresarFichaCliente.getValueAt(seleccion, 5)+"");
-        txtID.setText(tbIngresarFichaCliente.getValueAt(seleccion, 0)+"");
-        txtApellidoMaterno.setText(tbIngresarFichaCliente.getValueAt(seleccion, 4)+"");
-        txtApellidoPaterno.setText(tbIngresarFichaCliente.getValueAt(seleccion, 3)+"");
-        txtNombre.setText(tbIngresarFichaCliente.getValueAt(seleccion, 2)+"");
-        
-        
+        char c = evt.getKeyChar();
 
+        if(c<'0'|| c>'9'){//limitar a numeros 0-9 y letra k
+            evt.consume();
+        }
+        if(txtIdEmpleado.getText().length() >=8)//limita la cantidad de caracteres en el cuadro a 1
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdEmpleadoKeyTyped
 
-    }//GEN-LAST:event_tbIngresarFichaClienteMouseClicked
+    private void txtIdEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdEmpleadoActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtIdEmpleadoActionPerformed
+
+    private void txtNombreEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpleadoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
+        }
+        if(txtNombreEmpleado.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreEmpleadoKeyTyped
+
+    private void txtRutEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutEmpleadoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtRutEmpleado.getText().length() >=8)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRutEmpleadoKeyTyped
+
+    private void txtDVRutEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDVRutEmpleadoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if(c<'1'|| c>'9' && c!='k'){//limitar a numeros 0-9 y letra k
+            evt.consume();
+        }
+        if(txtDVRutEmpleado.getText().length() >=1)//limita la cantidad de caracteres en el cuadro a 1
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDVRutEmpleadoKeyTyped
+
+    private void txtTelefonoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEmpleadoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtTelefonoEmpleado.getText().length() >=9)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoEmpleadoKeyTyped
+
+    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+
+        if(c<'0'|| c>'9'){//limitar a numeros 0-9 y letra k
+            evt.consume();
+        }
+        if(txtDVRut.getText().length() >=8)//limita la cantidad de caracteres en el cuadro a 1
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIDKeyTyped
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(null, "LLene el campo ID para eliminar.");
+        }else{
+            int pregunta = JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar?");
+            if (pregunta == 0){
+                //(String mensaje = ifcbo.EliminarFichaCliente(Integer.parseInt(txtID.getText()));
+
+                    ingresarcliente.EliminarCliente(Integer.parseInt(txtID.getText()));
+
+                    limpiar();
+                    listarCliente();
+                }
+            }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
+        }
+        if(txtNombre.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtRut.getText().length() >=8)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRutKeyTyped
+
+    private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
         // TODO add your handling code here:
@@ -1435,819 +2256,246 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 ingresarcliente.agregarFichaCliente(cli);
 
                 //String mensaje = ifcbo.agregarFichaCliente(cli);
-                
+
                 limpiar();
                 listarCliente();
             }
         }
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+    private void tbIngresarFichaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngresarFichaClienteMouseClicked
         // TODO add your handling code here:
-        limpiar();
-    }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
+        //asi no se podrá modificar el contenido del jtextfield idfiado (se podia borrar haciendo click r apretar una tecla rapidamente)
+        int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
+
+        txtDireccion.setText(tbIngresarFichaCliente.getValueAt(seleccion, 7)+"");
+        txtDVRut.setText(tbIngresarFichaCliente.getValueAt(seleccion, 6)+"");
+        txtRut.setText(tbIngresarFichaCliente.getValueAt(seleccion, 5)+"");
+        txtID.setText(tbIngresarFichaCliente.getValueAt(seleccion, 0)+"");
+        txtApellidoMaterno.setText(tbIngresarFichaCliente.getValueAt(seleccion, 4)+"");
+        txtApellidoPaterno.setText(tbIngresarFichaCliente.getValueAt(seleccion, 3)+"");
+        txtNombre.setText(tbIngresarFichaCliente.getValueAt(seleccion, 2)+"");
+
+    }//GEN-LAST:event_tbIngresarFichaClienteMouseClicked
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtRutActionPerformed
-
-    private void txtRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyTyped
-        char c = evt.getKeyChar();
-        if(c<'0'|| c>'9'){
-            evt.consume();
-        }
-        if(txtRut.getText().length() >=8)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtRutKeyTyped
-
-    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
-            evt.consume();
-        }
-        if(txtNombre.getText().length() >=50)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtNombreKeyTyped
-
-    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
-        if(txtID.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(null, "LLene el campo ID para eliminar.");
-        }else{
-            int pregunta = JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar?");
-            if (pregunta == 0){
-                //(String mensaje = ifcbo.EliminarFichaCliente(Integer.parseInt(txtID.getText()));
-                
-                ingresarcliente.EliminarCliente(Integer.parseInt(txtID.getText()));
-                
-                limpiar();
-                listarCliente();
-            }
-            }
-    }//GEN-LAST:event_btnEliminarActionPerformed
-
-    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIDActionPerformed
-
-    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-
-        if(c<'0'|| c>'9'){//limitar a numeros 0-9 y letra k
-            evt.consume();
-        }
-        if(txtDVRut.getText().length() >=8)//limita la cantidad de caracteres en el cuadro a 1
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtIDKeyTyped
-
-    private void btnMostrarTab2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMostrarTab2MouseClicked
-        // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(1);
-    }//GEN-LAST:event_btnMostrarTab2MouseClicked
-
-    private void btnMostrarTab1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTab1ActionPerformed
-        // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(0);
-    }//GEN-LAST:event_btnMostrarTab1ActionPerformed
-
-    private void btnMostrarTab4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTab4ActionPerformed
-        // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(3);
-    }//GEN-LAST:event_btnMostrarTab4ActionPerformed
-
-    private void btnMostrarTab5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTab5ActionPerformed
-        // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(4);
-    }//GEN-LAST:event_btnMostrarTab5ActionPerformed
-
-    private void btnMostrarTab6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarTab6ActionPerformed
-        // TODO add your handling code here:
-        jTabbedPane1.setSelectedIndex(5);
-    }//GEN-LAST:event_btnMostrarTab6ActionPerformed
-
-    private void btnCancelarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarProveedorActionPerformed
-
-    private void btnLimpiarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarProveedorActionPerformed
-        // TODO add your handling code here:
-        limpiar();
-    }//GEN-LAST:event_btnLimpiarProveedorActionPerformed
-
-    private void btnEliminarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProveedorActionPerformed
-        // TODO add your handling code here:
-         if(txtIdEmpresa.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(null, "LLene el campo ID para eliminar.");
-        }else{
-            int pregunta = JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar?");
-            if (pregunta == 0){
-                //(String mensaje = ifcbo.EliminarFichaCliente(Integer.parseInt(txtID.getText()));
-                //JOptionPane.showMessageDialog(null, mensaje);
-                ingresarempresa.EliminarEmpresa(Integer.parseInt(txtIdEmpresa.getText()));
-                JOptionPane.showMessageDialog(null, "Eliminado con exito");
-                limpiar();
-                listarEmpresa();
-            }
-            }
-        
-    }//GEN-LAST:event_btnEliminarProveedorActionPerformed
-
-    private void btnModificarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarProveedorActionPerformed
-        // TODO add your handling code here:
-         if(txtRubroProveedor.getText().isEmpty() || txtNombreProveedor.getText().isEmpty() || txtDireccionProveedor.getText().isEmpty()|| txtDVRutProveedor.getText().isEmpty()
-                 || txtCorreoProveedor.getText().isEmpty()|| txtRutProveedor.getText().isEmpty()|| txtTelefonoProveedor.getText().isEmpty()||txtIdEmpresa.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "LLene todos los campos Correspondientes.");
-        }else{
-            if(txtRutProveedor.getText().length()!=8 || txtTelefonoProveedor.getText().length()!=9){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
-                JOptionPane.showMessageDialog(null, "LLene correctamente el rut o telefono");
-            }else{
-
-                char dvchar=txtDVRutProveedor.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
-               emp.setNombre(txtNombreProveedor.getText());
-                emp.setRut(Integer.parseInt(txtRutProveedor.getText()));
-                emp.setDV(dvchar);
-                emp.setRubro(txtRubroProveedor.getText());
-                emp.setDireccion(txtDireccionProveedor.getText());
-                emp.setTelefono(Integer.parseInt(txtTelefonoProveedor.getText()));
-                emp.setEmail(txtCorreoProveedor.getText());
-
-                emp.setIdEmpresa(Integer.parseInt(txtIdEmpresa.getText()));//id para el where
-
-                ingresarempresa.ModificarFichaEmpresa(emp);
-                JOptionPane.showMessageDialog(null, "cliente modificado");
-                limpiar();
-                listarEmpresa();
-
-            }
-        }
-    }//GEN-LAST:event_btnModificarProveedorActionPerformed
-
-    private void btnAceptarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarProveedorActionPerformed
-        // TODO add your handling code here:
-        if(txtRubroProveedor.getText().isEmpty() || txtNombreProveedor.getText().isEmpty() || txtDireccionProveedor.getText().isEmpty() || txtNombreProveedor.getText().isEmpty() 
-                || txtDVRutProveedor.getText().isEmpty()|| txtCorreoProveedor.getText().isEmpty()|| txtRutProveedor.getText().isEmpty()|| txtTelefonoProveedor.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "LLene todos los campos Correspondientes.");
-        }else{
-            if(txtRutProveedor.getText().length()!=8 || txtTelefonoProveedor.getText().length()!=9){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
-                JOptionPane.showMessageDialog(null, "LLene correctamente el rut o telefono");
-            }else{
-                char dvchar=txtDVRutProveedor.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
-                emp.setNombre(txtNombreProveedor.getText());
-                emp.setRut(Integer.parseInt(txtRutProveedor.getText()));
-                emp.setDV(dvchar);
-                emp.setRubro(txtRubroProveedor.getText());
-                emp.setDireccion(txtDireccionProveedor.getText());
-                emp.setTelefono(Integer.parseInt(txtTelefonoProveedor.getText()));
-                emp.setEmail(txtCorreoProveedor.getText());
-
-                ingresarempresa.agregarFichaEmpresa(emp);
-               
-
-                //String mensaje = ifcbo.agregarFichaCliente(cli);
-                JOptionPane.showMessageDialog(null, "cliente registrado");
-                limpiar();
-                listarEmpresa();
-                
-            }
-        }
-    }//GEN-LAST:event_btnAceptarProveedorActionPerformed
-
-    private void txtRubroProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRubroProveedorActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtRubroProveedorActionPerformed
-
-    private void txtNombreProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreProveedorKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
-            evt.consume();
-        }
-        if(txtNombreProveedor.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtNombreProveedorKeyTyped
-
-    private void txtRutProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutProveedorKeyTyped
-        // TODO add your handling code here:
-         char c = evt.getKeyChar();
-        if(c<'0'|| c>'9'){
-            evt.consume();
-        }
-        if(txtRutProveedor.getText().length() >=8)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtRutProveedorKeyTyped
-
-    private void txtTelefonoProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoProveedorKeyTyped
-        // TODO add your handling code here:
-         char c = evt.getKeyChar();
-        if(c<'0'|| c>'9'){
-            evt.consume();
-        }
-        if(txtTelefonoProveedor.getText().length() >=9)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtTelefonoProveedorKeyTyped
-
-    private void txtDVRutProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDVRutProveedorKeyTyped
-        // TODO add your handling code here:
-         char c = evt.getKeyChar();
-
-        if(c<'1'|| c>'9' && c!='k'){//limitar a numeros 0-9 y letra k
-            evt.consume();
-        }
-        if(txtDVRutProveedor.getText().length() >=1)//limita la cantidad de caracteres en el cuadro a 1
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtDVRutProveedorKeyTyped
-
-    private void txtRubroProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRubroProveedorKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
-            evt.consume();
-        }
-        if(txtRubroProveedor.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtRubroProveedorKeyTyped
-
-    private void txtDireccionProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionProveedorKeyTyped
-
-        if(txtDireccionProveedor.getText().length() >=50)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtDireccionProveedorKeyTyped
-
-    private void txtCorreoProveedorKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoProveedorKeyTyped
-        // TODO add your handling code here:
-        if(txtCorreoProveedor.getText().length() >=30)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtCorreoProveedorKeyTyped
-
-    private void txtIdEmpresaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEmpresaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdEmpresaKeyTyped
-
-    private void tbIngresarProveedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngresarProveedorMouseClicked
-        // TODO add your handling code here:
-         int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
-
-        txtCorreoProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 7)+"");
-        txtDVRutProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 3)+"");
-        txtDireccionProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 5)+"");
-        txtIdEmpresa.setText(tbIngresarProveedor.getValueAt(seleccion, 0)+"");
-        txtNombreProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 1)+"");
-        txtRubroProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 4)+"");
-        txtRutProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 2)+"");
-        txtTelefonoProveedor.setText(tbIngresarProveedor.getValueAt(seleccion, 6)+"");
-        
-    }//GEN-LAST:event_tbIngresarProveedorMouseClicked
-
-    private void txtTelefonoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoEmpleadoKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if(c<'0'|| c>'9'){
-            evt.consume();
-        }
-        if(txtTelefonoEmpleado.getText().length() >=9)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtTelefonoEmpleadoKeyTyped
-
-    private void txtDVRutEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDVRutEmpleadoKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-
-        if(c<'1'|| c>'9' && c!='k'){//limitar a numeros 0-9 y letra k
-            evt.consume();
-        }
-        if(txtDVRutEmpleado.getText().length() >=1)//limita la cantidad de caracteres en el cuadro a 1
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtDVRutEmpleadoKeyTyped
-
-    private void txtRutEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutEmpleadoKeyTyped
-        // TODO add your handling code here:
-        char c = evt.getKeyChar();
-        if(c<'0'|| c>'9'){
-            evt.consume();
-        }
-        if(txtRutEmpleado.getText().length() >=8)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtRutEmpleadoKeyTyped
-
-    private void txtNombreEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreEmpleadoKeyTyped
-        // TODO add your handling code here:
-         char c = evt.getKeyChar();
-        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
-            evt.consume();
-        }
-        if(txtNombreEmpleado.getText().length() >=50)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtNombreEmpleadoKeyTyped
-
-    private void txtIdEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEmpleadoKeyTyped
-        // TODO add your handling code here:
-         char c = evt.getKeyChar();
-
-        if(c<'0'|| c>'9'){//limitar a numeros 0-9 y letra k
-            evt.consume();
-        }
-        if(txtIdEmpleado.getText().length() >=8)//limita la cantidad de caracteres en el cuadro a 1
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtIdEmpleadoKeyTyped
-
-    private void txtDireccionEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionEmpleadoKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if((c<'a'|| c>'z') && (c<'A')|c>'Z' && (c<'0'|| c>'9') && c!='#' && c!=' '){
             evt.consume();
         }
-        if(txtDireccionEmpleado.getText().length() >=50)//limita la cantidad de caracteres en el cuadro
+        if(txtDireccion.getText().length() >=30)//limita la cantidad de caracteres en el cuadro
         {
             evt.consume();
         }
-    }//GEN-LAST:event_txtDireccionEmpleadoKeyTyped
+    }//GEN-LAST:event_txtDireccionKeyTyped
 
-    private void btnCancelarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarEmpleadoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCancelarEmpleadoActionPerformed
-
-    private void btnLimpiarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarEmpleadoActionPerformed
-        // TODO add your handling code here:
-         // TODO add your handling code here:
-         limpiar();
-       
-    }//GEN-LAST:event_btnLimpiarEmpleadoActionPerformed
-
-    private void btnEliminarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarEmpleadoActionPerformed
-        // TODO add your handling code here:
-         if(txtIdEmpleado.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(null, "LLene el campo ID para eliminar.");
-        }else{
-            int pregunta = JOptionPane.showConfirmDialog(null,"¿Esta seguro de eliminar?");
-            if (pregunta == 0){
-                //(String mensaje = ifcbo.EliminarFichaCliente(Integer.parseInt(txtID.getText()));
-                //JOptionPane.showMessageDialog(null, mensaje);
-                iemp.EliminarEmpleado(Integer.parseInt(txtIdEmpleado.getText()));
-                
-                limpiar();
-                listarEmpleado();
-            }
-            }
-    }//GEN-LAST:event_btnEliminarEmpleadoActionPerformed
-
-    private void btnModificarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarEmpleadoActionPerformed
-        // TODO add your handling code here:
-        if(txtApellidoMaternoEmpleado.getText().isEmpty() || txtApellidoPaternoEmpleado.getText().isEmpty() || cboCargoEmpleado.getSelectedItem()=="" || txtDVRutEmpleado.getText().isEmpty()
-               || txtDireccionEmpleado.getText().isEmpty() || datecFechaTermino.getDate()==null || txtNombreEmpleado.getText().isEmpty()
-               || txtRutEmpleado.getText().isEmpty() || txtSueldoEmpleado.getText().isEmpty() || txtTelefonoEmpleado.getText().isEmpty()|| txtIdEmpleado.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null, "LLene todos los campos Correspondientes.");
-        }else{
-            
-            if(txtRutEmpleado.getText().length()!=8 || txtTelefonoEmpleado.getText().length()!=9 || txtSueldoEmpleado.getText().length()<6){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
-                JOptionPane.showMessageDialog(null, "LLene correctamente el rut, telefono o Sueldo");
-            }else{
-
-                char dvchar=txtDVRutEmpleado.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
-                String fecha=sdf.format(datecFechaTermino.getDate());
-                String cargo=cboCargoEmpleado.getSelectedItem().toString();
-                
-                empl.setNombre(txtNombreEmpleado.getText());
-                empl.setApellidoMaterno(txtApellidoMaternoEmpleado.getText());
-                empl.setApellidoPaterno(txtApellidoPaternoEmpleado.getText());
-                empl.setCargo(cargo);
-                empl.setDireccion(txtDireccionEmpleado.getText());
-                empl.setDvRut(dvchar);
-                empl.setFechaTerminoContrato(fecha);
-                empl.setRut(Integer.parseInt(txtRutEmpleado.getText()));
-                empl.setSueldo(Integer.parseInt(txtSueldoEmpleado.getText()));
-                empl.setTelefono(Integer.parseInt(txtTelefonoEmpleado.getText()));
-                
-                empl.setIdEmpleado(Integer.parseInt(txtIdEmpleado.getText()));
-                iemp.ModificarEmpleado(empl);
-
-                ingresarempresa.ModificarFichaEmpresa(emp);
-                
-                limpiar();
-                listarEmpleado();
-                
-            }
-        }
-    }//GEN-LAST:event_btnModificarEmpleadoActionPerformed
-
-    private void btnAceptarEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarEmpleadoActionPerformed
-       // TODO add your handling code here:
-       if(txtApellidoMaternoEmpleado.getText().isEmpty() || txtApellidoPaternoEmpleado.getText().isEmpty() || cboCargoEmpleado.getSelectedItem()=="" || txtDVRutEmpleado.getText().isEmpty()
-               || txtDireccionEmpleado.getText().isEmpty() || datecFechaTermino.getDate()==null ||  txtNombreEmpleado.getText().isEmpty()
-               || txtRutEmpleado.getText().isEmpty() || txtSueldoEmpleado.getText().isEmpty() || txtTelefonoEmpleado.getText().isEmpty()){
-           
-            JOptionPane.showMessageDialog(null, "LLene todos los campos Correspondientes. ");
-        }else{
-            if(txtRutEmpleado.getText().length()!=8 || txtTelefonoEmpleado.getText().length()!=9 || txtSueldoEmpleado.getText().length()<6){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
-                JOptionPane.showMessageDialog(null, "LLene correctamente el rut, telefono o Sueldo");
-            }else{
-                char dvchar=txtDVRutEmpleado.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
-                String fecha=sdf.format(datecFechaTermino.getDate());
-                String cargo=cboCargoEmpleado.getSelectedItem().toString();
-                
-                empl.setNombre(txtNombreEmpleado.getText());
-                empl.setApellidoMaterno(txtApellidoMaternoEmpleado.getText());
-                empl.setApellidoPaterno(txtApellidoPaternoEmpleado.getText());
-                empl.setCargo(cargo);
-                empl.setDireccion(txtDireccionEmpleado.getText());
-                empl.setDvRut(dvchar);
-                empl.setFechaTerminoContrato(fecha);
-                empl.setRut(Integer.parseInt(txtRutEmpleado.getText()));
-                empl.setSueldo(Integer.parseInt(txtSueldoEmpleado.getText()));
-                empl.setTelefono(Integer.parseInt(txtTelefonoEmpleado.getText()));
-
-                iemp.agregarEmpleado(empl);
-                
-                
-               
-
-                //String mensaje = ifcbo.agregarFichaCliente(cli);
-                
-                limpiar();
-                listarEmpleado();
-                
-            }
-        }
-    }//GEN-LAST:event_btnAceptarEmpleadoActionPerformed
-
-    private void tbIngresarEmpleadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngresarEmpleadoMouseClicked
-        // TODO add your handling code here:
-
-        try {//Poner 
-            int seleccion2 = tbIngresarEmpleado.getSelectedRow();
-            Date date = new SimpleDateFormat("yyyy-MM-dd").parse((String)tbIngresarEmpleado.getValueAt(seleccion2, 9));
-            datecFechaTermino.setDate(date);
-        } catch (ParseException ex) {
-            Logger.getLogger(MenuPrincipal.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-                int seleccion = tbIngresarEmpleado.rowAtPoint(evt.getPoint());
-                
-                
-                txtApellidoMaternoEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 3)+"");
-                txtApellidoPaternoEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion,2)+"");
-                txtNombreEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 1)+"");
-              
-                 cboCargoEmpleado.setSelectedItem(tbIngresarEmpleado.getValueAt(seleccion,10));
-                txtDireccionEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 6)+"");
-                txtDVRutEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 5)+"");
-                txtIdEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 0)+"");
-                txtRutEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 4)+"");
-                txtSueldoEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 11)+"");
-                txtTelefonoEmpleado.setText(tbIngresarEmpleado.getValueAt(seleccion, 7)+"");
-                //"idempleado","nombre","apaterno","amaterno","rut","dv","direccion","telefono","fechacontrato","fechatermino","cargo","sueldo"
-
-                
-    }//GEN-LAST:event_tbIngresarEmpleadoMouseClicked
-
-    private void txtSueldoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSueldoEmpleadoKeyTyped
+    private void txtDVRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDVRutKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
-        if(c<'0'|| c>'9'){
+
+        if(c<'1'|| c>'9' && c!='k'){//limitar a numeros 0-9 y letra k
             evt.consume();
         }
-        if(txtSueldoEmpleado.getText().length() >=7)//limita la cantidad de caracteres en el cuadro
+        if(txtDVRut.getText().length() >=1)//limita la cantidad de caracteres en el cuadro a 1
         {
             evt.consume();
         }
-    }//GEN-LAST:event_txtSueldoEmpleadoKeyTyped
+    }//GEN-LAST:event_txtDVRutKeyTyped
 
-    private void txtApellidoPaternoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoPaternoEmpleadoKeyTyped
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        if(txtDireccion.getText().isEmpty() || txtDVRut.getText().isEmpty() || txtApellidoMaterno.getText().isEmpty() || txtNombre.getText().isEmpty() || txtRut.getText().isEmpty()|| txtApellidoPaterno.getText().isEmpty()||txtID.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "LLene todos los campos.");
+        }else{
+            if(txtRut.getText().length()!=8 ){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
+                JOptionPane.showMessageDialog(null, "LLene correctamente el rut o telefono");
+            }else{
 
-        char c = evt.getKeyChar();
-        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
-            evt.consume();
+                char dvchar=txtDVRut.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
+
+                cli.setApellidoMaterno(txtApellidoMaterno.getText());//me salio un error ora-12899 value too large, esto pasó porque el metodo ingresar ficha cliente estaba en int
+                cli.setApellidoPaterno(txtApellidoPaterno.getText());
+                cli.setDVRut(dvchar);
+                cli.setDeuda('n');
+                cli.setDireccion(txtDireccion.getText());
+                cli.setNombre(txtNombre.getText());
+                cli.setRut(Integer.parseInt(txtRut.getText()));//AQUI DABÁ ERROR PORQUE INT NO ACEPTA NUMEROS DE 11 DE LARGo
+                cli.setIdCliente(Integer.parseInt(txtID.getText()));
+                ingresarcliente.ModificarFichaCliente(cli);
+                limpiar();
+                listarCliente();
+            }
         }
-        if(txtApellidoPaternoEmpleado.getText().length() >=50)//limita la cantidad de caracteres en el cuadro
-        {
-            evt.consume();
-        }
-    }//GEN-LAST:event_txtApellidoPaternoEmpleadoKeyTyped
+    }//GEN-LAST:event_btnModificarActionPerformed
 
-    private void txtApellidoMaternoEmpleadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoMaternoEmpleadoKeyTyped
+    private void txtApellidoPaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoPaternoKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
             evt.consume();
         }
-        if(txtApellidoMaternoEmpleado.getText().length() >=50)//limita la cantidad de caracteres en el cuadro
+        if(txtApellidoPaterno.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
         {
             evt.consume();
         }
-    }//GEN-LAST:event_txtApellidoMaternoEmpleadoKeyTyped
+    }//GEN-LAST:event_txtApellidoPaternoKeyTyped
 
-    private void cboCargoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboCargoEmpleadoActionPerformed
+    private void txtApellidoMaternoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoMaternoKeyTyped
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_cboCargoEmpleadoActionPerformed
-
-    private void txtIdEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdEmpleadoActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtIdEmpleadoActionPerformed
-
-    private void btnQuitarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarCompraActionPerformed
-        // TODO add your handling code here:
-         int count= tbProductosPedido.getModel().getRowCount();
-        System.out.println(count+"");
-        if(txtIdProductoPedido.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Debe seleccionar algún producto.");
-        }if(count==0){
-            JOptionPane.showMessageDialog(null, "Para Eliminar un producto Debe existir un producto en la tabla..");//de esta forma no se borrará algún 
-                                    //producto por haber seleccionado el producto luego aceptado el pedido y luego eliminado el el producto (Tambien sirve vaciando el txt al aceptar el pedido)
-        }else{
-            
-        
-        det.setIdDetalle(Integer.parseInt(txtIdProductoPedido.getText()));
-        ipdao.EliminarDetallePedido(det);
-        listarProductoPedido();
-        txtTotalPedido.setText(SumaTotalPedido()+"");
+        char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
         }
-        
-    }//GEN-LAST:event_btnQuitarCompraActionPerformed
+        if(txtApellidoMaterno.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidoMaternoKeyTyped
 
-    private void txtPrecioPedidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioPedidoKeyTyped
+    private void txtAbonarFiadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAbonarFiadoKeyTyped
+        // TODO add your handling code here:
+              char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtAbonarFiado.getText().length() >=8)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtAbonarFiadoKeyTyped
+
+    private void txtIdEmpresaRevisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdEmpresaRevisarKeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+
+        if(c<'0'|| c>'9'){//limitar a numeros 0-9 y letra k
+            evt.consume();
+        }
+        if(txtIdEmpresaRevisar.getText().length() >=8)//limita la cantidad de caracteres en el cuadro a 1
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtIdEmpresaRevisarKeyTyped
+
+    private void txtRutRepartidorRevisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutRepartidorRevisarKeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+
+        if(c<'0'|| c>'9'){//limitar a numeros 0-9 y letra k
+            evt.consume();
+        }
+        if(txtRutRepartidorRevisar.getText().length() >=8)//limita la cantidad de caracteres en el cuadro a 1
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRutRepartidorRevisarKeyTyped
+
+    private void txtDVRutRepartidorRevisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDVRutRepartidorRevisarKeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+
+        if(c<'1'|| c>'9' && c!='k'){//limitar a numeros 0-9 y letra k
+            evt.consume();
+        }
+        if(txtDVRutRepartidorRevisar.getText().length() >=1)//limita la cantidad de caracteres en el cuadro a 1
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDVRutRepartidorRevisarKeyTyped
+
+    private void txtNombreRepartidorRevisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreRepartidorRevisarKeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
+        }
+        if(txtNombreRepartidorRevisar.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreRepartidorRevisarKeyTyped
+
+    private void txtApellidoPaternoRevisarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoPaternoRevisarKeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
+        }
+        if(txtApellidoPaternoRevisar.getText().length() >=15)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtApellidoPaternoRevisarKeyTyped
+
+    private void txtCantidadProductosDiscrepanciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadProductosDiscrepanciaKeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtCantidadProductosDiscrepancia.getText().length() >=4)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtCantidadProductosDiscrepanciaKeyTyped
+
+    private void txtTotalProductosDiscrepanciaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalProductosDiscrepanciaKeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtTotalProductosDiscrepancia.getText().length() >=7)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTotalProductosDiscrepanciaKeyTyped
+
+    private void txtEstadoProductoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEstadoProductoKeyTyped
+        // TODO add your handling code here:
+                  char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' ' && c!='-' && c!='+'){
+            evt.consume();
+        }
+        if(txtEstadoProducto.getText().length() >=60)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtEstadoProductoKeyTyped
+
+    private void txtCantidadVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadVentaKeyTyped
         // TODO add your handling code here:
         char c = evt.getKeyChar();
         if(c<'0'|| c>'9'){
             evt.consume();
         }
-        if(txtPrecioPedido.getText().length() >=5)//limita la cantidad de caracteres en el cuadro
+        if(txtCantidadVenta.getText().length() >=4)//limita la cantidad de caracteres en el cuadro
         {
             evt.consume();
         }
-    }//GEN-LAST:event_txtPrecioPedidoKeyTyped
+    }//GEN-LAST:event_txtCantidadVentaKeyTyped
 
-    private void btnAgregarProductosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductosActionPerformed
+    private void btnAceptarFiadoClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarFiadoClienteActionPerformed
         // TODO add your handling code here:
-        if (cboNombreEmpresa.getSelectedItem()==""  ){
-            JOptionPane.showMessageDialog(null, "Debe llenar algun campo de empresa.");
-        }else if(txtPrecioPedido.getText().isEmpty() || txtCantidad.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(null, "Escriba una cantidad de productos y/o Precio Total+");
+        if(txtAbonarFiado.getText().isEmpty()||txtID.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Debe llenar Id o monto de fiado.");
         }else{
-            
-//                String producto=cboProducto.getSelectedItem().toString();
-                                
-                try {
-                String sql="select codproducto from producto where descripcion=?";
-                con=cn.getConnection();
-                PreparedStatement pst = con.prepareStatement(sql);
-                pst.setString(1, (String)cboProducto.getSelectedItem());
-                
-                ResultSet rs = pst.executeQuery();
-                if (rs.next()){
-                    det.setProducto(Integer.parseInt(rs.getString(1)));
-                }
-                det.setCantidad(Integer.parseInt(txtCantidad.getText()));
-                det.setPrecio(Integer.parseInt(txtPrecioPedido.getText()));
-                
-                ipdao.agregardetallefactura(det);
-            } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.toString());
-                    System.out.println(e.toString());
-            }
-                
-                fact.setTotal(Integer.parseInt(txtPrecioPedido.getText()));
-                
-                
-                
-           
-                listarProductoPedido();
-                txtTotalPedido.setText(SumaTotalPedido()+"");
+            ingresarcliente.ModificarFiadoCliente(txtAbonarFiado,txtID);
         }
-    }//GEN-LAST:event_btnAgregarProductosActionPerformed
+    }//GEN-LAST:event_btnAceptarFiadoClienteActionPerformed
 
-    private void txtCantidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadKeyTyped
+    private void btnVerInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerInformesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCantidadKeyTyped
+        jTabbedPane1.setSelectedIndex(2);
+    }//GEN-LAST:event_btnVerInformesActionPerformed
 
-    private void tbProductosPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbProductosPedidoMouseClicked
+    private void btnVerVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVentaActionPerformed
         // TODO add your handling code here:
-         int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
-        
-        txtIdProductoPedido.setText(tbProductosPedido.getValueAt(seleccion, 2)+"");
-        
-    }//GEN-LAST:event_tbProductosPedidoMouseClicked
-
-    private void cboNombreEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNombreEmpresaActionPerformed
-        // TODO add your handling code here:
-        ipdao.ListarProductosEmpresaPedidoCBO(cboProducto,cboNombreEmpresa);
-    }//GEN-LAST:event_cboNombreEmpresaActionPerformed
-
-    private void txtTotalPedidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTotalPedidoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalPedidoKeyTyped
-
-    private void txtIdProductoPedidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdProductoPedidoKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdProductoPedidoKeyTyped
-
-    private void txtNumFacturaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumFacturaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNumFacturaKeyTyped
-
-    private void btnAceptarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarPedidoActionPerformed
-        // TODO add your handling code here:
-        int count= tbProductosPedido.getModel().getRowCount();
-        System.out.println(count+"");
-        if(count==0){
-            JOptionPane.showMessageDialog(null, count+": Para aceptar pedido debe elegir algún producto.");
-        }else{
-            
-        
-                        fact.setTotal(Integer.parseInt(txtTotalPedido.getText()));
-            fact.setNumFactura(Integer.parseInt(txtNumFactura.getText()));
-            ipdao.ModificarFactura(fact );//ejecutar primero el modificar debido a que el metodo agregar factura crea una nueva factura
-            ipdao.agregarfactura();//para que al aceptar la factura se cree otra factura
-           txtNumFactura.setText(ipdao.NumFacturaImprimir()+"");
-           JOptionPane.showMessageDialog(null, count+": Pedido aceptado con exito.");
-           JTable table;
-            DefaultTableModel model = (DefaultTableModel) tbProductosPedido.getModel();
-            model.setRowCount(0);
-        }
-    }//GEN-LAST:event_btnAceptarPedidoActionPerformed
-
-    private void cboNombreEmpresaRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboNombreEmpresaRevisarActionPerformed
-        // TODO add your handling code here:
-        bcbDAO.ListarNFacturaNCBO(cboNombreEmpresaRevisar, cboNumFacturaRevisar);
-    }//GEN-LAST:event_cboNombreEmpresaRevisarActionPerformed
-
-    private void btnListarTablaRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarTablaRevisarActionPerformed
-        // TODO add your handling code here:
-        listarProductoPedido2();
-        
-    }//GEN-LAST:event_btnListarTablaRevisarActionPerformed
-
-    private void btnAceptarOrdenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarOrdenActionPerformed
-        // TODO add your handling code here:
-//         int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
-//        
-//        txtIdProductoPedido.setText(tbProductosPedido.getValueAt(seleccion, 2)+"");
-        if(txtRutRepartidorRevisar.getText().isEmpty()||txtApellidoPaternoRevisar.getText().isEmpty()||txtNombreRepartidorRevisar.getText().isEmpty()
-                ||txtIdEmpresaRevisar.getText().isEmpty()||txtDVRutRepartidorRevisar.getText().isEmpty()||cboNumFacturaRevisar.getSelectedItem()==""||
-                cboNombreEmpresaRevisar.getSelectedItem()==""){
-            JOptionPane.showMessageDialog(null, "Error, rellene todos los campos correspondientes");
-        }else{
-            
-        
-        char dvchar=txtDVRutRepartidorRevisar.getText().charAt(0);
-        txtIdEmpresaRevisar.setText(ipdao.NombreEmpresaImprimir(cboNombreEmpresaRevisar));
-        rep.setApellidoPaterno(txtApellidoPaternoRevisar.getText());
-        rep.setNombre(txtNombreRepartidorRevisar.getText());
-        rep.setRut(Integer.parseInt(txtRutRepartidorRevisar.getText()));
-        rep.setDv(dvchar);
-        rep.setIdEmpresa(Integer.parseInt(txtIdEmpresaRevisar.getText()));
-        ipdao.agregarRepartidor(rep);
-        
-        ipdao.agregarpedido(cboNumFacturaRevisar);
-        }
-    }//GEN-LAST:event_btnAceptarOrdenActionPerformed
-
-    private void tbRevisarPedidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRevisarPedidoMouseClicked
-        // TODO add your handling code here:
-         int seleccion = tbRevisarPedido.rowAtPoint(evt.getPoint());
-        
-        txtCantidadProductoRevisar.setText(tbRevisarPedido.getValueAt(seleccion, 5)+"");
-        txtTotalProductosRevisar.setText(tbRevisarPedido.getValueAt(seleccion, 6)+"");
-    }//GEN-LAST:event_tbRevisarPedidoMouseClicked
-
-    private void txtApellidoPaternoRevisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoPaternoRevisarActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtApellidoPaternoRevisarActionPerformed
-
-    private void btnDiscrepanciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDiscrepanciasActionPerformed
-        // TODO add your handling code here
-        if(txtCantidadProductoRevisar.getText().isEmpty()||txtCantidadProductosDiscrepancia.getText().isEmpty()||txtTotalProductosRevisar.getText().isEmpty()
-                ||txtTotalProductosDiscrepancia.getText().isEmpty()||cboNumFacturaRevisar.getSelectedItem()=="")
-        {
-            JOptionPane.showMessageDialog(null, "error, rellene los campos correspondientes para realizar la discrepancia");
-        }else{
-            
-        
-        disc.setCantidad(Integer.parseInt(txtCantidadProductosDiscrepancia.getText()));
-        disc.setInformacionAdicional(txtEstadoProducto.getText());
-        disc.setPrecio(Integer.parseInt(txtTotalProductosDiscrepancia.getText()));
-        disc.setNumfactura(Integer.parseInt((String)cboNumFacturaRevisar.getSelectedItem()));
-        ipdao.agregarDiscrepancia(disc);
-        }
-    }//GEN-LAST:event_btnDiscrepanciasActionPerformed
-
-    private void cboProductoVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboProductoVentaActionPerformed
-        // TODO add your handling code here:
-        ivdao.ListarProductosEmpresaPedidoCBO(cboProductoVenta, txtEmpresaVenta,txtStockVenta,txtPrecioUnitarioVenta);
-    }//GEN-LAST:event_cboProductoVentaActionPerformed
-
-    private void btnAgregarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCompraActionPerformed
-        // TODO add your handling code here:
-        if(cboProductoVenta.getSelectedItem()=="" || txtCantidadVenta.getText().isEmpty()||txtPrecioUnitarioVenta.getText().isEmpty()){
-           
-             
-            JOptionPane.showMessageDialog(null, "Debe llenar algun campo de empresa.");
-        
-        }else{
-            
-//                String producto=cboProducto.getSelectedItem().toString();
-                                
-                try {
-                String sql="select codproducto from producto where descripcion=?";
-                con=cn.getConnection();
-                PreparedStatement pst = con.prepareStatement(sql);
-                pst.setString(1, (String)cboProductoVenta.getSelectedItem());
-                
-                ResultSet rs = pst.executeQuery();
-                if (rs.next()){
-                     detb.setProducto(Integer.parseInt(rs.getString(1)));
-                }
-                detb.setCantidad(Integer.parseInt(txtCantidadVenta.getText()));
-                int resultado=Integer.parseInt(txtCantidadVenta.getText())*Integer.parseInt(txtPrecioUnitarioVenta.getText());
-                detb.setPrecio(resultado);
-                
-                ivdao.agregardetalleboleta(detb);
-            } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, e.toString());
-                    System.out.println(e.toString());
-            }
-                 fact.setTotal(Integer.parseInt(txtTotalVenta.getText()));
-                 listarProductoBoleta();
-                txtTotalVenta.setText(SumaTotalBoleta()+"");
-                
-        }
-        
-    }//GEN-LAST:event_btnAgregarCompraActionPerformed
-
-    private void btnAceptarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarVentaActionPerformed
-        // TODO add your handling code here:
-       
-        if ("0".equals(txtTotalVenta.getText())||cboRutVenta.getSelectedItem()==""||cboProductoVenta.getSelectedItem()==""){
-            JOptionPane.showMessageDialog(null, ": Para aceptar pedido boleta debe agregar algpun producto mas el rut usuario.");
-        }else{
-            ivdao.agregarventa(txtNumeroBoleta);
-           if("pass".equals(txtPassVenta.getText())){
-               ivdao.agregarFiado(txtMontoAFiarVenta, cboRutVenta);
-           }
-        }
-    }//GEN-LAST:event_btnAceptarVentaActionPerformed
-
-    private void btnQuitarCompraVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuitarCompraVentaActionPerformed
-        // TODO add your handling code here:
-         int count= tbVentaBoleta.getModel().getRowCount();
-        System.out.println(count+"");
-        if(txtIDetalleVenta.getText().isEmpty()){
-            JOptionPane.showMessageDialog(null,"Debe seleccionar algún producto.");
-        }if(count==0){
-            JOptionPane.showMessageDialog(null, "Para Eliminar un producto Debe existir un producto en la tabla..");//de esta forma no se borrará algún 
-                                    //producto por haber seleccionado el producto luego aceptado el pedido y luego eliminado el el producto (Tambien sirve vaciando el txt al aceptar el pedido)
-        }else{
-            
-        
-        
-        ivdao.EliminarDetalleBoleta(txtIDetalleVenta);
-        listarProductoBoleta();
-        txtTotalVenta.setText(SumaTotalBoleta()+"");
-        }
-    }//GEN-LAST:event_btnQuitarCompraVentaActionPerformed
-
-    private void txtTotalVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalVentaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTotalVentaActionPerformed
-
-    private void tbVentaBoletaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbVentaBoletaMouseClicked
-        // TODO add your handling code here:
-         int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
-        
-        txtIDetalleVenta.setText(tbVentaBoleta.getValueAt(seleccion, 0)+"");
-    }//GEN-LAST:event_tbVentaBoletaMouseClicked
+        jTabbedPane1.setSelectedIndex(6);
+    }//GEN-LAST:event_btnVerVentaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2287,7 +2535,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         int contar=tbProductosPedido.getRowCount();
         int suma=0;
         for (int i = 0; i<contar; i++){
-            suma=suma+Integer.parseInt(tbProductosPedido.getValueAt(i,4).toString());
+            suma=suma+Integer.parseInt(tbProductosPedido.getValueAt(i,5).toString());
         }
         return suma;
     } 
@@ -2330,6 +2578,40 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtTelefonoEmpleado.setText("");
         cboCargoEmpleado.setSelectedIndex(0);
         datecFechaTermino.setDate(null);
+        
+        txtCantidad.setText("");
+        txtPrecioPedido.setText("");
+        txtIdProductoPedido.setText("");
+        txtTotalPedido.setText("");
+        tbProductosPedido.setModel(new DefaultTableModel());
+        cboProducto.setSelectedItem(0);
+        cboNombreEmpresa.setSelectedItem(0);
+        
+        cboNombreEmpresaRevisar.setSelectedItem(0);
+        cboNumFacturaRevisar.setSelectedItem(0);
+        txtIdEmpresaRevisar.setText("");
+        txtRutRepartidorRevisar.setText("");
+        txtDVRutRepartidorRevisar.setText("");
+        txtNombreRepartidorRevisar.setText("");
+        txtApellidoPaternoRevisar.setText("");
+        txtCantidadProductoRevisar.setText("");
+        txtTotalProductosRevisar.setText("");
+        txtTotalProductosDiscrepancia.setText("");
+        txtCantidadProductosDiscrepancia.setText("");
+        txtEstadoProducto.setText("");
+        tbRevisarPedido.setModel(new DefaultTableModel());
+        
+        cboProductoVenta.setSelectedItem(0);
+        cboRutVenta.setSelectedItem(0);
+        txtStockVenta.setText("");
+        txtPrecioUnitarioVenta.setText("");
+        txtEmpresaVenta.setText("");
+        txtCantidadVenta.setText("");
+        txtIDetalleVenta.setText("");
+        txtTotalVenta.setText("");
+        txtMontoAFiarVenta.setText("");
+        txtPassVenta.setText("");
+        tbVentaBoleta.setModel(new DefaultTableModel());
     }
     
     public void listarCliente(){
@@ -2363,15 +2645,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnAceptarEmpleado;
+    private javax.swing.JButton btnAceptarFiadoCliente;
     private javax.swing.JButton btnAceptarOrden;
     private javax.swing.JButton btnAceptarPedido;
     private javax.swing.JButton btnAceptarProveedor;
     private javax.swing.JButton btnAceptarVenta;
     private javax.swing.JButton btnAgregarCompra;
     private javax.swing.JButton btnAgregarProductos;
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnCancelarEmpleado;
-    private javax.swing.JButton btnCancelarProveedor;
     private javax.swing.JButton btnDiscrepancias;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEliminarEmpleado;
@@ -2383,14 +2663,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnModificarEmpleado;
     private javax.swing.JButton btnModificarProveedor;
-    private javax.swing.JButton btnMostrarTab1;
-    private javax.swing.JButton btnMostrarTab2;
-    private javax.swing.JButton btnMostrarTab3;
-    private javax.swing.JButton btnMostrarTab4;
-    private javax.swing.JButton btnMostrarTab5;
-    private javax.swing.JToggleButton btnMostrarTab6;
     private javax.swing.JButton btnQuitarCompra;
     private javax.swing.JButton btnQuitarCompraVenta;
+    private javax.swing.JToggleButton btnRevisarPedido;
+    private javax.swing.JButton btnVerCliente;
+    private javax.swing.JButton btnVerEmpleado;
+    private javax.swing.JButton btnVerInformes;
+    private javax.swing.JButton btnVerOrdenPedido;
+    private javax.swing.JButton btnVerProveedor;
+    private javax.swing.JButton btnVerVenta;
     private javax.swing.JComboBox<String> cboCargoEmpleado;
     private javax.swing.JComboBox<String> cboNombreEmpresa;
     private javax.swing.JComboBox<String> cboNombreEmpresaRevisar;
@@ -2399,11 +2680,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboProductoVenta;
     private javax.swing.JComboBox<String> cboRutVenta;
     private java.awt.Checkbox checkbox1;
-    private javax.swing.JCheckBox chkAbono;
+    private java.awt.Checkbox checkbox2;
     private com.toedter.calendar.JDateChooser datecFechaTermino;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jComboBox3;
+    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2461,6 +2745,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
     private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel64;
@@ -2474,6 +2759,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel71;
     private javax.swing.JLabel jLabel72;
     private javax.swing.JLabel jLabel73;
+    private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
@@ -2491,7 +2777,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JTable tbIngresarEmpleado;
     private javax.swing.JTable tbIngresarFichaCliente;

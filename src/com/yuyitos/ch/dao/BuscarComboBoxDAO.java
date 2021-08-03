@@ -91,7 +91,7 @@ public class BuscarComboBoxDAO {
         try {
                 String sql="select producto.descripcion from producto left join familia on producto.familia = familia.idfamilia\n" +
                                "union\n" +
-                               "select producto.descripcion from producto right join familia on producto.familia = familia.idfamilia;";
+                               "select producto.descripcion from producto right join familia on producto.familia = familia.idfamilia";
 //                        "select concat(producto.descripcion) from producto left join familia on producto.familia = familia.idfamilia\n" +
 //                               "union\n" +
 //                               "select concat(producto.descripcion) from producto right join familia on producto.familia = familia.idfamilia;";
@@ -103,7 +103,6 @@ public class BuscarComboBoxDAO {
                 cb.addItem("");//para dejar un espacio en blanco en el combo box
                 while(rs.next()){
                     cb.addItem(rs.getString(1));//aqui se agregará los ruts en el combobox
-                   
                 }
                 return true;
                 
@@ -123,7 +122,7 @@ public class BuscarComboBoxDAO {
                                     "on det.producto=prod.codproducto\n" +
                                     "	inner join empresa as emp\n" +
                                     "on emp.idempresa=prod.idempresa\n" +
-                                    "	where emp.nombre=? ";
+                                    "	where emp.nombre=? order by fac.numfactura";
                 con=cn.getConnection();
                 PreparedStatement pst;
                  pst = con.prepareStatement(sql);  
@@ -149,7 +148,7 @@ public class BuscarComboBoxDAO {
     
     public void BuscarProductoVenta(JComboBox cb){//listar items desde una seleccion de un combobox***
         try {
-            String sql="select descripcion from producto ";
+            String sql="select descripcion from producto order by descripcion";
             
             con=cn.getConnection();
             PreparedStatement pst;

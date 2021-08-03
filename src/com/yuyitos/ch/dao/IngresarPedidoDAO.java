@@ -286,7 +286,7 @@ public class IngresarPedidoDAO {
                 String sql="select prod.descripcion from producto as prod\n" +
                         "	inner join empresa as emp \n" +
                         "on prod.idempresa=emp.idempresa\n" +
-                        "where emp.nombre=? ";
+                        "where emp.nombre=? order by prod.descripcion";
 //                        "select concat(producto.descripcion) from producto left join familia on producto.familia = familia.idfamilia\n" +
 //                               "union\n" +
 //                               "select concat(producto.descripcion) from producto right join familia on producto.familia = familia.idfamilia;";
@@ -325,7 +325,7 @@ public class IngresarPedidoDAO {
        
         try {
             con=cn.getConnection();
-            String sql5="select idempresa from empresa where nombre=?";
+            String sql5="select idempresa from empresa where nombre=? order by nombre";
             PreparedStatement pst5;
             pst5 = con.prepareStatement(sql5);
              pst5.setString(1, (String)cb.getSelectedItem());
@@ -430,7 +430,7 @@ public class IngresarPedidoDAO {
     public void ListarProductosPedido2(Connection con, JTable tabla,JComboBox cb){ //crear metodo de lista
 
         DefaultTableModel model; //llamamos al objeto de nuestra tabla
-        String [] columnas = {"NumFactura","Nombre Empresa","Rut","Id Detalle","Descripción","Cantidad","precio Productos","Total"};//agregamos parametros a la columna
+        String [] columnas = {"NumFactura","Nombre Empresa","Rut","Id Detalle","Descripción","Cantidad","precio Productos","Suma valor Total"};//agregamos parametros a la columna
         model = new DefaultTableModel(null, columnas);//se los agragamos a la tabla 
         
         String sql = "select  det.numfactura,emp.nombre, concat(emp.rut,' ',emp.dv), det.iddetalle, prod.descripcion, det.cantidad, det.precio, fac.total from producto as prod\n" +
@@ -465,5 +465,64 @@ public class IngresarPedidoDAO {
             JOptionPane.showMessageDialog(null, "No se puede listar la tabla: "+e.toString());
             System.out.println("tabla pedio "+e.toString());
         }
+    }
+    
+    public boolean ActualizarStock(JComboBox cb ){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String sql = "update   inventario as inv inner join empleado as emp on inv.idempleado=emp.idEmpleado \n" +
+"inner join producto as prod on prod.codproducto=inv.producto_codproducto inner join pedido as ped on ped.idempleado=emp.idempleado\n" +
+"inner join factura as fact on ped.numfactura=fact.numfactura inner join detallefactura as detf on detf.numfactura=fact.numfactura\n" +
+"set stock=stock+detf.cantidad where fact.numfactura=? ";
+        try {
+            con=cn.getConnection();
+            pst= con.prepareStatement(sql);
+            
+            pst.setInt(1,  Integer.parseInt((String)cb.getSelectedItem()));
+            
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Stock modificado con exito");
+            return true;
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+      
+    }
+    
+    public boolean ActualizarValorIncrementFactura( ){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String sql = "alter table factura auto_increment=? ";
+        String sql2="select max(numfactura) from factura";
+        try {
+            con=cn.getConnection();
+            pst= con.prepareStatement(sql);
+            pst2=con.prepareStatement(sql2);
+            rs = pst2.executeQuery();//obtiene el resultado del select
+            if (rs.next()) {           // aqui hará un recorrido del select     
+                 //aqui con el for se limita el recorrido a la cantidad de filas (6)
+                    pst.setInt(1, Integer.parseInt(rs.getString(1)));//se guardará el resultado del rs en el dato filas
+                }
+           
+            
+            pst.execute();
+            JOptionPane.showMessageDialog(null, "Stock modificado con exito");
+            return true;
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
+        }
+      
     }
 }
