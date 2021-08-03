@@ -22,7 +22,7 @@ public class Test {
     Persona per = new Persona();
     IngresarFichaClienteDAO ingresarficha  = new IngresarFichaClienteDAO();
     String mensaje = "";
-    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    
     
     public void insertar(){
         

@@ -10,37 +10,107 @@ package com.yuyitos.ch.entity;
  * @author tavo-
  */
 public class Empleado {
-    private int RutEmpleado;
-    private String FechaInicioContrato;
-    private String FechaTerminoContrato;
-    private String cargo;
-    private int sueldo;
+   private int IdEmpleado;
+   private String Nombre;
+   private String ApellidoPaterno;
+   private String ApellidoMaterno;
+   private int rut;
+   private char dvRut;
+   private String Direccion;
+   private int telefono;
+   private String FechaContrato;
+   private String FechaTerminoContrato;
+   private String Cargo;
+   private int sueldo;
 
     public Empleado() {
     }
 
-    public Empleado(int RutEmpleado, String FechaInicioContrato, String FechaTerminoContrato, String cargo, int sueldo) {
-        this.RutEmpleado = RutEmpleado;
-        this.FechaInicioContrato = FechaInicioContrato;
+    public Empleado(int IdEmpleado, String Nombre, String ApellidoPaterno, String ApellidoMaterno, int rut, char dvRut, String Direccion, int telefono, String FechaContrato, String FechaTerminoContrato, String Cargo, int sueldo) {
+        this.IdEmpleado = IdEmpleado;
+        this.Nombre = Nombre;
+        this.ApellidoPaterno = ApellidoPaterno;
+        this.ApellidoMaterno = ApellidoMaterno;
+        this.rut = rut;
+        this.dvRut = dvRut;
+        this.Direccion = Direccion;
+        this.telefono = telefono;
+        this.FechaContrato = FechaContrato;
         this.FechaTerminoContrato = FechaTerminoContrato;
-        this.cargo = cargo;
+        this.Cargo = Cargo;
         this.sueldo = sueldo;
     }
 
-    public int getRutEmpleado() {
-        return RutEmpleado;
+    public int getIdEmpleado() {
+        return IdEmpleado;
     }
 
-    public void setRutEmpleado(int RutEmpleado) {
-        this.RutEmpleado = RutEmpleado;
+    public void setIdEmpleado(int IdEmpleado) {
+        this.IdEmpleado = IdEmpleado;
     }
 
-    public String getFechaInicioContrato() {
-        return FechaInicioContrato;
+    public String getNombre() {
+        return Nombre;
     }
 
-    public void setFechaInicioContrato(String FechaInicioContrato) {
-        this.FechaInicioContrato = FechaInicioContrato;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
+    }
+
+    public String getApellidoPaterno() {
+        return ApellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String ApellidoPaterno) {
+        this.ApellidoPaterno = ApellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return ApellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String ApellidoMaterno) {
+        this.ApellidoMaterno = ApellidoMaterno;
+    }
+
+    public int getRut() {
+        return rut;
+    }
+
+    public void setRut(int rut) {
+        this.rut = rut;
+    }
+
+    public char getDvRut() {
+        return dvRut;
+    }
+
+    public void setDvRut(char dvRut) {
+        this.dvRut = dvRut;
+    }
+
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+
+    public int getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getFechaContrato() {
+        return FechaContrato;
+    }
+
+    public void setFechaContrato(String FechaContrato) {
+        this.FechaContrato = FechaContrato;
     }
 
     public String getFechaTerminoContrato() {
@@ -52,11 +122,11 @@ public class Empleado {
     }
 
     public String getCargo() {
-        return cargo;
+        return Cargo;
     }
 
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
+    public void setCargo(String Cargo) {
+        this.Cargo = Cargo;
     }
 
     public int getSueldo() {
@@ -69,8 +139,9 @@ public class Empleado {
 
     @Override
     public String toString() {
-        return "Empleado{" + "RutEmpleado=" + RutEmpleado + ", FechaInicioContrato=" + FechaInicioContrato + ", FechaTerminoContrato=" + FechaTerminoContrato + ", cargo=" + cargo + ", sueldo=" + sueldo + '}';
+        return "Empleado{" + "IdEmpleado=" + IdEmpleado + ", Nombre=" + Nombre + ", ApellidoPaterno=" + ApellidoPaterno + ", ApellidoMaterno=" + ApellidoMaterno + ", rut=" + rut + ", dvRut=" + dvRut + ", Direccion=" + Direccion + ", telefono=" + telefono + ", FechaContrato=" + FechaContrato + ", FechaTerminoContrato=" + FechaTerminoContrato + ", Cargo=" + Cargo + ", sueldo=" + sueldo + '}';
     }
     
+   
     
 }

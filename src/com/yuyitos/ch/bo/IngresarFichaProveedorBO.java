@@ -8,70 +8,27 @@ package com.yuyitos.ch.bo;
 
 import com.yuyitos.ch.dao.IngresarFichaProveedorDAO;
 import com.yuyitos.ch.db.Conexion;
+import com.yuyitos.ch.entity.Empleado;
 
 
 import java.sql.Connection;
+import java.sql.SQLException;
+import javax.swing.JTable;
 
 /**
  *
  * @author tavo-
  */
 public class IngresarFichaProveedorBO {
-//        private String mensaje = "";
-//    private IngresarFichaProveedorDAO ifpdao = new IngresarFichaProveedorDAO();
-//    
-//    public String agregarFichaProveedor(Proveedor pro){ // Proveedor se refiere a el objeto del paquete entidad(entity) creado anteriormente
-//       Connection conn = Conexion.getConnection();
-//       try{
-//           mensaje = ifpdao.agregarFichaProveedor(conn, pro);
-//           //conn.rollback();//el rollback detiene los errores, por lo que si hay un error en un dato no se guardará en la base de datos
-//       }catch (Exception e){
-//           mensaje = mensaje + ""+ e.getMessage();
-//       }finally{
-//           try {
-//               if (conn != null){
-//                   conn.close();
-//               }
-//           } catch (Exception e) {
-//               mensaje = mensaje + "" + e.getMessage();
-//           }
-//       }
-//       return mensaje;
-//    }
-//    public String ModificarFichaProveedor(Proveedor pro){
-//        Connection conn = Conexion.getConnection();
-//       try{
-//           mensaje = ifpdao.ModificarFichaProveedor(conn, pro);
-//           //conn.rollback();//el rollback detiene los errores, por lo que si hay un error en un dato no se guardará en la base de datos
-//       }catch (Exception e){
-//           mensaje = mensaje + ""+ e.getMessage();
-//       }finally{
-//           try {
-//               if (conn != null){
-//                   conn.close();
-//               }
-//           } catch (Exception e) {
-//               mensaje = mensaje + "" + e.getMessage();
-//           }
-//       }
-//       return mensaje;
-//    }
-//    public String EliminarFichaProveedor(int IdProveedor){
-//        Connection conn = Conexion.getConnection();
-//       try{
-//           mensaje = ifpdao.EliminarFichaProveedor(conn, IdProveedor);
-//           //conn.rollback();//el rollback detiene los errores, por lo que si hay un error en un dato no se guardará en la base de datos
-//       }catch (Exception e){
-//           mensaje = mensaje + ""+ e.getMessage();
-//       }finally{
-//           try {
-//               if (conn != null){
-//                   conn.close();
-//               }
-//           } catch (Exception e) {
-//               mensaje = mensaje + "" + e.getMessage();
-//           }
-//       }
-//       return mensaje;
-//    }
+    
+        private IngresarFichaProveedorDAO ifpdao = new IngresarFichaProveedorDAO();
+       public void ListarFichaProveedor(JTable tabla){
+        Connection conn = Conexion.getConnection();
+        ifpdao.ListarFichaEmpresa(conn, tabla);
+        try {
+            conn.close();
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
 }

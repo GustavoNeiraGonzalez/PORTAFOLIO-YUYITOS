@@ -10,43 +10,31 @@ package com.yuyitos.ch.entity;
  * @author tavo-
  */
 public class Producto {
-    private int IdProducto;
-    private int CodProducto;
-    private String Descripcion;
-    private int Stock;
-    private int Costo;
-    private int Precio;
-    private int Tipo;
-    private int FechaVencimiento;
-    private String FechaElab;
-    private int StockC;
-    private int CodFTipoProducto;
-    private int CodBarra;
+    public int CodProducto;
+    public String Descripcion;
+    public int Familia;
+    public int IdFamilia;
+    public String DescripcionFamilia;
+    public int Tipo;
+    public int IdTipo;
+    public String DescripcionTipo;
+    public String fechaElab;
+    public String fechaVenc;
 
     public Producto() {
     }
 
-    public Producto(int IdProducto, int CodProducto, String Descripcion, int Stock, int Costo, int Precio, int Tipo, int FechaVencimiento, String FechaElab, int StockC, int CodFTipoProducto, int CodBarra) {
-        this.IdProducto = IdProducto;
+    public Producto(int CodProducto, String Descripcion, int Familia, int IdFamilia, String DescripcionFamilia, int Tipo, int IdTipo, String DescripcionTipo, String fechaElab, String fechaVenc) {
         this.CodProducto = CodProducto;
         this.Descripcion = Descripcion;
-        this.Stock = Stock;
-        this.Costo = Costo;
-        this.Precio = Precio;
+        this.Familia = Familia;
+        this.IdFamilia = IdFamilia;//INFO DE LA TABLA FAMILIA DE LA BD
+        this.DescripcionFamilia = DescripcionFamilia;//INFO DE LA TABLA FAMILIA DE LA BD
         this.Tipo = Tipo;
-        this.FechaVencimiento = FechaVencimiento;
-        this.FechaElab = FechaElab;
-        this.StockC = StockC;
-        this.CodFTipoProducto = CodFTipoProducto;
-        this.CodBarra = CodBarra;
-    }
-
-    public int getIdProducto() {
-        return IdProducto;
-    }
-
-    public void setIdProducto(int IdProducto) {
-        this.IdProducto = IdProducto;
+        this.IdTipo = IdTipo;//INFO DE LA TABLA TIPO DE LA BD
+        this.DescripcionTipo = DescripcionTipo;//INFO DE LA TABLA TIPO DE LA BD
+        this.fechaElab = fechaElab;
+        this.fechaVenc = fechaVenc;
     }
 
     public int getCodProducto() {
@@ -65,28 +53,28 @@ public class Producto {
         this.Descripcion = Descripcion;
     }
 
-    public int getStock() {
-        return Stock;
+    public int getFamilia() {
+        return Familia;
     }
 
-    public void setStock(int Stock) {
-        this.Stock = Stock;
+    public void setFamilia(int Familia) {
+        this.Familia = Familia;
     }
 
-    public int getCosto() {
-        return Costo;
+    public int getIdFamilia() {
+        return IdFamilia;
     }
 
-    public void setCosto(int Costo) {
-        this.Costo = Costo;
+    public void setIdFamilia(int IdFamilia) {
+        this.IdFamilia = IdFamilia;
     }
 
-    public int getPrecio() {
-        return Precio;
+    public String getDescripcionFamilia() {
+        return DescripcionFamilia;
     }
 
-    public void setPrecio(int Precio) {
-        this.Precio = Precio;
+    public void setDescripcionFamilia(String DescripcionFamilia) {
+        this.DescripcionFamilia = DescripcionFamilia;
     }
 
     public int getTipo() {
@@ -97,49 +85,41 @@ public class Producto {
         this.Tipo = Tipo;
     }
 
-    public int getFechaVencimiento() {
-        return FechaVencimiento;
+    public int getIdTipo() {
+        return IdTipo;
     }
 
-    public void setFechaVencimiento(int FechaVencimiento) {
-        this.FechaVencimiento = FechaVencimiento;
+    public void setIdTipo(int IdTipo) {
+        this.IdTipo = IdTipo;
+    }
+
+    public String getDescripcionTipo() {
+        return DescripcionTipo;
+    }
+
+    public void setDescripcionTipo(String DescripcionTipo) {
+        this.DescripcionTipo = DescripcionTipo;
     }
 
     public String getFechaElab() {
-        return FechaElab;
+        return fechaElab;
     }
 
-    public void setFechaElab(String FechaElab) {
-        this.FechaElab = FechaElab;
+    public void setFechaElab(String fechaElab) {
+        this.fechaElab = fechaElab;
     }
 
-    public int getStockC() {
-        return StockC;
+    public String getFechaVenc() {
+        return fechaVenc;
     }
 
-    public void setStockC(int StockC) {
-        this.StockC = StockC;
-    }
-
-    public int getCodFTipoProducto() {
-        return CodFTipoProducto;
-    }
-
-    public void setCodFTipoProducto(int CodFTipoProducto) {
-        this.CodFTipoProducto = CodFTipoProducto;
-    }
-
-    public int getCodBarra() {
-        return CodBarra;
-    }
-
-    public void setCodBarra(int CodBarra) {
-        this.CodBarra = CodBarra;
+    public void setFechaVenc(String fechaVenc) {
+        this.fechaVenc = fechaVenc;
     }
 
     @Override
     public String toString() {
-        return "Producto{" + "IdProducto=" + IdProducto + ", CodProducto=" + CodProducto + ", Descripcion=" + Descripcion + ", Stock=" + Stock + ", Costo=" + Costo + ", Precio=" + Precio + ", Tipo=" + Tipo + ", FechaVencimiento=" + FechaVencimiento + ", FechaElab=" + FechaElab + ", StockC=" + StockC + ", CodFTipoProducto=" + CodFTipoProducto + ", CodBarra=" + CodBarra + '}';
+        return "Producto{" + "CodProducto=" + CodProducto + ", Descripcion=" + Descripcion + ", Familia=" + Familia + ", IdFamilia=" + IdFamilia + ", DescripcionFamilia=" + DescripcionFamilia + ", Tipo=" + Tipo + ", IdTipo=" + IdTipo + ", DescripcionTipo=" + DescripcionTipo + ", fechaElab=" + fechaElab + ", fechaVenc=" + fechaVenc + '}';
     }
     
     

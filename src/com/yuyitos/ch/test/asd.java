@@ -8,7 +8,9 @@ package com.yuyitos.ch.test;
 import com.yuyitos.ch.db.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -18,21 +20,10 @@ import java.time.format.DateTimeFormatter;
  */
 public class asd {
     public static void main(String[] args) {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        System.out.println("yyyy/MM/dd HH:mm:ss-> "+dtf.format(LocalDateTime.now()));
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("MddHmmss");
+        System.out.println(dtf.format(LocalDateTime.now()));
         
-        Conexion cn = new Conexion();
-        Connection con;
-        PreparedStatement pst2;
-        String sql2 = "select ifnull(max(idcliente+1), 1) from cliente";
-        con=cn.getConnection();
-        try {
-            
-            Statement s = con.createStatement();
-            ResultSet rs = s.executeQuery ("select * from persona");
-        } catch (Exception e) {
-            System.out.println(e.toString());
-        }
+        
         
         
     }

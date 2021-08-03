@@ -59,6 +59,7 @@ public class IngresarFichaClienteDAO {
             
             pst.executeUpdate();
             pst.close();
+            JOptionPane.showMessageDialog(null, "cliente agregado");
             return true;
         }catch(Exception e){
             JOptionPane.showMessageDialog(null, e.toString());
@@ -68,6 +69,7 @@ public class IngresarFichaClienteDAO {
                 con.close();
             } catch (Exception e) {
                 System.out.println(e.toString());
+
             }
         }
     }
@@ -91,6 +93,7 @@ public class IngresarFichaClienteDAO {
             
             pst.setInt(8, cli.getIdCliente());
             pst.execute();
+            JOptionPane.showMessageDialog(null, "cliente modificado");
             return true;
         } catch(Exception e){
             JOptionPane.showMessageDialog(null, e.toString());
@@ -111,6 +114,7 @@ public class IngresarFichaClienteDAO {
             pst= con.prepareStatement(sql);
             pst.setInt(1, id);
             pst.execute();
+            JOptionPane.showMessageDialog(null, "cliente eliminado");
             return true;
         } catch (Exception e) {
             System.out.println(e.toString());
