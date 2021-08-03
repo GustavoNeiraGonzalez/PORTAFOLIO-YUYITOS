@@ -225,7 +225,7 @@ public class IngresarPedidoDAO {
                     pst2.setInt(2,Integer.parseInt(rs1.getString(1)));
                      
             }                
-            pst2.setInt(1, 3);
+            pst2.setInt(1, 1);
             pst2.setInt(3, Integer.parseInt((String)cb.getSelectedItem()));
             pst2.executeUpdate();
             pst2.close();

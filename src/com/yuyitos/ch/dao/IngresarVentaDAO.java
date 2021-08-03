@@ -161,7 +161,7 @@ public class IngresarVentaDAO {
     }
     
      public boolean agregarventa(JTextField txt){
-        String sql = "insert into venta(idempleado,numboleta) values (3,?) " ;
+        String sql = "insert into venta(idempleado,numboleta) values (1,?) " ;
         try {
             con = cn.getConnection();
                

@@ -89,10 +89,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
      */
     public MenuPrincipal() {
         initComponents();
-        
         listarCliente();
         listarEmpresa();
         listarEmpleado();
+        
+
+
         
         //jTabbedPane1.setSelectedIndex(0);//para elegir en que panel iniciara (inecesario aqui) 
         datecFechaTermino.setMinSelectableDate(new Date());
@@ -223,7 +225,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
         cboCargoEmpleado = new javax.swing.JComboBox<>();
         PanelEstadistica = new javax.swing.JPanel();
         jLabel61 = new javax.swing.JLabel();
-        btnGenerarPDF = new javax.swing.JButton();
         jLabel77 = new javax.swing.JLabel();
         jLabel78 = new javax.swing.JLabel();
         btnPDFFiadosTotales = new javax.swing.JButton();
@@ -240,6 +241,43 @@ public class MenuPrincipal extends javax.swing.JFrame {
         btnGraficoVentas = new javax.swing.JButton();
         jLabel86 = new javax.swing.JLabel();
         jLabel87 = new javax.swing.JLabel();
+        jLabel89 = new javax.swing.JLabel();
+        btnWordVentasMes = new javax.swing.JButton();
+        jLabel90 = new javax.swing.JLabel();
+        jLabel91 = new javax.swing.JLabel();
+        btnWordProveedores = new javax.swing.JButton();
+        btnWordEmpleados = new javax.swing.JButton();
+        jLabel92 = new javax.swing.JLabel();
+        jLabel93 = new javax.swing.JLabel();
+        btnWordFiados = new javax.swing.JButton();
+        jLabel94 = new javax.swing.JLabel();
+        jLabel95 = new javax.swing.JLabel();
+        btnTXTEmpleados = new javax.swing.JButton();
+        jLabel96 = new javax.swing.JLabel();
+        jLabel97 = new javax.swing.JLabel();
+        jLabel98 = new javax.swing.JLabel();
+        jLabel99 = new javax.swing.JLabel();
+        btnTXTProveedores = new javax.swing.JButton();
+        btnTXTVentasMes = new javax.swing.JButton();
+        jLabel100 = new javax.swing.JLabel();
+        jLabel101 = new javax.swing.JLabel();
+        btnTXTFiados = new javax.swing.JButton();
+        jLabel102 = new javax.swing.JLabel();
+        jLabel103 = new javax.swing.JLabel();
+        btnExcelFiados = new javax.swing.JButton();
+        jLabel104 = new javax.swing.JLabel();
+        jLabel105 = new javax.swing.JLabel();
+        btnExcelVentasMes = new javax.swing.JButton();
+        jLabel106 = new javax.swing.JLabel();
+        jLabel107 = new javax.swing.JLabel();
+        btnExcelProveedores = new javax.swing.JButton();
+        jLabel108 = new javax.swing.JLabel();
+        jLabel109 = new javax.swing.JLabel();
+        btnExcelEmpleados = new javax.swing.JButton();
+        jLabel110 = new javax.swing.JLabel();
+        jLabel111 = new javax.swing.JLabel();
+        jLabel112 = new javax.swing.JLabel();
+        btnGraficoFiados = new javax.swing.JButton();
         PanelProveedor = new javax.swing.JPanel();
         txtRubroProveedor = new javax.swing.JTextField();
         txtDireccionProveedor = new javax.swing.JTextField();
@@ -838,22 +876,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
         PanelEstadistica.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel61.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel61.setText("Estadistica");
+        jLabel61.setText("Informes");
         PanelEstadistica.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, -1, -1));
 
-        btnGenerarPDF.setText("Generar pdf");
-        btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarPDFActionPerformed(evt);
-            }
-        });
-        PanelEstadistica.add(btnGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
-
         jLabel77.setText("Información Empleados");
-        PanelEstadistica.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, -1, -1));
+        PanelEstadistica.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 50, -1, -1));
 
         jLabel78.setText("Generar PDF ");
-        PanelEstadistica.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, -1));
+        PanelEstadistica.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 30, -1, -1));
 
         btnPDFFiadosTotales.setText("Generar pdf");
         btnPDFFiadosTotales.addActionListener(new java.awt.event.ActionListener() {
@@ -861,13 +891,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnPDFFiadosTotalesActionPerformed(evt);
             }
         });
-        PanelEstadistica.add(btnPDFFiadosTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
+        PanelEstadistica.add(btnPDFFiadosTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, -1, -1));
 
         jLabel79.setText("Productos mas vendidos");
-        PanelEstadistica.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, 40));
+        PanelEstadistica.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, 40));
 
         jLabel80.setText("fiados actuales");
-        PanelEstadistica.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, -1, -1));
+        PanelEstadistica.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
 
         btnPDFBoletaMes.setText("Generar pdf");
         btnPDFBoletaMes.addActionListener(new java.awt.event.ActionListener() {
@@ -875,13 +905,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnPDFBoletaMesActionPerformed(evt);
             }
         });
-        PanelEstadistica.add(btnPDFBoletaMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
+        PanelEstadistica.add(btnPDFBoletaMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 80, -1, -1));
 
         jLabel81.setText("Generar PDF ");
-        PanelEstadistica.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, 20));
+        PanelEstadistica.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 30, -1, 20));
 
         jLabel82.setText("de Ventas por boleta");
-        PanelEstadistica.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, 30));
+        PanelEstadistica.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 40, -1, 30));
 
         btnPDFProveedores.setText("Generar pdf");
         btnPDFProveedores.addActionListener(new java.awt.event.ActionListener() {
@@ -889,13 +919,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnPDFProveedoresActionPerformed(evt);
             }
         });
-        PanelEstadistica.add(btnPDFProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
+        PanelEstadistica.add(btnPDFProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 80, -1, -1));
 
         jLabel83.setText("Generar PDF ");
-        PanelEstadistica.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, -1));
+        PanelEstadistica.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 30, -1, -1));
 
         jLabel84.setText("mes actual");
-        PanelEstadistica.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, 20));
+        PanelEstadistica.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, 20));
 
         btnPDFEmpleados.setText("Generar pdf");
         btnPDFEmpleados.addActionListener(new java.awt.event.ActionListener() {
@@ -903,26 +933,202 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnPDFEmpleadosActionPerformed(evt);
             }
         });
-        PanelEstadistica.add(btnPDFEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, -1, -1));
+        PanelEstadistica.add(btnPDFEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, -1, -1));
 
         jLabel85.setText("Proveedores");
-        PanelEstadistica.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, -1));
+        PanelEstadistica.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 50, -1, -1));
 
-        btnGraficoVentas.setText("Generar pdf");
+        btnGraficoVentas.setText("Generar grafico");
         btnGraficoVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGraficoVentasActionPerformed(evt);
             }
         });
-        PanelEstadistica.add(btnGraficoVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
+        PanelEstadistica.add(btnGraficoVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 390, 130, -1));
 
         jLabel86.setText("Generar PDF ");
-        PanelEstadistica.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, 20));
+        PanelEstadistica.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 30, -1, 20));
 
-        jLabel87.setText("Generar estadistica");
-        PanelEstadistica.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, 40));
+        jLabel87.setText("Generar word");
+        PanelEstadistica.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, 40));
 
-        jTabbedPane1.addTab("Estadistica", PanelEstadistica);
+        jLabel89.setText("Grafico productos mas vendido");
+        PanelEstadistica.add(jLabel89, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 360, -1, 40));
+
+        btnWordVentasMes.setText("Generar word");
+        btnWordVentasMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWordVentasMesActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnWordVentasMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, -1, -1));
+
+        jLabel90.setText("Generar word");
+        PanelEstadistica.add(jLabel90, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 120, -1, -1));
+
+        jLabel91.setText("Proveedores");
+        PanelEstadistica.add(jLabel91, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 140, -1, -1));
+
+        btnWordProveedores.setText("Generar word");
+        btnWordProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWordProveedoresActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnWordProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 160, -1, -1));
+
+        btnWordEmpleados.setText("Generar word");
+        btnWordEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWordEmpleadosActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnWordEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 160, -1, -1));
+
+        jLabel92.setText("Información Empleados");
+        PanelEstadistica.add(jLabel92, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 140, -1, -1));
+
+        jLabel93.setText("Generar word ");
+        PanelEstadistica.add(jLabel93, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 120, -1, -1));
+
+        btnWordFiados.setText("Generar word");
+        btnWordFiados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWordFiadosActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnWordFiados, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, -1, -1));
+
+        jLabel94.setText("fiados actuales");
+        PanelEstadistica.add(jLabel94, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 140, -1, -1));
+
+        jLabel95.setText("Generar PDF ");
+        PanelEstadistica.add(jLabel95, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 120, -1, 20));
+
+        btnTXTEmpleados.setText("Generar txt");
+        btnTXTEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTXTEmpleadosActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnTXTEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 250, -1, -1));
+
+        jLabel96.setText("Información Empleados");
+        PanelEstadistica.add(jLabel96, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 230, -1, -1));
+
+        jLabel97.setText("Generar txt ");
+        PanelEstadistica.add(jLabel97, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, -1, -1));
+
+        jLabel98.setText("Generar txt");
+        PanelEstadistica.add(jLabel98, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 210, -1, -1));
+
+        jLabel99.setText("Proveedores");
+        PanelEstadistica.add(jLabel99, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, -1, -1));
+
+        btnTXTProveedores.setText("Generar txt");
+        btnTXTProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTXTProveedoresActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnTXTProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, -1, -1));
+
+        btnTXTVentasMes.setText("Generar txt");
+        btnTXTVentasMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTXTVentasMesActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnTXTVentasMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 250, -1, -1));
+
+        jLabel100.setText("Productos mas vendidos");
+        PanelEstadistica.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 220, -1, 40));
+
+        jLabel101.setText("Generar txt");
+        PanelEstadistica.add(jLabel101, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 200, -1, 40));
+
+        btnTXTFiados.setText("Generar txt");
+        btnTXTFiados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTXTFiadosActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnTXTFiados, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 250, -1, -1));
+
+        jLabel102.setText("fiados actuales");
+        PanelEstadistica.add(jLabel102, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, -1, -1));
+
+        jLabel103.setText("Generar txt ");
+        PanelEstadistica.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 210, -1, 20));
+
+        btnExcelFiados.setText("Generar Excel");
+        btnExcelFiados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelFiadosActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnExcelFiados, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 330, -1, -1));
+
+        jLabel104.setText("fiados actuales");
+        PanelEstadistica.add(jLabel104, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 310, -1, -1));
+
+        jLabel105.setText("Generar Excel ");
+        PanelEstadistica.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, 20));
+
+        btnExcelVentasMes.setText("Generar Excel");
+        btnExcelVentasMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelVentasMesActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnExcelVentasMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, -1, -1));
+
+        jLabel106.setText("Productos mas vendidos");
+        PanelEstadistica.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, -1, 40));
+
+        jLabel107.setText("Generar Excel");
+        PanelEstadistica.add(jLabel107, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 280, -1, 40));
+
+        btnExcelProveedores.setText("Generar Excel");
+        btnExcelProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelProveedoresActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnExcelProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 330, -1, -1));
+
+        jLabel108.setText("Proveedores");
+        PanelEstadistica.add(jLabel108, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, -1, -1));
+
+        jLabel109.setText("Generar Excel");
+        PanelEstadistica.add(jLabel109, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 290, -1, -1));
+
+        btnExcelEmpleados.setText("Generar Excel");
+        btnExcelEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcelEmpleadosActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnExcelEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 330, -1, -1));
+
+        jLabel110.setText("Información Empleados");
+        PanelEstadistica.add(jLabel110, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 310, -1, -1));
+
+        jLabel111.setText("Generar Excel");
+        PanelEstadistica.add(jLabel111, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 290, -1, -1));
+
+        jLabel112.setText("Grafico Fiados");
+        PanelEstadistica.add(jLabel112, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 360, -1, 40));
+
+        btnGraficoFiados.setText("Generar grafico");
+        btnGraficoFiados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficoFiadosActionPerformed(evt);
+            }
+        });
+        PanelEstadistica.add(btnGraficoFiados, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 390, 130, 30));
+
+        jTabbedPane1.addTab("Informes", PanelEstadistica);
 
         PanelProveedor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -2703,101 +2909,6 @@ public void ocultarbodeguero(){
         txtNumeroBoleta.setText((ivdao.NumBoletaImprimir())+"");
     }//GEN-LAST:event_btnGenerarBoletaActionPerformed
 
-    private void btnGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPDFActionPerformed
-        // TODO add your handling code here:
-        try {
-            String sql ="select numboleta, fecha, total from boleta where numBoleta=56;";
-            String sql2="select prod.descripcion, det.cantidad from detalleboleta as det \n" +
-                            "inner join producto as prod on prod.codproducto=det.producto\n" +
-                            "where det.numboleta=49";
-            con=cn.getConnection();
-            
-            PDDocument documento = new PDDocument ();
-            PDPage pagina = new PDPage(PDRectangle.A6);//nueva pagina a6 igual tipo de pagina
-            
-            documento.addPage(pagina);
-            PDPageContentStream contenido=new PDPageContentStream(documento,pagina);
-            
-            contenido.beginText();
-            contenido.setFont(PDType1Font.TIMES_BOLD, 12);
-            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52);
-           
-                contenido.showText("Los Yuyitos ");
-                contenido.endText();
-                
-                contenido.beginText();
-            contenido.setFont(PDType1Font.TIMES_BOLD, 12);
-            
-            contenido.newLineAtOffset(200, pagina.getMediaBox().getHeight()-52);
-           
-                contenido.showText("Boleta n°5 ");
-                contenido.endText();
-                
-                
-                
-                
-            contenido.beginText();        
-            contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
-            contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-52*2);
-                String numboleta = "";
-                String fecha = "";
-                String total = "";
-                
-                PreparedStatement pst;
-                pst = con.prepareStatement(sql);
-            
-            ResultSet rs1 = pst.executeQuery();
-           
-            if (rs1.next()){
-                    numboleta=(rs1.getString(1));
-                    fecha=(rs1.getString(2));
-                    total=(rs1.getString(3));
-            }
-                contenido.showText("| Numero de boleta: "+numboleta+" | Fecha de compra: "+fecha+" | total: "+total+" |");
-                contenido.endText();
-                
-                PreparedStatement pst2;
-                pst2 = con.prepareStatement(sql2);
-            
-            ResultSet rs2 = pst2.executeQuery();
-                int i=10;//10 serian para el salto de linea, el cual seria un salto de linea ideal para que este abajo de numboleta 
-                while(rs2.next()){
-                    
-                    contenido.beginText();        
-                    contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
-                    contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-(104+i));
-                    i=i+10;//para que por cada producto comprado exista un pequeño salto de linea idoneo
-                    String producto;
-                    String cantidad;
-                    producto=(rs2.getString(1));
-                    cantidad=(rs2.getString(2));
-                    contenido.showText("| Producto: "+producto+" | cantidad: "+cantidad);
-                    contenido.endText();
-                }
-//                
-//                contenido.beginText();    
-//                contenido.setFont(PDType1Font.TIMES_ROMAN, 7);
-//                contenido.newLineAtOffset(20, pagina.getMediaBox().getHeight()-54*3);
-//                contenido.showText("-----------------------------------------------------------------------");
-//                contenido.endText();
-            contenido.close();
-            
-            
-            
-            documento.save("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
-            
-            JOptionPane.showMessageDialog(null, "pdf creado");
-            try {
-                    File path = new File ("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
-                    Desktop.getDesktop().open(path);
-               }catch (IOException ex) {
-                    ex.printStackTrace();
-               }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "error pdf"+e);
-        }
-    }//GEN-LAST:event_btnGenerarPDFActionPerformed
-
     private void txtDeudaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDeudaKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDeudaKeyTyped
@@ -2852,6 +2963,72 @@ public void ocultarbodeguero(){
         // TODO add your handling code here:
         pdf.GraficoVentas();
     }//GEN-LAST:event_btnGraficoVentasActionPerformed
+
+    private void btnWordVentasMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWordVentasMesActionPerformed
+        // TODO add your handling code here:
+        pdf.word("VentasMesTemp.doc");
+    }//GEN-LAST:event_btnWordVentasMesActionPerformed
+
+    private void btnWordProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWordProveedoresActionPerformed
+        // TODO add your handling code here:
+        pdf.WordProveedores("ListaProveedores.doc");
+    }//GEN-LAST:event_btnWordProveedoresActionPerformed
+
+    private void btnWordEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWordEmpleadosActionPerformed
+        // TODO add your handling code here:
+        pdf.WordEmpleados("ListaEmpleados.doc");
+    }//GEN-LAST:event_btnWordEmpleadosActionPerformed
+
+    private void btnWordFiadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWordFiadosActionPerformed
+        // TODO add your handling code here:
+        
+        pdf.WordFiados("ListaFiados.doc");
+    }//GEN-LAST:event_btnWordFiadosActionPerformed
+
+    private void btnTXTEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTXTEmpleadosActionPerformed
+        // TODO add your handling code here:
+        pdf.WordEmpleados("ListaEmpleados.txt");
+    }//GEN-LAST:event_btnTXTEmpleadosActionPerformed
+
+    private void btnTXTProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTXTProveedoresActionPerformed
+        // TODO add your handling code here:
+        pdf.WordProveedores("ListaProveedores.txt");
+    }//GEN-LAST:event_btnTXTProveedoresActionPerformed
+
+    private void btnTXTVentasMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTXTVentasMesActionPerformed
+        // TODO add your handling code here:
+        pdf.word("VentasMesTemp.txt");
+    }//GEN-LAST:event_btnTXTVentasMesActionPerformed
+
+    private void btnTXTFiadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTXTFiadosActionPerformed
+        // TODO add your handling code here:
+          pdf.WordFiados("ListaFiados.txt");
+    }//GEN-LAST:event_btnTXTFiadosActionPerformed
+
+    private void btnExcelFiadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelFiadosActionPerformed
+        // TODO add your handling code here:
+        pdf.Excel();
+    }//GEN-LAST:event_btnExcelFiadosActionPerformed
+
+    private void btnExcelVentasMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelVentasMesActionPerformed
+        // TODO add your handling code here:
+        pdf.ExcelVentasMes();
+    }//GEN-LAST:event_btnExcelVentasMesActionPerformed
+
+    private void btnExcelProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelProveedoresActionPerformed
+        // TODO add your handling code here:
+        pdf.ExcelProveedores();
+    }//GEN-LAST:event_btnExcelProveedoresActionPerformed
+
+    private void btnExcelEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcelEmpleadosActionPerformed
+        // TODO add your handling code here:
+        pdf.ExcelEmpleados();
+    }//GEN-LAST:event_btnExcelEmpleadosActionPerformed
+
+    private void btnGraficoFiadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficoFiadosActionPerformed
+        // TODO add your handling code here:
+        pdf.GraficoFiados();
+    }//GEN-LAST:event_btnGraficoFiadosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3023,9 +3200,13 @@ public void ocultarbodeguero(){
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnEliminarEmpleado;
     private javax.swing.JButton btnEliminarProveedor;
+    private javax.swing.JButton btnExcelEmpleados;
+    private javax.swing.JButton btnExcelFiados;
+    private javax.swing.JButton btnExcelProveedores;
+    private javax.swing.JButton btnExcelVentasMes;
     private javax.swing.JButton btnGenerarBoleta;
     private javax.swing.JButton btnGenerarNFactura;
-    private javax.swing.JButton btnGenerarPDF;
+    private javax.swing.JButton btnGraficoFiados;
     private javax.swing.JButton btnGraficoVentas;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLimpiarEmpleado;
@@ -3041,12 +3222,20 @@ public void ocultarbodeguero(){
     private javax.swing.JButton btnQuitarCompra;
     private javax.swing.JButton btnQuitarCompraVenta;
     private javax.swing.JToggleButton btnRevisarPedido;
+    private javax.swing.JButton btnTXTEmpleados;
+    private javax.swing.JButton btnTXTFiados;
+    private javax.swing.JButton btnTXTProveedores;
+    private javax.swing.JButton btnTXTVentasMes;
     private javax.swing.JButton btnVerCliente;
     private javax.swing.JButton btnVerEmpleado;
     private javax.swing.JButton btnVerInformes;
     private javax.swing.JButton btnVerOrdenPedido;
     private javax.swing.JButton btnVerProveedor;
     public static javax.swing.JButton btnVerVenta;
+    private javax.swing.JButton btnWordEmpleados;
+    private javax.swing.JButton btnWordFiados;
+    private javax.swing.JButton btnWordProveedores;
+    private javax.swing.JButton btnWordVentasMes;
     private javax.swing.JComboBox<String> cboCargoEmpleado;
     private javax.swing.JComboBox<String> cboNombreEmpresa;
     private javax.swing.JComboBox<String> cboNombreEmpresaRevisar;
@@ -3057,7 +3246,20 @@ public void ocultarbodeguero(){
     private com.toedter.calendar.JDateChooser datecFechaTermino;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel100;
+    private javax.swing.JLabel jLabel101;
+    private javax.swing.JLabel jLabel102;
+    private javax.swing.JLabel jLabel103;
+    private javax.swing.JLabel jLabel104;
+    private javax.swing.JLabel jLabel105;
+    private javax.swing.JLabel jLabel106;
+    private javax.swing.JLabel jLabel107;
+    private javax.swing.JLabel jLabel108;
+    private javax.swing.JLabel jLabel109;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel110;
+    private javax.swing.JLabel jLabel111;
+    private javax.swing.JLabel jLabel112;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -3141,7 +3343,18 @@ public void ocultarbodeguero(){
     private javax.swing.JLabel jLabel85;
     private javax.swing.JLabel jLabel86;
     private javax.swing.JLabel jLabel87;
+    private javax.swing.JLabel jLabel89;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabel90;
+    private javax.swing.JLabel jLabel91;
+    private javax.swing.JLabel jLabel92;
+    private javax.swing.JLabel jLabel93;
+    private javax.swing.JLabel jLabel94;
+    private javax.swing.JLabel jLabel95;
+    private javax.swing.JLabel jLabel96;
+    private javax.swing.JLabel jLabel97;
+    private javax.swing.JLabel jLabel98;
+    private javax.swing.JLabel jLabel99;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
