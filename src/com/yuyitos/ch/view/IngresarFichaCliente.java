@@ -5,6 +5,13 @@
  */
 package com.yuyitos.ch.view;
 
+import com.sun.glass.events.MouseEvent;
+import com.yuyitos.ch.bo.IngresarFichaClienteBO;
+import com.yuyitos.ch.entity.Cliente;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author tavo-
@@ -14,8 +21,16 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
     /**
      * Creates new form IngresarFichaCliente
      */
+    private IngresarFichaClienteBO ifcbo = new IngresarFichaClienteBO();
     public IngresarFichaCliente() {
+        
+        
         initComponents();
+        listarCliente();//metodo listarcliente de abajo
+    }
+    
+    public void listarCliente(){
+        ifcbo.ListarFichaCliente(tbIngresarFichaCliente);
     }
 
     /**
@@ -33,109 +48,443 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        btnCancelar = new javax.swing.JButton();
+        btnModificar = new javax.swing.JButton();
+        txtDVRut = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbIngresarFichaCliente = new javax.swing.JTable();
+        btnAceptar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        txtRut = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        btnEliminar = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        txtIngresarFiado = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        txtAbonarFiado = new javax.swing.JTextField();
+        chkAbono = new javax.swing.JCheckBox();
+        txtIdFiado = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel9.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 24)); // NOI18N
         jLabel9.setText("Los YUYITOS");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 0, 155, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel11.setText("Ingresar ficha de proveedor");
+        jLabel11.setText("Ingresar ficha de Cliente");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(336, 50, -1, -1));
 
-        jLabel1.setText("jLabel1");
+        jLabel1.setText("-");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 10, -1));
 
-        jLabel2.setText("jLabel2");
+        jLabel2.setText("Dirección");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 150, -1, -1));
 
-        jLabel3.setText("jLabel3");
+        jLabel3.setText("Telefono: 934853738");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, -1, -1));
 
-        jButton1.setText("jButton1");
+        btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCancelar.setText("Cancelar");
+        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCancelarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, -1, -1));
 
-        jButton2.setText("jButton2");
+        btnModificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, -1, -1));
 
-        jTextField1.setText("jTextField1");
+        txtDVRut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDVRutKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtDVRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 30, -1));
 
-        jTextField2.setText("jTextField2");
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTelefonoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtTelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 80, -1));
 
-        jTextField3.setText("jTextField3");
+        txtDireccion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDireccionKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtDireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 150, 20));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(336, 336, 336)
-                        .addComponent(jLabel11))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(109, 109, 109)
-                        .addComponent(jLabel2))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(101, 101, 101)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel1)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton1)
-                                .addGap(74, 74, 74)
-                                .addComponent(jButton2))
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(369, 369, 369)
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(341, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel11)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(0, 168, Short.MAX_VALUE))
-        );
+        tbIngresarFichaCliente.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tbIngresarFichaCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbIngresarFichaClienteMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbIngresarFichaCliente);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, 190));
+
+        btnAceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnAceptar.setText("Aceptar");
+        btnAceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAceptarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 310, -1, -1));
+
+        btnLimpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
+
+        jLabel4.setText("ID (eliminar/modificar)");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        txtRut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRutActionPerformed(evt);
+            }
+        });
+        txtRut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtRutKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 80, -1));
+
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 150, -1));
+
+        jLabel5.setText("Nombre");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, -1, -1));
+
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, -1));
+
+        jLabel6.setText("DV Rut");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
+
+        txtID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIDActionPerformed(evt);
+            }
+        });
+        txtID.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIDKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtID, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 80, -1));
+
+        jLabel7.setText("Rut: 20444555");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, -1));
+
+        txtIngresarFiado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtIngresarFiadoMouseClicked(evt);
+            }
+        });
+        txtIngresarFiado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIngresarFiadoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtIngresarFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 50, -1));
+
+        jLabel16.setText("Ingresar Cantidad Fiado");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
+
+        jLabel17.setText("Abonar fiado");
+        jPanel1.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, -1, -1));
+        jPanel1.add(txtAbonarFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 60, -1));
+
+        chkAbono.setText("activar fiados");
+        jPanel1.add(chkAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
+
+        txtIdFiado.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtIdFiadoMouseClicked(evt);
+            }
+        });
+        txtIdFiado.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtIdFiadoKeyTyped(evt);
+            }
+        });
+        jPanel1.add(txtIdFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 60, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 830, Short.MAX_VALUE)
+                .addGap(2, 2, 2))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btnCancelarActionPerformed
+
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().isEmpty() || txtDireccion.getText().isEmpty() || txtDVRut.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtNombre.getText().isEmpty() || txtRut.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "LLene todos los campos.");
+        }else{
+            if(txtRut.getText().length()!=8 || txtTelefono.getText().length()!=9){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
+                JOptionPane.showMessageDialog(null, "LLene correctamente el rut o telefono");
+            }else{
+                Cliente cli = new Cliente();
+
+
+                char dvchar=txtDVRut.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
+
+                cli.setIdCliente(Integer.parseInt(txtID.getText()));
+                cli.setNombreCliente(txtNombre.getText());
+                cli.setTelefonoCliente(Integer.parseInt(txtTelefono.getText()));
+                cli.setDireccionCliente(txtDireccion.getText());
+                cli.setRutCliente(Integer.parseInt(txtRut.getText()));//AQUI DABÁ ERROR PORQUE INT NO ACEPTA NUMEROS DE 11 DE LARGo
+                cli.setFiadosCodFiado(Integer.parseInt(txtIdFiado.getText()));
+                cli.setDVCliente(dvchar); 
+                
+
+                String mensaje = ifcbo.ModificarFichaCliente(cli);
+                JOptionPane.showMessageDialog(null, mensaje);
+                limpiar();
+                listarCliente();
+            }
+        }
+    }//GEN-LAST:event_btnModificarActionPerformed
+
+    private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
+        // TODO add your handling code here:
+        limpiar();
+    }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
+        // TODO add your handling code here:
+        if(txtDireccion.getText().isEmpty() || txtDVRut.getText().isEmpty() || txtTelefono.getText().isEmpty() || txtNombre.getText().isEmpty() || txtRut.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "LLene todos los campos Correspondientes.");
+        }else{
+            if(txtRut.getText().length()!=8 || txtTelefono.getText().length()!=9){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
+                JOptionPane.showMessageDialog(null, "LLene correctamente el rut o telefono");
+            }else{
+                
+            
+                Cliente cli = new Cliente();
+
+
+                char dvchar=txtDVRut.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
+
+
+                cli.setNombreCliente(txtNombre.getText());
+                cli.setTelefonoCliente(Integer.parseInt(txtTelefono.getText()));
+                cli.setDireccionCliente(txtDireccion.getText());
+                cli.setRutCliente(Integer.parseInt(txtRut.getText()));//AQUI DA ERROR PORQUE INT NO ACEPTA NUMEROS DE 11 DE LARGO
+                cli.setDVCliente(dvchar); 
+                
+
+                String mensaje = ifcbo.agregarFichaCliente(cli);
+                JOptionPane.showMessageDialog(null, mensaje);
+                limpiar();
+                listarCliente();
+            }
+        }
+    }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void txtDVRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDVRutKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        
+        if(c<'1'|| c>'9' && c!='k'){//limitar a numeros 0-9 y letra k
+            evt.consume();
+        }
+        if(txtDVRut.getText().length() >=1)//limita la cantidad de caracteres en el cuadro a 1
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDVRutKeyTyped
+
+    private void txtRutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRutActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtRutActionPerformed
+
+    private void txtRutKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRutKeyTyped
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtRut.getText().length() >=8)//limita la cantidad de caracteres en el cuadro 
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtRutKeyTyped
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
+            evt.consume();
+        }
+        if(txtNombre.getText().length() >=50)//limita la cantidad de caracteres en el cuadro 
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
+
+    private void txtDireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDireccionKeyTyped
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if((c<'a'|| c>'z') && (c<'A')|c>'Z' && (c<'0'|| c>'9') && c!='#' && c!=' '){
+            evt.consume();
+        }
+        if(txtDireccion.getText().length() >=50)//limita la cantidad de caracteres en el cuadro 
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtDireccionKeyTyped
+
+    private void txtTelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTelefonoKeyTyped
+        // TODO add your handling code here:
+        char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtTelefono.getText().length() >=9)//limita la cantidad de caracteres en el cuadro 
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtTelefonoKeyTyped
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+        if(txtID.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(null, "LLene el campo ID para eliminar.");
+        }else{
+            
+            
+            
+            Cliente cli = new Cliente();
+            String mensaje = ifcbo.EliminarFichaCliente(Integer.parseInt(txtID.getText()));
+            JOptionPane.showMessageDialog(null, mensaje);
+            limpiar();
+            listarCliente();
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDActionPerformed
+
+    private void txtIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIDKeyTyped
+
+    private void tbIngresarFichaClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIngresarFichaClienteMouseClicked
+        // TODO add your handling code here:
+        txtIdFiado.setEditable(false);
+        //asi no se podrá modificar el contenido del jtextfield idfiado (se podia borrar haciendo click r apretar una tecla rapidamente)
+        int seleccion = tbIngresarFichaCliente.rowAtPoint(evt.getPoint());
+        txtDireccion.setText(tbIngresarFichaCliente.getValueAt(seleccion, 3)+"");
+        txtDVRut.setText(tbIngresarFichaCliente.getValueAt(seleccion, 5)+"");
+        txtRut.setText(tbIngresarFichaCliente.getValueAt(seleccion, 4)+"");
+        txtTelefono.setText(tbIngresarFichaCliente.getValueAt(seleccion, 2)+"");
+        txtNombre.setText(tbIngresarFichaCliente.getValueAt(seleccion, 1)+"");
+        txtIdFiado.setText(tbIngresarFichaCliente.getValueAt(seleccion, 6)+"");
+        txtID.setText(tbIngresarFichaCliente.getValueAt(seleccion, 0)+"");//aqui me aparecia error porque ponia 7 cuando la posición de id era 0 obviamente
+        
+    }//GEN-LAST:event_tbIngresarFichaClienteMouseClicked
+
+    private void txtIngresarFiadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIngresarFiadoMouseClicked
+        // TODO add your handling code here:
+        
+        
+    }//GEN-LAST:event_txtIngresarFiadoMouseClicked
+
+    private void txtIngresarFiadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIngresarFiadoKeyTyped
+        // TODO add your handling code here:
+        if(chkAbono.isSelected()){
+            txtIngresarFiado.setEditable(true);
+            txtAbonarFiado.setEditable(true);
+        }else {
+            txtIngresarFiado.setText(" ");
+            txtAbonarFiado.setText(" ");
+            txtIngresarFiado.setEditable(false);
+            txtAbonarFiado.setEditable(false);
+        }
+    }//GEN-LAST:event_txtIngresarFiadoKeyTyped
+
+    private void txtIdFiadoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdFiadoKeyTyped
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtIdFiadoKeyTyped
+
+    private void txtIdFiadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdFiadoMouseClicked
+        // TODO add your handling code here:
+        txtIdFiado.setEditable(false);
+    }//GEN-LAST:event_txtIdFiadoMouseClicked
+    
+    public void limpiar(){
+        txtDireccion.setText("");
+        txtDVRut.setText("");
+        txtRut.setText("");
+        txtTelefono.setText("");
+        txtNombre.setText("");
+    }
     /**
      * @param args the command line arguments
      */
@@ -147,7 +496,7 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -172,16 +521,34 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAceptar;
+    private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnModificar;
+    private javax.swing.JCheckBox chkAbono;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tbIngresarFichaCliente;
+    private javax.swing.JTextField txtAbonarFiado;
+    private javax.swing.JTextField txtDVRut;
+    private javax.swing.JTextField txtDireccion;
+    private javax.swing.JTextField txtID;
+    private javax.swing.JTextField txtIdFiado;
+    private javax.swing.JTextField txtIngresarFiado;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtRut;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }
