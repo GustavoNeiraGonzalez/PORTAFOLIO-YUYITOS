@@ -12,27 +12,33 @@ package com.yuyitos.ch.entity;
 public class Producto {
     private int IdProducto;
     private int CodProducto;
-    private int PrecioVentaProducto;
-    private String DescripcionProducto;
-    private int TipoProducto;
-    private int FechaElabProducto;
-    private int FechaVencProduct;
-    private int StockProducto;
-    private int StockCriticoProducto;
+    private String Descripcion;
+    private int Stock;
+    private int Costo;
+    private int Precio;
+    private int Tipo;
+    private int FechaVencimiento;
+    private String FechaElab;
+    private int StockC;
+    private int CodFTipoProducto;
+    private int CodBarra;
 
     public Producto() {
     }
 
-    public Producto(int IdProducto, int CodProducto, int PrecioVentaProducto, String DescripcionProducto, int TipoProducto, int FechaElabProducto, int FechaVencProduct, int StockProducto, int StockCriticoProducto) {
+    public Producto(int IdProducto, int CodProducto, String Descripcion, int Stock, int Costo, int Precio, int Tipo, int FechaVencimiento, String FechaElab, int StockC, int CodFTipoProducto, int CodBarra) {
         this.IdProducto = IdProducto;
         this.CodProducto = CodProducto;
-        this.PrecioVentaProducto = PrecioVentaProducto;
-        this.DescripcionProducto = DescripcionProducto;
-        this.TipoProducto = TipoProducto;
-        this.FechaElabProducto = FechaElabProducto;
-        this.FechaVencProduct = FechaVencProduct;
-        this.StockProducto = StockProducto;
-        this.StockCriticoProducto = StockCriticoProducto;
+        this.Descripcion = Descripcion;
+        this.Stock = Stock;
+        this.Costo = Costo;
+        this.Precio = Precio;
+        this.Tipo = Tipo;
+        this.FechaVencimiento = FechaVencimiento;
+        this.FechaElab = FechaElab;
+        this.StockC = StockC;
+        this.CodFTipoProducto = CodFTipoProducto;
+        this.CodBarra = CodBarra;
     }
 
     public int getIdProducto() {
@@ -51,65 +57,89 @@ public class Producto {
         this.CodProducto = CodProducto;
     }
 
-    public int getPrecioVentaProducto() {
-        return PrecioVentaProducto;
+    public String getDescripcion() {
+        return Descripcion;
     }
 
-    public void setPrecioVentaProducto(int PrecioVentaProducto) {
-        this.PrecioVentaProducto = PrecioVentaProducto;
+    public void setDescripcion(String Descripcion) {
+        this.Descripcion = Descripcion;
     }
 
-    public String getDescripcionProducto() {
-        return DescripcionProducto;
+    public int getStock() {
+        return Stock;
     }
 
-    public void setDescripcionProducto(String DescripcionProducto) {
-        this.DescripcionProducto = DescripcionProducto;
+    public void setStock(int Stock) {
+        this.Stock = Stock;
     }
 
-    public int getTipoProducto() {
-        return TipoProducto;
+    public int getCosto() {
+        return Costo;
     }
 
-    public void setTipoProducto(int TipoProducto) {
-        this.TipoProducto = TipoProducto;
+    public void setCosto(int Costo) {
+        this.Costo = Costo;
     }
 
-    public int getFechaElabProducto() {
-        return FechaElabProducto;
+    public int getPrecio() {
+        return Precio;
     }
 
-    public void setFechaElabProducto(int FechaElabProducto) {
-        this.FechaElabProducto = FechaElabProducto;
+    public void setPrecio(int Precio) {
+        this.Precio = Precio;
     }
 
-    public int getFechaVencProduct() {
-        return FechaVencProduct;
+    public int getTipo() {
+        return Tipo;
     }
 
-    public void setFechaVencProduct(int FechaVencProduct) {
-        this.FechaVencProduct = FechaVencProduct;
+    public void setTipo(int Tipo) {
+        this.Tipo = Tipo;
     }
 
-    public int getStockProducto() {
-        return StockProducto;
+    public int getFechaVencimiento() {
+        return FechaVencimiento;
     }
 
-    public void setStockProducto(int StockProducto) {
-        this.StockProducto = StockProducto;
+    public void setFechaVencimiento(int FechaVencimiento) {
+        this.FechaVencimiento = FechaVencimiento;
     }
 
-    public int getStockCriticoProducto() {
-        return StockCriticoProducto;
+    public String getFechaElab() {
+        return FechaElab;
     }
 
-    public void setStockCriticoProducto(int StockCriticoProducto) {
-        this.StockCriticoProducto = StockCriticoProducto;
+    public void setFechaElab(String FechaElab) {
+        this.FechaElab = FechaElab;
+    }
+
+    public int getStockC() {
+        return StockC;
+    }
+
+    public void setStockC(int StockC) {
+        this.StockC = StockC;
+    }
+
+    public int getCodFTipoProducto() {
+        return CodFTipoProducto;
+    }
+
+    public void setCodFTipoProducto(int CodFTipoProducto) {
+        this.CodFTipoProducto = CodFTipoProducto;
+    }
+
+    public int getCodBarra() {
+        return CodBarra;
+    }
+
+    public void setCodBarra(int CodBarra) {
+        this.CodBarra = CodBarra;
     }
 
     @Override
     public String toString() {
-        return "Producto{" + "IdProducto=" + IdProducto + ", CodProducto=" + CodProducto + ", PrecioVentaProducto=" + PrecioVentaProducto + ", DescripcionProducto=" + DescripcionProducto + ", TipoProducto=" + TipoProducto + ", FechaElabProducto=" + FechaElabProducto + ", FechaVencProduct=" + FechaVencProduct + ", StockProducto=" + StockProducto + ", StockCriticoProducto=" + StockCriticoProducto + '}';
+        return "Producto{" + "IdProducto=" + IdProducto + ", CodProducto=" + CodProducto + ", Descripcion=" + Descripcion + ", Stock=" + Stock + ", Costo=" + Costo + ", Precio=" + Precio + ", Tipo=" + Tipo + ", FechaVencimiento=" + FechaVencimiento + ", FechaElab=" + FechaElab + ", StockC=" + StockC + ", CodFTipoProducto=" + CodFTipoProducto + ", CodBarra=" + CodBarra + '}';
     }
     
     

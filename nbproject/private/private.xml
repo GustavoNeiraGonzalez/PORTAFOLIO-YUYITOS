@@ -3,30 +3,32 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Boleta.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/RegistroContado.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Ente.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/view/IngresarFichaProveedor.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/view/FichaCliente.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/RegistroFiadosEmpleado.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/bo/IngresarFichaClienteBO.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/view/MenuPrincipal.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/dao/IngresarFichaClienteDAO.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Venta.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/RegistroFiadoCliente.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/bo/IngresarFichaClienteBO.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Comprobante.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Deuda.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/bo/IngresarFichaProveedorBO.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/view/OrdenPedido.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/view/RecepcionPedido.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Fiados.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/db/Conexion.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/DetallePedido.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Empleado.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/db/LoginM.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/view/FichaProveedor.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Proveedor.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/test/TestProveedor.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Fiado.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/dao/LoginDAO.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/test/Test.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Cliente.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/dao/IngresarFichaProveedorDAO.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/view/Ventas.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Factura.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Pedido.java</file>
-            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/TipoProducto.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Cliente.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Persona.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/test/asd.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/view/IngresarFichaCliente.java</file>
+            <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/view/Login.java</file>
             <file>file:/C:/Users/tavo-/OneDrive/Escritorio/portafolio/aplicación%20java/YUYITOS/src/com/yuyitos/ch/entity/Producto.java</file>
         </group>
     </open-files>

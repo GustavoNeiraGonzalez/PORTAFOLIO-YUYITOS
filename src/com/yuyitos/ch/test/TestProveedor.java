@@ -34,8 +34,8 @@ public class TestProveedor {
         pro.setDetallePedidoCod(20549252);//al parecer detallepedidocod es clave foranea foreign key por lo que no se puede hacer esto
         
         
-        mensaje = ifpbo.agregarFichaProveedor(pro);
-        System.out.println(mensaje);
+        //mensaje = ifpbo.agregarFichaProveedor(pro);
+        //System.out.println(mensaje);
     }
 //    public void modificar(){
 ////        cli.setNombreCliente("walter");

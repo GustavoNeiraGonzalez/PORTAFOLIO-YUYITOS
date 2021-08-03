@@ -5,11 +5,18 @@
  */
 package com.yuyitos.ch.dao;
 
+import com.yuyitos.ch.db.Conexion;
 import com.yuyitos.ch.entity.Cliente;
+import com.yuyitos.ch.entity.Persona;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -21,83 +28,138 @@ import javax.swing.table.DefaultTableModel;
 public class IngresarFichaClienteDAO {
     private String mensaje = "";
     
-    public String agregarFichaCliente(Connection con , Cliente cli){ // Cliente se refiere a el objeto del paquete entidad(entity) creado anteriormente
-        PreparedStatement pst = null;
-        String sql = "insert into cliente(id_cliente, nombre_cliente, telefono_cliente, direccion_cliente, rut_cliente, dv_cliente, fiados_cod_fiado)"
-                +"values(CLIENTE_SEQ.NEXTVAL,?,?,?,?,?,CODFIADOS_SEQ.NEXTVAL)" ;
-        try {
-            pst = con.prepareStatement(sql);
-            pst.setString(1, cli.getNombreCliente());
-            pst.setInt(2, cli.getTelefonoCliente());
-            pst.setString(3, cli.getDireccionCliente());
-            pst.setInt(4, cli.getRutCliente());
-            pst.setString(5, cli.getDVCliente()+"");//para no convertirlo a char, de otra manera setCharacterStream se debe utilizar    
-            
-            mensaje = "Guardado correctamente.";
-            pst.execute();
-            pst.close();
-        } catch (Exception e) {
-            mensaje = "No se pudo guardar correctamente: "+e.getMessage();
-        }
+    Conexion cn = new Conexion();
+    Connection con;
+    PreparedStatement pst;
+    PreparedStatement pst2;
+    ResultSet rs;
+    
+    public boolean agregarFichaCliente(Cliente cli){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String sql = "insert into cliente(fechaRegistro,nombre,apaterno,amaterno,rut,dv,direccion,deuda,fiado_idFiado)"
+                +"values(?,?,?,?,?,?,?,?,?)" ;
         
-        return mensaje;
-    }   
-    public String ModificarFichaCliente(Connection con , Cliente cli){
-        PreparedStatement pst = null;
-        String sql = "Update cliente set nombre_cliente = ?, telefono_cliente = ?, direccion_cliente = ?, rut_cliente = ?, dv_cliente = ?, fiados_cod_fiado = ?"
-                    + "where id_cliente= ?";
+        
         
         try {
+            con=cn.getConnection();
+          
+            pst = con.prepareStatement(sql);         
             
-            pst = con.prepareStatement(sql);
+            pst.setString(1, dtf.format(LocalDateTime.now()));
+            pst.setString(2, cli.getNombre());
+            pst.setString(3, cli.getApellidoPaterno());
+            pst.setString(4, cli.getApellidoMaterno());
+            pst.setInt(5, cli.getRut());
+            pst.setString(6, cli.getDVRut()+"");//para no convertirlo a char, de otra manera setCharacterStream se debe utilizar  
+            pst.setString(7, cli.getDireccion());
+            pst.setString(8, cli.getDeuda()+"");
+            pst.setInt(9, cli.getIdFiado());
             
-            pst.setString(1, cli.getNombreCliente());
-            pst.setInt(2, cli.getTelefonoCliente());
-            pst.setString(3, cli.getDireccionCliente());
-            pst.setInt(4, cli.getRutCliente());
-            pst.setString(5, cli.getDVCliente()+"");
-            pst.setInt(6, cli.getFiadosCodFiado());
-            pst.setInt(7, cli.getIdCliente());
-            mensaje = "Modificado correctamente.";
-            pst.execute();
+            
+            pst.executeUpdate();
             pst.close();
-        } catch (Exception e) {
-            mensaje = "No se pudo Modificar correctamente: "+e.getMessage();
+            return true;
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
         }
-        return mensaje;
     }
-    public String EliminarFichaCliente(Connection con , int IdCliente){
-        PreparedStatement pst = null;
-        String sql = "delete from cliente where id_cliente = ?";
+
+    public boolean ModificarFichaCliente( Cliente cli){
+        String sql = "update cliente set nombre=?, apaterno=?, amaterno=?, rut=?, dv=?, direccion=?, deuda=?, fiado_idFiado=fiado_idFiado "
+                    +"where idcliente=?";//me salio un error java.sql.SQLSyntaxErrorException: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'idcliente=1' at line 1
+                                        //solo porque se me olvido poner espacio luego de terminar el ultimo set  (fiado_idFiado=? )
         try {
-            pst = con.prepareStatement(sql);
-            pst.setInt(1, IdCliente);
-           
-            mensaje = "Eliminado correctamente.";
+            con=cn.getConnection();
+            pst= con.prepareStatement(sql);
+            
+            
+            pst.setString(1, cli.getNombre());
+            pst.setString(2, cli.getApellidoPaterno());
+            pst.setString(3, cli.getApellidoMaterno());
+            pst.setInt(4, cli.getRut());
+            pst.setString(5, cli.getDVRut()+"");
+            pst.setString(6, cli.getDireccion());
+            pst.setString(7, cli.getDeuda()+"");
+            
+            pst.setInt(8, cli.getIdCliente());
             pst.execute();
-            pst.close();
-        } catch (Exception e) {
-            mensaje = "No se pudo Eliminar correctamente: "+e.getMessage();
+            return true;
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (Exception e) {
+                System.out.println(e.toString());
+            }
         }
-        return mensaje;
+      
+    }
+    public boolean EliminarCliente(int id){
+        String sql = "Delete from cliente where idcliente = ?";
+        try {
+            con=cn.getConnection();
+            pst= con.prepareStatement(sql);
+            pst.setInt(1, id);
+            pst.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println(e.toString());
+            return false;
+        }finally{
+            try {
+                con.close();
+            } catch (SQLException ex) {
+                System.out.println(ex.toString() );
+            }
+        }
     }
     public void ListarFichaCliente(Connection con, JTable tabla){ //crear metodo de lista
+//        List<Cliente> ListaCL = new ArrayList();
+//        String sql = "SELECT * FROM cliente";
+//        try {
+//            con = cn.getConnection();
+//            pst = con.prepareStatement(sql);
+//            rs = pst.executeQuery();
+//            while(rs.next()){
+//                Cliente cli =new Cliente();
+//                cli.setIdCliente(rs.getInt("id cliente"));
+//                cli.setRut(rs.getInt("Rut"));
+//                cli.setDVRut(rs.getString("DVRut"));
+//                c
+//                
+//            }
+//            
+//        } catch (Exception e) {
+//        }
+        
         
         DefaultTableModel model; //llamamos al objeto de nuestra tabla
-        String [] columnas = {"ID","nombres","telefono","direccion","rut","DVRut","fiadosCODFiado"};//agregamos parametros a la columna
+        String [] columnas = {"IDCliente","fechaRegistro","nombre","Apellido paterno","Apellido materno","rut","DVRut","direccion","Deuda","IdFiado"};//agregamos parametros a la columna
         model = new DefaultTableModel(null, columnas);//se los agragamos a la tabla 
         
-        String sql = "select * from cliente order by id_cliente"; //el select que hará la consulta de datos
+        String sql = "select * from cliente order by idcliente"; //el select que hará la consulta de datos
         
-        String [] filas = new String [7];//creamos las filas
+        String [] filas = new String [10];//creamos las filas
         Statement st = null;// statement ejecuta la query
         ResultSet rs = null;// obtendrá los resultados del sql
         
         try {
+            con = cn.getConnection();
+            
             st = con.createStatement();//se crea el select
             rs = st.executeQuery(sql);//obtiene el resultado del select
             while (rs.next()) {           // aqui hará un recorrido del select     
-                for (int i = 0; i < 7; i++) { //aqui con el for se limita el recorrido a la cantidad de filas (7)
+                for (int i = 0; i < 10; i++) { //aqui con el for se limita el recorrido a la cantidad de filas (10)
                     filas[i] = rs.getString(i+1);//se guardará el resultado del rs en el dato filas
                 }
                 model.addRow(filas);//addrow significa agregar filas

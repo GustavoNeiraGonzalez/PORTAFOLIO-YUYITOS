@@ -11,24 +11,30 @@ package com.yuyitos.ch.entity;
  */
 public class Cliente {
     private int IdCliente;
-    private String NombreCliente;
-    private int TelefonoCliente;
-    private String DireccionCliente;
-    private int RutCliente;
-    private char DVCliente;
-    private int FiadosCodFiado;
+    private String FechaRegistro;
+    private String Nombre;
+    private String ApellidoMaterno;
+    private String ApellidoPaterno;
+    private int Rut;
+    private char DVRut;
+    private String Direccion;
+    private char deuda;
+    private int IdFiado;
 
     public Cliente() {
     }
 
-    public Cliente(int IdCliente, String NombreCliente, int TelefonoCliente, String DireccionCliente, int RutCliente, char DVCliente, int FiadosCodFiado) {
+    public Cliente(int IdCliente, String FechaRegistro, String Nombre, String ApellidoMaterno, String ApellidoPaterno, int Rut, char DVRut, String Direccion, char deuda, int IdFiado) {
         this.IdCliente = IdCliente;
-        this.NombreCliente = NombreCliente;
-        this.TelefonoCliente = TelefonoCliente;
-        this.DireccionCliente = DireccionCliente;
-        this.RutCliente = RutCliente;
-        this.DVCliente = DVCliente;
-        this.FiadosCodFiado = FiadosCodFiado;
+        this.FechaRegistro = FechaRegistro;
+        this.Nombre = Nombre;
+        this.ApellidoMaterno = ApellidoMaterno;
+        this.ApellidoPaterno = ApellidoPaterno;
+        this.Rut = Rut;
+        this.DVRut = DVRut;
+        this.Direccion = Direccion;
+        this.deuda = deuda;
+        this.IdFiado = IdFiado;
     }
 
     public int getIdCliente() {
@@ -39,58 +45,84 @@ public class Cliente {
         this.IdCliente = IdCliente;
     }
 
-    public String getNombreCliente() {
-        return NombreCliente;
+    public String getFechaRegistro() {
+        return FechaRegistro;
     }
 
-    public void setNombreCliente(String NombreCliente) {
-        this.NombreCliente = NombreCliente;
+    public void setFechaRegistro(String FechaRegistro) {
+        this.FechaRegistro = FechaRegistro;
     }
 
-    public int getTelefonoCliente() {
-        return TelefonoCliente;
+    public String getNombre() {
+        return Nombre;
     }
 
-    public void setTelefonoCliente(int TelefonoCliente) {
-        this.TelefonoCliente = TelefonoCliente;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
-    public String getDireccionCliente() {
-        return DireccionCliente;
+    public String getApellidoMaterno() {
+        return ApellidoMaterno;
     }
 
-    public void setDireccionCliente(String DireccionCliente) {
-        this.DireccionCliente = DireccionCliente;
+    public void setApellidoMaterno(String ApellidoMaterno) {
+        this.ApellidoMaterno = ApellidoMaterno;
     }
 
-    public int getRutCliente() {
-        return RutCliente;
+    public String getApellidoPaterno() {
+        return ApellidoPaterno;
     }
 
-    public void setRutCliente(int RutCliente) {
-        this.RutCliente = RutCliente;
+    public void setApellidoPaterno(String ApellidoPaterno) {
+        this.ApellidoPaterno = ApellidoPaterno;
     }
 
-    public char getDVCliente() {
-        return DVCliente;
+    public int getRut() {
+        return Rut;
     }
 
-    public void setDVCliente(char DVCliente) {
-        this.DVCliente = DVCliente;
+    public void setRut(int Rut) {
+        this.Rut = Rut;
     }
 
-    public int getFiadosCodFiado() {
-        return FiadosCodFiado;
+    public char getDVRut() {
+        return DVRut;
     }
 
-    public void setFiadosCodFiado(int FiadosCodFiado) {
-        this.FiadosCodFiado = FiadosCodFiado;
+    public void setDVRut(char DVRut) {
+        this.DVRut = DVRut;
+    }
+
+    public String getDireccion() {
+        return Direccion;
+    }
+
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
+    }
+
+    public char getDeuda() {
+        return deuda;
+    }
+
+    public void setDeuda(char deuda) {
+        this.deuda = deuda;
+    }
+
+    public int getIdFiado() {
+        return IdFiado;
+    }
+
+    public void setIdFiado(int IdFiado) {
+        this.IdFiado = IdFiado;
     }
 
     @Override
     public String toString() {
-        return "Cliente{" + "IdCliente=" + IdCliente + ", NombreCliente=" + NombreCliente + ", TelefonoCliente=" + TelefonoCliente + ", DireccionCliente=" + DireccionCliente + ", RutCliente=" + RutCliente + ", DVCliente=" + DVCliente + ", FiadosCodFiado=" + FiadosCodFiado + '}';
+        return "Cliente{" + "IdCliente=" + IdCliente + ", FechaRegistro=" + FechaRegistro + ", Nombre=" + Nombre + ", ApellidoMaterno=" + ApellidoMaterno + ", ApellidoPaterno=" + ApellidoPaterno + ", Rut=" + Rut + ", DVRut=" + DVRut + ", Direccion=" + Direccion + ", deuda=" + deuda + ", IdFiado=" + IdFiado + '}';
     }
+    
+    
     
     
     

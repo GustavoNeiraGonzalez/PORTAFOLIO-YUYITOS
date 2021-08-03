@@ -7,6 +7,7 @@ package com.yuyitos.ch.view;
 
 import com.sun.glass.events.MouseEvent;
 import com.yuyitos.ch.bo.IngresarFichaClienteBO;
+import com.yuyitos.ch.dao.IngresarFichaClienteDAO;
 import com.yuyitos.ch.entity.Cliente;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -17,7 +18,9 @@ import javax.swing.JOptionPane;
  * @author tavo-
  */
 public class IngresarFichaCliente extends javax.swing.JFrame {
-
+    
+    Cliente cli = new Cliente();
+    IngresarFichaClienteDAO ingresarcliente = new IngresarFichaClienteDAO();
     /**
      * Creates new form IngresarFichaCliente
      */
@@ -71,6 +74,8 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
         txtAbonarFiado = new javax.swing.JTextField();
         chkAbono = new javax.swing.JCheckBox();
         txtIdFiado = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -205,8 +210,8 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
         });
         jPanel1.add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 310, -1, -1));
 
-        jLabel6.setText("DV Rut");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
+        jLabel6.setText("Cod_fiado");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
         txtID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -233,7 +238,7 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
                 txtIngresarFiadoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtIngresarFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 280, 50, -1));
+        jPanel1.add(txtIngresarFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 280, 50, -1));
 
         jLabel16.setText("Ingresar Cantidad Fiado");
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 260, -1, -1));
@@ -243,7 +248,7 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
         jPanel1.add(txtAbonarFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 60, -1));
 
         chkAbono.setText("activar fiados");
-        jPanel1.add(chkAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 230, -1, -1));
+        jPanel1.add(chkAbono, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, -1, -1));
 
         txtIdFiado.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -255,7 +260,14 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
                 txtIdFiadoKeyTyped(evt);
             }
         });
-        jPanel1.add(txtIdFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 90, 60, -1));
+        jPanel1.add(txtIdFiado, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 110, 60, -1));
+
+        jLabel8.setText("DV Rut");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 80, -1, -1));
+
+        jLabel10.setFont(new java.awt.Font("Microsoft YaHei UI", 2, 24)); // NOI18N
+        jLabel10.setText("Los YUYITOS");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(369, 0, 155, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -287,7 +299,7 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
             if(txtRut.getText().length()!=8 || txtTelefono.getText().length()!=9){ //Limitando las respuestas de rut a 8 caracteres y telefono a 9 caracteres
                 JOptionPane.showMessageDialog(null, "LLene correctamente el rut o telefono");
             }else{
-                Cliente cli = new Cliente();
+                
 
 
                 char dvchar=txtDVRut.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
@@ -300,9 +312,10 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
                 cli.setFiadosCodFiado(Integer.parseInt(txtIdFiado.getText()));
                 cli.setDVCliente(dvchar); 
                 
+                
 
-                String mensaje = ifcbo.ModificarFichaCliente(cli);
-                JOptionPane.showMessageDialog(null, mensaje);
+                //String mensaje = ifcbo.ModificarFichaCliente(cli);
+               // JOptionPane.showMessageDialog(null, mensaje);
                 limpiar();
                 listarCliente();
             }
@@ -329,16 +342,17 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
 
                 char dvchar=txtDVRut.getText().charAt(0);//convierte el string a char (esta limitado a un caracter el string)
 
-
+                cli.setIdCliente(Integer.parseInt(txtID.getText()));
                 cli.setNombreCliente(txtNombre.getText());
                 cli.setTelefonoCliente(Integer.parseInt(txtTelefono.getText()));
                 cli.setDireccionCliente(txtDireccion.getText());
                 cli.setRutCliente(Integer.parseInt(txtRut.getText()));//AQUI DA ERROR PORQUE INT NO ACEPTA NUMEROS DE 11 DE LARGO
                 cli.setDVCliente(dvchar); 
+                cli.setFiadosCodFiado(Integer.parseInt(txtIdFiado.getText()));
+                ingresarcliente.agregarFichaCliente(cli);
                 
-
-                String mensaje = ifcbo.agregarFichaCliente(cli);
-                JOptionPane.showMessageDialog(null, mensaje);
+                //String mensaje = ifcbo.agregarFichaCliente(cli);
+                JOptionPane.showMessageDialog(null, "cliente registrado");
                 limpiar();
                 listarCliente();
             }
@@ -378,7 +392,7 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
         char c = evt.getKeyChar();
         if((c<'a'|| c>'z') && (c<'A')|c>'Z' && c!=' '){
             evt.consume();
-        }
+        } 
         if(txtNombre.getText().length() >=50)//limita la cantidad de caracteres en el cuadro 
         {
             evt.consume();
@@ -419,9 +433,9 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
             
             
             Cliente cli = new Cliente();
-            String mensaje = ifcbo.EliminarFichaCliente(Integer.parseInt(txtID.getText()));
-            JOptionPane.showMessageDialog(null, mensaje);
-            limpiar();
+            //(String mensaje = ifcbo.EliminarFichaCliente(Integer.parseInt(txtID.getText()));
+            //JOptionPane.showMessageDialog(null, mensaje);
+            //limpiar();
             listarCliente();
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
@@ -461,8 +475,7 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
             txtIngresarFiado.setEditable(true);
             txtAbonarFiado.setEditable(true);
         }else {
-            txtIngresarFiado.setText(" ");
-            txtAbonarFiado.setText(" ");
+            
             txtIngresarFiado.setEditable(false);
             txtAbonarFiado.setEditable(false);
         }
@@ -475,7 +488,7 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
 
     private void txtIdFiadoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtIdFiadoMouseClicked
         // TODO add your handling code here:
-        txtIdFiado.setEditable(false);
+        //txtIdFiado.setEditable(false);
     }//GEN-LAST:event_txtIdFiadoMouseClicked
     
     public void limpiar(){
@@ -528,6 +541,7 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JCheckBox chkAbono;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
@@ -537,6 +551,7 @@ public class IngresarFichaCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

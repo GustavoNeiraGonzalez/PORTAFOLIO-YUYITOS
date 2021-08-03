@@ -5,64 +5,72 @@
  */
 package com.yuyitos.ch.test;
 
-import com.yuyitos.ch.bo.IngresarFichaClienteBO;
+
+import com.yuyitos.ch.dao.IngresarFichaClienteDAO;
 import com.yuyitos.ch.entity.Cliente;
+import com.yuyitos.ch.entity.Persona;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  *
  * @author tavo-
  */
 public class Test {
-    IngresarFichaClienteBO ifcbo = new IngresarFichaClienteBO();
+    //IngresarFichaClienteBO ifcbo = new IngresarFichaClienteBO();
     Cliente cli = new Cliente();
+    Persona per = new Persona();
+    IngresarFichaClienteDAO ingresarficha  = new IngresarFichaClienteDAO();
     String mensaje = "";
-    
+    DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     
     public void insertar(){
-//        cli.setNombreCliente("walter");
-//        cli.setDireccionCliente("pasaje #7 12830 la pintana");
-//        cli.setRutCliente(20379209);
-//        cli.setDVCliente('1');
-//        cli.setTelefonoCliente(934813738);
-//        cli.setFiadosCodFiado(1);
         
-        cli.setNombreCliente("fabian lopez");
-        cli.setDireccionCliente("pasaje #9 13430 el castillo ");
-        cli.setRutCliente(20549252);
-        cli.setDVCliente('3'); //me salio un error ora-12899 value too large, esto pasó porque el metodo ingresar ficha cliente estaba en int
-        cli.setTelefonoCliente(943287664);
-        cli.setFiadosCodFiado(2);
-        mensaje = ifcbo.agregarFichaCliente(cli);
-        System.out.println(mensaje);
+
+        
+        cli.setApellidoMaterno("Gonzalez");//me salio un error ora-12899 value too large, esto pasó porque el metodo ingresar ficha cliente estaba en int
+        cli.setApellidoPaterno("Neira");
+        cli.setDVRut('3');
+        cli.setDeuda('s');
+        cli.setDireccion("calle siempre viva #4132");
+        
+        cli.setNombre("Gustavo");
+        cli.setRut(20379209);
+        ingresarficha.agregarFichaCliente(cli);
+
+
+        
+       
+        //mensaje = ifcbo.agregarFichaCliente(cli);
+        System.out.println("correcto");
     }
     public void modificar(){
-//        cli.setNombreCliente("walter");
-//        cli.setDireccionCliente("pasaje #7 12830 la pintana");
-//        cli.setRutCliente(20379209);
-//        cli.setDVCliente('1');
-//        cli.setTelefonoCliente(934813738);
-//        cli.setFiadosCodFiado(1);
 
-        cli.setIdCliente(10);
-        cli.setNombreCliente("JOSE PINTO");
-        cli.setDireccionCliente("calle los pajaritos 123 ");
-        cli.setRutCliente(20143252);
-        cli.setDVCliente('2'); 
-        cli.setTelefonoCliente(984826664);
-        cli.setFiadosCodFiado(3);
-        mensaje = ifcbo.ModificarFichaCliente(cli);
-        System.out.println(mensaje);
+        cli.setApellidoMaterno("Gonzaz");//me salio un error ora-12899 value too large, esto pasó porque el metodo ingresar ficha cliente estaba en int
+        cli.setApellidoPaterno("Nei");
+        cli.setDVRut('3');
+        cli.setDeuda('s');
+        cli.setDireccion("calle siempre viva #4132");
+        
+
+        cli.setNombre("Gus");
+        cli.setRut(20111222);
+        cli.setIdCliente(1);//id para el where
+        
+        ingresarficha.ModificarFichaCliente(cli);
+
+        System.out.println("Correcto");
        
     }
     
     public void eliminar(){
-        mensaje = ifcbo.EliminarFichaCliente(11);
+        ingresarficha.EliminarCliente(1);//solo requiere el id
         System.out.println(mensaje);
     }
     public static void main (String[] args){
         Test test = new Test();
         //test.insertar();
-        //test.modificar();
+        test.modificar();
         //test.eliminar();
     }
 }
