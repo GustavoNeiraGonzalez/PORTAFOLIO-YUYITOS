@@ -7,7 +7,7 @@ package com.yuyitos.ch.entity;
 
 /**
  *
- * @author tavo-
+ * @author tavo-a
  */
 public class Pedido {
     public int IdPedido;

@@ -6,8 +6,12 @@
 package com.yuyitos.ch.view;
 
 import com.yuyitos.ch.dao.LoginDAO;
+import com.yuyitos.ch.db.Conexion;
 import com.yuyitos.ch.db.LoginM;
 import java.awt.Image;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -20,7 +24,11 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     LoginM lg = new LoginM();
     LoginDAO login = new LoginDAO();
-   
+       Conexion cn = new Conexion();
+    Connection con;
+    
+    PreparedStatement pst;
+    ResultSet rs;
         
     public Login() {
         
@@ -36,16 +44,47 @@ public class Login extends javax.swing.JFrame {
     public void Validar(){
         String correo = txtCorreo.getText();
         String pass = String.valueOf(txtPass.getPassword());
+        String cargo="";
         if(!"".equals(correo) || !"".equals(pass)){
-            
+
             lg = login.log(correo, pass);
             if (lg.getCorreo() != null && lg.getPass() != null) {
-                //Sistema sis = new Sistema();
-                //sis.setVisible(true);
-                JOptionPane.showMessageDialog(null, "correcto");
-                MenuPrincipal menu = new MenuPrincipal();
-                menu.setVisible(true);
-                dispose();
+                            try {
+                            String sql="select cargo from usuarios where correo=?";       
+                             con=cn.getConnection();
+                              pst = con.prepareStatement(sql);//recordar hacer esto antes de cualquier pst.setint o similar porque da nullpointer exception
+                              pst.setString(1, lg.getCorreo());
+                                ResultSet rs1 = pst.executeQuery();
+
+                                if (rs1.next()){
+                                    cargo=rs1.getString(1);
+                                    JOptionPane.showMessageDialog(null, cargo);
+                                }
+                                 if ("Administrador".equals(cargo)){
+                        JOptionPane.showMessageDialog(null, "correcto");
+                        MenuPrincipal menu = new MenuPrincipal();
+                        menu.setVisible(true);
+                        //menu.ocultarbodeguero();
+                        dispose();
+                    }else if("Cajero".equals(cargo)){
+                            JOptionPane.showMessageDialog(null, "correcto");
+                            MenuPrincipal menu = new MenuPrincipal();
+                            menu.setVisible(true);
+                            menu.ocultarCajero();
+                            dispose();
+                        }else if("Bodeguero".equals(cargo)){
+                            JOptionPane.showMessageDialog(null, "correcto");
+                            MenuPrincipal menu = new MenuPrincipal();
+                            menu.setVisible(true);
+                            menu.ocultarbodeguero();
+                            dispose();
+                        }
+
+                                
+                        } catch (Exception e) {
+                                JOptionPane.showMessageDialog(null, e.toString());
+                        }
+                   
                 
             }else{
                JOptionPane.showMessageDialog(null, "Correo o contraseña incorrecta");
