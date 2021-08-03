@@ -610,8 +610,8 @@ public class IngresarPedidoDAO {
                             "inner join pedido as ped on ped.numfactura=fact.numfactura inner join repartidor as rep on rep.idRepartidor=ped.idRepartidor\n" +
                             "where fact.numfactura=? and rep.nombre=?";
             String sql2="select prod.descripcion, det.cantidad from detallefactura as det \n" +
-                            "inner join producto as prod on prod.codproducto=det.producto\n" +
-                            "where det.numfactura=?";
+                            "inner join producto as prod on prod.codproducto=det.producto\n" +                          
+                            "where det.numfactura=?";       
             con=cn.getConnection();
             
                 String numboleta = "";
@@ -635,7 +635,7 @@ public class IngresarPedidoDAO {
                     rut=(rs1.getString(5));
                     nombre=(rs1.getString(6));
             }
-            
+                            
             PDDocument documento = new PDDocument ();
             PDPage pagina = new PDPage(PDRectangle.A6);//nueva pagina a6 igual tipo de pagina
             

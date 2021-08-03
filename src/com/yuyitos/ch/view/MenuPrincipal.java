@@ -15,6 +15,7 @@ import com.yuyitos.ch.bo.IngresarFichaClienteBO;
 import com.yuyitos.ch.bo.IngresarFichaProveedorBO;
 import com.yuyitos.ch.bo.TablaEmpleado;
 import com.yuyitos.ch.dao.BuscarComboBoxDAO;
+import com.yuyitos.ch.dao.InformesDAO;
 import com.yuyitos.ch.dao.IngresarEmpleadoDAO;
 import com.yuyitos.ch.dao.IngresarFichaClienteDAO;
 import com.yuyitos.ch.dao.IngresarFichaProveedorDAO;
@@ -40,6 +41,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,6 +49,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartFrame;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 
 /**
@@ -64,6 +71,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     Factura fact = new Factura();
     Discrepancias disc = new Discrepancias();
     IngresarVentaDAO ivdao = new IngresarVentaDAO();
+    InformesDAO pdf = new InformesDAO();
     IngresarFichaProveedorDAO ingresarempresa = new IngresarFichaProveedorDAO();
     private IngresarFichaClienteBO ifcbo = new IngresarFichaClienteBO();
     private IngresarFichaProveedorBO ifpbo = new IngresarFichaProveedorBO();
@@ -214,17 +222,24 @@ public class MenuPrincipal extends javax.swing.JFrame {
         datecFechaTermino = new com.toedter.calendar.JDateChooser();
         cboCargoEmpleado = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel61 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        checkbox1 = new java.awt.Checkbox();
-        checkbox2 = new java.awt.Checkbox();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jComboBox4 = new javax.swing.JComboBox<>();
         btnGenerarPDF = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jLabel77 = new javax.swing.JLabel();
+        jLabel78 = new javax.swing.JLabel();
+        btnPDFFiadosTotales = new javax.swing.JButton();
+        jLabel79 = new javax.swing.JLabel();
+        jLabel80 = new javax.swing.JLabel();
+        btnPDFBoletaMes = new javax.swing.JButton();
+        jLabel81 = new javax.swing.JLabel();
+        jLabel82 = new javax.swing.JLabel();
+        btnPDFProveedores = new javax.swing.JButton();
+        jLabel83 = new javax.swing.JLabel();
+        jLabel84 = new javax.swing.JLabel();
+        btnPDFEmpleados = new javax.swing.JButton();
+        jLabel85 = new javax.swing.JLabel();
+        btnGraficoVentas = new javax.swing.JButton();
+        jLabel86 = new javax.swing.JLabel();
+        jLabel87 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         txtRubroProveedor = new javax.swing.JTextField();
         txtDireccionProveedor = new javax.swing.JTextField();
@@ -337,9 +352,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel72 = new javax.swing.JLabel();
         cboRutVenta = new javax.swing.JComboBox<>();
         jLabel60 = new javax.swing.JLabel();
-        txtPassVenta = new javax.swing.JTextField();
         jLabel73 = new javax.swing.JLabel();
         btnGenerarBoleta = new javax.swing.JButton();
+        txtpassword = new javax.swing.JPasswordField();
         jLabel10 = new javax.swing.JLabel();
         lblImagen = new javax.swing.JLabel();
 
@@ -823,33 +838,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel6.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 48, -1, -1));
-
         jLabel61.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel61.setText("Estadistica");
-        jPanel6.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 10, -1, -1));
-
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(462, 48, -1, -1));
-
-        checkbox1.setLabel("checkbox1");
-        jPanel6.add(checkbox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 90, -1, -1));
-
-        checkbox2.setLabel("checkbox2");
-        jPanel6.add(checkbox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 90, -1, -1));
-
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(693, 48, -1, -1));
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane7.setViewportView(jTextArea1);
-
-        jPanel6.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 110, 581, 228));
-
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel6.add(jComboBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 400, -1, -1));
+        jPanel6.add(jLabel61, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 0, -1, -1));
 
         btnGenerarPDF.setText("Generar pdf");
         btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
@@ -857,10 +848,80 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnGenerarPDFActionPerformed(evt);
             }
         });
-        jPanel6.add(btnGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 360, -1, -1));
+        jPanel6.add(btnGenerarPDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 380, -1, -1));
 
-        jButton1.setText("Cancelar");
-        jPanel6.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, -1, -1));
+        jLabel77.setText("Información Empleados");
+        jPanel6.add(jLabel77, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 90, -1, -1));
+
+        jLabel78.setText("Generar PDF ");
+        jPanel6.add(jLabel78, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 60, -1, -1));
+
+        btnPDFFiadosTotales.setText("Generar pdf");
+        btnPDFFiadosTotales.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFFiadosTotalesActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnPDFFiadosTotales, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 120, -1, -1));
+
+        jLabel79.setText("Productos mas vendidos");
+        jPanel6.add(jLabel79, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 210, -1, 40));
+
+        jLabel80.setText("fiados actuales");
+        jPanel6.add(jLabel80, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, -1, -1));
+
+        btnPDFBoletaMes.setText("Generar pdf");
+        btnPDFBoletaMes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFBoletaMesActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnPDFBoletaMes, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 120, -1, -1));
+
+        jLabel81.setText("Generar PDF ");
+        jPanel6.add(jLabel81, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, -1, 20));
+
+        jLabel82.setText("de Ventas por boleta");
+        jPanel6.add(jLabel82, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 80, -1, 30));
+
+        btnPDFProveedores.setText("Generar pdf");
+        btnPDFProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFProveedoresActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnPDFProveedores, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 120, -1, -1));
+
+        jLabel83.setText("Generar PDF ");
+        jPanel6.add(jLabel83, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 60, -1, -1));
+
+        jLabel84.setText("mes actual");
+        jPanel6.add(jLabel84, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, -1, 20));
+
+        btnPDFEmpleados.setText("Generar pdf");
+        btnPDFEmpleados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPDFEmpleadosActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnPDFEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, -1, -1));
+
+        jLabel85.setText("Proveedores");
+        jPanel6.add(jLabel85, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, -1, -1));
+
+        btnGraficoVentas.setText("Generar pdf");
+        btnGraficoVentas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficoVentasActionPerformed(evt);
+            }
+        });
+        jPanel6.add(btnGraficoVentas, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 250, -1, -1));
+
+        jLabel86.setText("Generar PDF ");
+        jPanel6.add(jLabel86, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, 20));
+
+        jLabel87.setText("Generar estadistica");
+        jPanel6.add(jLabel87, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 190, -1, 40));
 
         jTabbedPane1.addTab("Estadistica", jPanel6);
 
@@ -1322,6 +1383,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 255));
 
+        txtMontoAFiarVenta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtMontoAFiarVentaKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtMontoAFiarVentaKeyTyped(evt);
+            }
+        });
+
         jLabel62.setText("Ingresar monto a fiar");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
@@ -1345,7 +1415,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addContainerGap(90, Short.MAX_VALUE))
         );
 
-        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(732, 165, 270, 200));
+        jPanel8.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 200, 270, 200));
 
         btnAceptarVenta.setText("Aceptar");
         btnAceptarVenta.addActionListener(new java.awt.event.ActionListener() {
@@ -1381,7 +1451,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jPanel8.add(jLabel65, new org.netbeans.lib.awtextra.AbsoluteConstraints(273, 6, -1, -1));
 
         jLabel66.setText("Contraseña para poder fiar");
-        jPanel8.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 100, -1, -1));
+        jPanel8.add(jLabel66, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 130, -1, -1));
 
         cboProductoVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1449,10 +1519,9 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel60.setText("Buscar por rut Cliente");
         jPanel8.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
-        jPanel8.add(txtPassVenta, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 120, 77, -1));
 
         jLabel73.setText("Fiar");
-        jPanel8.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 140, -1, -1));
+        jPanel8.add(jLabel73, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 180, -1, -1));
 
         btnGenerarBoleta.setText("Generar Boleta");
         btnGenerarBoleta.addActionListener(new java.awt.event.ActionListener() {
@@ -1460,7 +1529,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 btnGenerarBoletaActionPerformed(evt);
             }
         });
-        jPanel8.add(btnGenerarBoleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 60, -1, -1));
+        jPanel8.add(btnGenerarBoleta, new org.netbeans.lib.awtextra.AbsoluteConstraints(880, 70, -1, -1));
+        jPanel8.add(txtpassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 160, 120, 20));
 
         jTabbedPane1.addTab("Venta", jPanel8);
 
@@ -1586,20 +1656,34 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btnAceptarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarVentaActionPerformed
         // TODO add your handling code here:
 
+        
+        
         if ("0".equals(txtTotalVenta.getText())||cboRutVenta.getSelectedItem()==""||cboProductoVenta.getSelectedItem()==""){
             JOptionPane.showMessageDialog(null, ": Para aceptar pedido boleta debe agregar algún producto mas el rut usuario.");
-        }else{
+        }else {
+            if(txtMontoAFiarVenta.getText().isEmpty() && Arrays.equals( "".toCharArray(), txtpassword.getPassword())){
+                
+                 ivdao.agregarventa(txtNumeroBoleta);
+                    ivdao.ModificaBoleta(txtTotalVenta,txtNumeroBoleta);
+                    ivdao.ActualizarStockVenta(txtNumeroBoleta);
+                    ivdao.PDFBoleta(txtNumeroBoleta);
+                   limpiar();
+            }
             
-            ivdao.agregarventa(txtNumeroBoleta);
-            ivdao.ModificaBoleta(txtTotalVenta,txtNumeroBoleta);
-            ivdao.ActualizarStockVenta(txtNumeroBoleta);
-            if("pass".equals(txtPassVenta.getText()) || !txtMontoAFiarVenta.getText().isEmpty()){
-
+            else if(((Arrays.equals( "pass".toCharArray(), txtpassword.getPassword())) && !txtMontoAFiarVenta.getText().isEmpty()) && 
+                 Integer.parseInt(txtMontoAFiarVenta.getText())<Integer.parseInt(txtTotalVenta.getText())){
+                ivdao.agregarventa(txtNumeroBoleta);
+              ivdao.ModificaBoleta(txtTotalVenta,txtNumeroBoleta);
+              ivdao.ActualizarStockVenta(txtNumeroBoleta);
                 ivdao.agregarFiado(txtMontoAFiarVenta, cboRutVenta);
                 ivdao.ModificarFiadoCliente(cboRutVenta);
-            }
-            ivdao.PDFBoleta(txtNumeroBoleta);
-            limpiar();
+                 ivdao.PDFBoleta(txtNumeroBoleta);
+                   limpiar();
+             }
+             else{
+                 JOptionPane.showMessageDialog(null, "Error, contraseña incorrecta y/o monto fiado Incorrecto");
+             }
+            
         }
     }//GEN-LAST:event_btnAceptarVentaActionPerformed
 
@@ -1737,7 +1821,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Para Eliminar un producto Debe existir un producto en la tabla..");//de esta forma no se borrará algún
             //producto por haber seleccionado el producto luego aceptado el pedido y luego eliminado el el producto (Tambien sirve vaciando el txt al aceptar el pedido)
         }else{
-
+                
             det.setIdDetalle(Integer.parseInt(txtIdProductoPedido.getText()));
             ipdao.EliminarDetallePedido(det);
             listarProductoPedido();
@@ -2567,8 +2651,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
             ingresarcliente.ModificarFiadoCliente(txtAbonarFiado,txtID);//AQUI SIRVE PARA VERIFICAR SI SE PAGARÁ TOTALMENTE LA DEUDA, ENTONCES HACER EL CAMBIO EN EL CHAR DEUDA DE TABLA CLIENTE
             ingresarcliente.ModificarCHARFiado(txtID);
+            ingresarcliente.CalcularDeuda(txtID,txtDeuda);
         }else{
             ingresarcliente.ModificarFiadoCliente(txtAbonarFiado,txtID);
+            ingresarcliente.CalcularDeuda(txtID,txtDeuda);  
         }
     }//GEN-LAST:event_btnAceptarFiadoClienteActionPerformed
 
@@ -2702,6 +2788,48 @@ public class MenuPrincipal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCalcularDeudaActionPerformed
 
+    private void txtMontoAFiarVentaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoAFiarVentaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMontoAFiarVentaKeyPressed
+
+    private void txtMontoAFiarVentaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtMontoAFiarVentaKeyTyped
+        // TODO add your handling code here:
+                char c = evt.getKeyChar();
+        if(c<'0'|| c>'9'){
+            evt.consume();
+        }
+        if(txtMontoAFiarVenta.getText().length() >=7)//limita la cantidad de caracteres en el cuadro
+        {
+            evt.consume();
+        }
+    }//GEN-LAST:event_txtMontoAFiarVentaKeyTyped
+
+    private void btnPDFFiadosTotalesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFFiadosTotalesActionPerformed
+        // TODO add your handling code here:
+        pdf.PDFFiadosTotales();
+    }//GEN-LAST:event_btnPDFFiadosTotalesActionPerformed
+
+    private void btnPDFBoletaMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFBoletaMesActionPerformed
+
+        // TODO add your handling code here:
+        pdf.PDFVentaBoletaMes();
+    }//GEN-LAST:event_btnPDFBoletaMesActionPerformed
+
+    private void btnPDFProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFProveedoresActionPerformed
+        // TODO add your handling code here:
+        pdf.PDFProveedores();
+    }//GEN-LAST:event_btnPDFProveedoresActionPerformed
+
+    private void btnPDFEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPDFEmpleadosActionPerformed
+        // TODO add your handling code here:
+        pdf.PDFEmpleados();
+    }//GEN-LAST:event_btnPDFEmpleadosActionPerformed
+
+    private void btnGraficoVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficoVentasActionPerformed
+        // TODO add your handling code here:
+        pdf.GraficoVentas();
+    }//GEN-LAST:event_btnGraficoVentasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2816,7 +2944,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         txtIDetalleVenta.setText("");
         txtTotalVenta.setText("");
         txtMontoAFiarVenta.setText("");
-        txtPassVenta.setText("");
+        txtpassword.setText("");
+        
         tbVentaBoleta.setModel(new DefaultTableModel());
         txtNumeroBoleta.setText("");
     }
@@ -2867,6 +2996,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnGenerarBoleta;
     private javax.swing.JButton btnGenerarNFactura;
     private javax.swing.JButton btnGenerarPDF;
+    private javax.swing.JButton btnGraficoVentas;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JButton btnLimpiarEmpleado;
     private javax.swing.JButton btnLimpiarProveedor;
@@ -2874,6 +3004,10 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnModificar;
     private javax.swing.JButton btnModificarEmpleado;
     private javax.swing.JButton btnModificarProveedor;
+    private javax.swing.JButton btnPDFBoletaMes;
+    private javax.swing.JButton btnPDFEmpleados;
+    private javax.swing.JButton btnPDFFiadosTotales;
+    private javax.swing.JButton btnPDFProveedores;
     private javax.swing.JButton btnQuitarCompra;
     private javax.swing.JButton btnQuitarCompraVenta;
     private javax.swing.JToggleButton btnRevisarPedido;
@@ -2890,14 +3024,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboProducto;
     private javax.swing.JComboBox<String> cboProductoVenta;
     private javax.swing.JComboBox<String> cboRutVenta;
-    private java.awt.Checkbox checkbox1;
-    private java.awt.Checkbox checkbox2;
     private com.toedter.calendar.JDateChooser datecFechaTermino;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2972,7 +3099,18 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel74;
     private javax.swing.JLabel jLabel75;
     private javax.swing.JLabel jLabel76;
+    private javax.swing.JLabel jLabel77;
+    private javax.swing.JLabel jLabel78;
+    private javax.swing.JLabel jLabel79;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel80;
+    private javax.swing.JLabel jLabel81;
+    private javax.swing.JLabel jLabel82;
+    private javax.swing.JLabel jLabel83;
+    private javax.swing.JLabel jLabel84;
+    private javax.swing.JLabel jLabel85;
+    private javax.swing.JLabel jLabel86;
+    private javax.swing.JLabel jLabel87;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -2989,9 +3127,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JTable tbIngresarEmpleado;
     private javax.swing.JTable tbIngresarFichaCliente;
@@ -3033,7 +3169,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtNombreRepartidorRevisar;
     private javax.swing.JTextField txtNumFactura;
     private javax.swing.JTextField txtNumeroBoleta;
-    private javax.swing.JTextField txtPassVenta;
     private javax.swing.JTextField txtPrecioPedido;
     private javax.swing.JTextField txtPrecioUnitarioVenta;
     private javax.swing.JTextField txtRubroProveedor;
@@ -3049,5 +3184,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtTotalProductosDiscrepancia;
     private javax.swing.JTextField txtTotalProductosRevisar;
     private javax.swing.JTextField txtTotalVenta;
+    private javax.swing.JPasswordField txtpassword;
     // End of variables declaration//GEN-END:variables
 }
