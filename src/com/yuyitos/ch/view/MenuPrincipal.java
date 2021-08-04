@@ -1755,6 +1755,14 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void btnVerProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerProveedorActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(3);
+                cboNombreEmpresa.removeAllItems();
+        cboNombreEmpresaRevisar.removeAllItems();
+        cboProductoVenta.removeAllItems();
+        cboRutVenta.removeAllItems();
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresa);
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresaRevisar);
+        bcbDAO.BuscarProductoVenta(cboProductoVenta);
+        bcbDAO.BuscarRutCliente(cboRutVenta);
     }//GEN-LAST:event_btnVerProveedorActionPerformed
 
     public void ocultarCajero(){
@@ -1786,21 +1794,53 @@ public void ocultarbodeguero(){
     private void btnVerClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerClienteActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(0);
+        cboNombreEmpresa.removeAllItems();
+        cboNombreEmpresaRevisar.removeAllItems();
+        cboProductoVenta.removeAllItems();
+        cboRutVenta.removeAllItems();
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresa);
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresaRevisar);
+        bcbDAO.BuscarProductoVenta(cboProductoVenta);
+        bcbDAO.BuscarRutCliente(cboRutVenta);
     }//GEN-LAST:event_btnVerClienteActionPerformed
 
     private void btnVerOrdenPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerOrdenPedidoActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(4);
+                cboNombreEmpresa.removeAllItems();
+        cboNombreEmpresaRevisar.removeAllItems();
+        cboProductoVenta.removeAllItems();
+        cboRutVenta.removeAllItems();
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresa);
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresaRevisar);
+        bcbDAO.BuscarProductoVenta(cboProductoVenta);
+        bcbDAO.BuscarRutCliente(cboRutVenta);
     }//GEN-LAST:event_btnVerOrdenPedidoActionPerformed
 
     private void btnVerEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEmpleadoActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(1);
+                cboNombreEmpresa.removeAllItems();
+        cboNombreEmpresaRevisar.removeAllItems();
+        cboProductoVenta.removeAllItems();
+        cboRutVenta.removeAllItems();
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresa);
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresaRevisar);
+        bcbDAO.BuscarProductoVenta(cboProductoVenta);
+        bcbDAO.BuscarRutCliente(cboRutVenta);
     }//GEN-LAST:event_btnVerEmpleadoActionPerformed
 
     private void btnRevisarPedidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevisarPedidoActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(5);
+                cboNombreEmpresa.removeAllItems();
+        cboNombreEmpresaRevisar.removeAllItems();
+        cboProductoVenta.removeAllItems();
+        cboRutVenta.removeAllItems();
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresa);
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresaRevisar);
+        bcbDAO.BuscarProductoVenta(cboProductoVenta);
+        bcbDAO.BuscarRutCliente(cboRutVenta);
     }//GEN-LAST:event_btnRevisarPedidoActionPerformed
 
     private void tbVentaBoletaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbVentaBoletaMouseClicked
@@ -2890,11 +2930,27 @@ public void ocultarbodeguero(){
     private void btnVerInformesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerInformesActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(2);
+                cboNombreEmpresa.removeAllItems();
+        cboNombreEmpresaRevisar.removeAllItems();
+        cboProductoVenta.removeAllItems();
+        cboRutVenta.removeAllItems();
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresa);
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresaRevisar);
+        bcbDAO.BuscarProductoVenta(cboProductoVenta);
+        bcbDAO.BuscarRutCliente(cboRutVenta);
     }//GEN-LAST:event_btnVerInformesActionPerformed
 
     private void btnVerVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerVentaActionPerformed
         // TODO add your handling code here:
         jTabbedPane1.setSelectedIndex(6);
+                cboNombreEmpresa.removeAllItems();
+        cboNombreEmpresaRevisar.removeAllItems();
+        cboProductoVenta.removeAllItems();
+        cboRutVenta.removeAllItems();
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresa);
+        bcbDAO.BuscarNombreEmpresaCBO(cboNombreEmpresaRevisar);
+        bcbDAO.BuscarProductoVenta(cboProductoVenta);
+        bcbDAO.BuscarRutCliente(cboRutVenta);
     }//GEN-LAST:event_btnVerVentaActionPerformed
 
     private void btnGenerarNFacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarNFacturaActionPerformed

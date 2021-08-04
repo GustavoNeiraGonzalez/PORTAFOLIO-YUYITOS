@@ -530,11 +530,11 @@ public class IngresarVentaDAO {
 //                contenido.showText("-----------------------------------------------------------------------");
 //                contenido.endText();
             contenido.close();
-            documento.save("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
+            documento.save("pdfprueba pdf.pdf");
             
             JOptionPane.showMessageDialog(null, "pdf creado");
             try {
-                    File path = new File ("C:\\Users\\tavo-\\OneDrive\\Escritorio\\portafolio\\pdfprueba pdf.pdf");
+                    File path = new File ("pdfprueba pdf.pdf");
                     Desktop.getDesktop().open(path);
                }catch (IOException ex) {
                     ex.printStackTrace();

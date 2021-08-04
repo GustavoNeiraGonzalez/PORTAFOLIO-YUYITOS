@@ -11,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -97,6 +98,7 @@ public class IngresarEmpleadoDAO {
             JOptionPane.showMessageDialog(null, "Empleado modificado");
             return true;
         } catch(Exception e){
+            
             JOptionPane.showMessageDialog(null, e.toString());
             return false;
         }finally{
@@ -117,7 +119,12 @@ public class IngresarEmpleadoDAO {
             pst.execute();
             JOptionPane.showMessageDialog(null, "empleado Eliminado");
             return true;
-        } catch (Exception e) {
+        } catch (SQLIntegrityConstraintViolationException s){
+            JOptionPane.showMessageDialog(null, "Error, No se puede eliminar un empleado que ha realizado acciones en el sistema. por seguridad.");
+            return false;
+        }
+        catch (Exception e) {
+            
             System.out.println(e.toString());
             return false;
         }finally{
@@ -128,6 +135,7 @@ public class IngresarEmpleadoDAO {
             }
         }
     }
+
     public void ListarEmpleado(Connection con, JTable tabla){ //crear metodo de lista
 
         DefaultTableModel model; //llamamos al objeto de nuestra tabla
