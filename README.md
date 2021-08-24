@@ -16,7 +16,7 @@ Debe existir una ID de empleado, que debe ser 1.
 
 [![pantallazo_1](./pantallazos_readme/Captura1.GIF)](https://github.com/GustavoNeiraGonzalez/PORTAFOLIO-YUYITOS)
 
-[![pantallazo_2](./pantallazos_readme/captura2.GIFF)](https://github.com/GustavoNeiraGonzalez/PORTAFOLIO-YUYITOS)
+[![pantallazo_2](./pantallazos_readme/captura2.GIF)](https://github.com/GustavoNeiraGonzalez/PORTAFOLIO-YUYITOS)
 
 [![pantallazo_3](./pantallazos_readme/captura3.GIF)](https://github.com/GustavoNeiraGonzalez/PORTAFOLIO-YUYITOS)
 
